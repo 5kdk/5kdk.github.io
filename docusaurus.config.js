@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: '5kdk Devlog',
-  tagline: 'Less but better',
+  title: '5kdk',
+  tagline: '👷 Blog under maintenance. Please bear with me!',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
