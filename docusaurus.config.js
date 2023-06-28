@@ -65,6 +65,14 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
+      announcementBar: {
+        id: 'support_us',
+        content:
+          '👷 Blog under maintenance. Please bear with me!  <a target="_blank" rel="noopener noreferrer" href="https://github.com/5kdk/5kdk.github.io">GitHub repo</a>',
+        backgroundColor: 'lightgray',
+        textColor: '#000',
+        isCloseable: true,
+      },
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
         title: '5kdk',
