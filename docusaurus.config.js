@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: '5kdk',
-  tagline: '👷 Blog under maintenance. Please bear with me!',
+  title: "5kdk's devlog",
+  tagline: '성장하는 하루가 되기 위해 기록하는 블로그',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -36,8 +36,7 @@ const config = {
 
   presets: [
     [
-      '@docusaurus/preset-classic',
-      // 'classic',
+      'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         // docs: {
@@ -50,6 +49,7 @@ const config = {
         docs: false,
         blog: {
           showReadingTime: true,
+          blogSidebarTitle: '최근 포스트',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl: 'https://github.com/5kdk/5kdk.github.io/tree/main',
@@ -69,7 +69,7 @@ const config = {
         id: 'support_us',
         content:
           '👷 Blog under maintenance. Please bear with me!  <a target="_blank" rel="noopener noreferrer" href="https://github.com/5kdk/5kdk.github.io">GitHub repo</a>',
-        backgroundColor: 'lightgray',
+        backgroundColor: 'tomato',
         textColor: '#000',
         isCloseable: true,
       },
