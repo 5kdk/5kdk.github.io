@@ -79,6 +79,7 @@ const config = {
           //   position: 'left',
           //   label: 'Tutorial',
           // },
+          { to: '/aboutMe', label: 'About Me', position: 'left' },
           { to: '/blog', label: 'Blog', position: 'left' },
           {
             href: 'https://github.com/5kdk',
