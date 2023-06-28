@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_5_kdk_blog=self.webpackChunk_5_kdk_blog||[]).push([[618],{3628:e=>{e.exports=JSON.parse('{"permalink":"/blog/tags/react-router","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
