@@ -1,37 +1,39 @@
 import React from 'react';
 import clsx from 'clsx';
-import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 
 import styles from './index.module.css';
 
-function HomepageHeader() {
+const HomepageHeader = () => {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <h1 className="hero__title">{siteConfig.title}</h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        {/* <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
-          </Link>
-        </div> */}
+    <header className={clsx('hero', styles.heroBanner)}>
+      <div className="container text--left">
+        <p>Hello there.</p>
+        <h1 className="hero__title">
+          직관적이고 효율적인
+          <br />
+          UX/UI를 지향하고,
+          <br />
+          동료와 명확한 의사소통이 될 수 있는
+          <br />
+          코드 품질을 추구하는
+          <br />
+          프론트엔드 개발자 김동규 입니다.
+        </h1>
       </div>
     </header>
   );
-}
+};
 
-export default function Home() {
+const Home = () => {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
+      description="5kdk의 개발 블로그"
     >
       <HomepageHeader />
       <main>
@@ -39,4 +41,6 @@ export default function Home() {
       </main>
     </Layout>
   );
-}
+};
+
+export default Home;
