@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://5kdk.github.io/blog</id>
-    <title>5kdk Blog</title>
+    <title>5kdk's devlog Blog</title>
     <updated>2023-06-17T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://5kdk.github.io/blog"/>
-    <subtitle>5kdk Blog</subtitle>
+    <subtitle>5kdk's devlog Blog</subtitle>
     <icon>https://5kdk.github.io/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[useNavigate의 옵션을 활용한 뒤로가기 사용성 개선]]></title>
