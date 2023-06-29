@@ -15,7 +15,7 @@
     padding: 2rem;
   }
   .heroBanner > div > h1 {
-    font-size: 2.25rem;
+    font-size: clamp(1.5rem, 4vw, 3rem);
   }
 }
 
