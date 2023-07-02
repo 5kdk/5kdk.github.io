@@ -1,0 +1,23 @@
+.heroBanner {
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroBanner .heroTitle {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: 500;
+}
+
+.heroBanner .heroTitle strong {
+  text-decoration: underline;
+  text-underline-position: under;
+  color: var(--ifm-color-primary);
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+}
