@@ -3,8 +3,18 @@
  * and scoped locally.
  */
 
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.mainGlow {
+  display: none;
+}
+
+[data-theme='dark'] .mainGlow {
+  position: absolute !important;
+  overflow: hidden !important;
+  display: block;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-75%, -50%);
+  overflow: hidden;
+  z-index: -1;
 }

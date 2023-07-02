@@ -1,11 +1,10 @@
 import React from 'react';
-import clsx from 'clsx';
 import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: '꼼꼼하게 제품을 개발하는',
+    Svg: require('@site/static/img/clumsy.svg').default,
     description: (
       <>
         Docusaurus was designed from the ground up to be easily installed and
@@ -14,8 +13,8 @@ const FeatureList = [
     ),
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: '꾸준한 성장을 즐기는',
+    Svg: require('@site/static/img/jumping.svg').default,
     description: (
       <>
         Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
@@ -24,8 +23,38 @@ const FeatureList = [
     ),
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: '동료와 소통이 원활한',
+    Svg: require('@site/static/img/zombieing.svg').default,
+    description: (
+      <>
+        Extend or customize your website layout by reusing React. Docusaurus can
+        be extended while reusing the same header and footer.
+      </>
+    ),
+  },
+  {
+    title: '꼼꼼하게 제품을 개발하는',
+    Svg: require('@site/static/img/clumsy.svg').default,
+    description: (
+      <>
+        Docusaurus was designed from the ground up to be easily installed and
+        used to get your website up and running quickly.
+      </>
+    ),
+  },
+  {
+    title: '꾸준한 성장을 즐기는',
+    Svg: require('@site/static/img/meditating.svg').default,
+    description: (
+      <>
+        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
+        ahead and move your docs into the <code>docs</code> directory.
+      </>
+    ),
+  },
+  {
+    title: '동료와 소통이 원활한',
+    Svg: require('@site/static/img/zombieing.svg').default,
     description: (
       <>
         Extend or customize your website layout by reusing React. Docusaurus can
@@ -35,21 +64,23 @@ const FeatureList = [
   },
 ];
 
-function Feature({Svg, title, description}) {
+const Feature = ({ Svg, title, description }) => {
   return (
-    <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <h3>{title}</h3>
-        <p>{description}</p>
+    <div className="col col--4 padding-vert--md">
+      <div className="card shadow--md">
+        <div className="text--center">
+          <Svg className={styles.featureSvg} role="img" />
+        </div>
+        <div className="text--center padding-horiz--md">
+          <h3>{title}</h3>
+          <p>{description}</p>
+        </div>
       </div>
     </div>
   );
-}
+};
 
-export default function HomepageFeatures() {
+const HomepageFeatures = () => {
   return (
     <section className={styles.features}>
       <div className="container">
@@ -61,4 +92,6 @@ export default function HomepageFeatures() {
       </div>
     </section>
   );
-}
+};
+
+export default HomepageFeatures;

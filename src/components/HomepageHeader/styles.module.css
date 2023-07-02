@@ -5,14 +5,20 @@
   overflow: hidden;
 }
 
+.heroBanner > div > svg {
+  width: 50%;
+  min-width: 300px;
+  height: 100%;
+}
+
 .heroBanner .heroTitle {
-  font-size: clamp(1.5rem, 4vw, 3rem);
+  padding-top: 4rem;
+  font-size: clamp(2rem, 3vw, 3.75rem);
   font-weight: 500;
+  margin: 0;
 }
 
 .heroBanner .heroTitle strong {
-  text-decoration: underline;
-  text-underline-position: under;
   color: var(--ifm-color-primary);
 }
 

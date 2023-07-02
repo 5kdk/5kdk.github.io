@@ -1,11 +1,25 @@
 .features {
   display: flex;
   align-items: center;
-  padding: 2rem 0;
+  padding: 2rem 0 4rem 0;
   width: 100%;
 }
 
 .featureSvg {
-  height: 200px;
-  width: 200px;
+  height: 250px;
+  width: 250px;
+}
+
+[data-theme='dark'] svg > g > path {
+  fill: #eee;
+}
+[data-theme='dark'] svg > g > g {
+  fill: #eee;
+}
+
+svg > g > path:first-child {
+  fill: var(--ifm-color-primary);
+}
+svg > g > g:first-child {
+  fill: var(--ifm-color-primary);
 }
