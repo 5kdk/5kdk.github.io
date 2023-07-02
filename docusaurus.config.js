@@ -23,7 +23,7 @@ const config = {
   trailingSlash: false,
   deploymentBranch: 'gh-pages',
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -33,7 +33,6 @@ const config = {
     defaultLocale: 'ko-kr',
     locales: ['ko-kr'],
   },
-
   presets: [
     [
       'classic',
@@ -87,7 +86,7 @@ const config = {
           //   position: 'left',
           //   label: 'Tutorial',
           // },
-          { to: '/aboutMe', label: 'About Me', position: 'left' },
+          { to: '/about', label: 'About Me', position: 'left' },
           { to: '/blog', label: 'Blog', position: 'left' },
           {
             href: 'https://github.com/5kdk',
