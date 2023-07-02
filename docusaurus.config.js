@@ -104,7 +104,7 @@ const config = {
             items: [
               {
                 label: 'About Me',
-                to: '/AboutMe',
+                to: '/about',
               },
               {
                 label: 'Blog',
