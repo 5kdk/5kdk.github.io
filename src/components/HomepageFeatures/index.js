@@ -1,77 +1,104 @@
 import React from 'react';
 import styles from './styles.module.css';
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 const FeatureList = [
   {
-    title: '꼼꼼하게 제품을 개발하는',
-    Svg: require('@site/static/img/clumsy.svg').default,
+    title: '사용자에게 관심이 많은',
+    svg: {
+      light: '/img/doogie-light.svg',
+      dark: '/img/doogie-dark.svg',
+    },
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </>
+    ),
+  },
+  {
+    title: '코드의 품질을 중요시하는',
+    svg: {
+      light: '/img/coffee-light.svg',
+      dark: '/img/coffee-dark.svg',
+    },
+    description: (
+      <>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
       </>
     ),
   },
   {
     title: '꾸준한 성장을 즐기는',
-    Svg: require('@site/static/img/jumping.svg').default,
+    svg: {
+      light: '/img/dancing-light.svg',
+      dark: '/img/dancing-dark.svg',
+    },
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
       </>
     ),
   },
   {
-    title: '동료와 소통이 원활한',
-    Svg: require('@site/static/img/zombieing.svg').default,
+    title: '동료를 소중히하는',
+    svg: {
+      light: '/img/loving-light.svg',
+      dark: '/img/loving-dark.svg',
+    },
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
       </>
     ),
   },
   {
-    title: '꼼꼼하게 제품을 개발하는',
-    Svg: require('@site/static/img/clumsy.svg').default,
+    title: '지식 나눔을 좋아하는',
+    svg: {
+      light: '/img/messy-light.svg',
+      dark: '/img/messy-dark.svg',
+    },
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
       </>
     ),
   },
   {
-    title: '꾸준한 성장을 즐기는',
-    Svg: require('@site/static/img/meditating.svg').default,
+    title: '디자인 감각을 갖춘',
+    svg: {
+      light: '/img/plant-light.svg',
+      dark: '/img/plant-dark.svg',
+    },
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
-      </>
-    ),
-  },
-  {
-    title: '동료와 소통이 원활한',
-    Svg: require('@site/static/img/zombieing.svg').default,
-    description: (
-      <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
       </>
     ),
   },
 ];
 
-const Feature = ({ Svg, title, description }) => {
+const Feature = ({ svg, title, description }) => {
   return (
-    <div className="col col--4 padding-vert--md">
-      <div className="card shadow--md">
+    <div className="col col--4">
+      <div className="">
         <div className="text--center">
-          <Svg className={styles.featureSvg} role="img" />
+          <ThemedImage
+            className={styles.featureSvg}
+            alt={`${title} 설명 이미지`}
+            sources={{
+              light: useBaseUrl(svg.light),
+              dark: useBaseUrl(svg.dark),
+            }}
+          />
         </div>
-        <div className="text--center padding-horiz--md">
+        <div className="text--center">
           <h3>{title}</h3>
           <p>{description}</p>
         </div>
