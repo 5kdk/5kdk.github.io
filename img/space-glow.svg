@@ -21,10 +21,10 @@
   <g filter="url(#a)" opacity=".34">
     <circle cx="2204" cy="1080" fill="#e71d36" r="322"/>
   </g>
-  <g filter="url(#b)" opacity=".45">
+  <g filter="url(#b)" opacity=".7">
   <circle cx="2247" cy="522" fill="#2ec4b6" r="322"/>
   </g>
-  <g filter="url(#c)" opacity=".5">
+  <g filter="url(#c)" opacity=".8">
   <ellipse cx="491" cy="452" fill="#2ec4b6" rx="291" ry="229"/>
   </g>
   <g filter="url(#d)" opacity=".3">
