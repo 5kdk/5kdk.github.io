@@ -16,7 +16,6 @@ const Home = () => {
       <main>
         <HomepageFeatures />
       </main>
-      <Space />
     </Layout>
   );
 };

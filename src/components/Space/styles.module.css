@@ -20,7 +20,7 @@
 }
 
 .space {
-  background-color: #011627;
+  background-color: #01070e;
 }
 
 [data-theme='dark'] .space,
@@ -38,7 +38,7 @@
 .stars {
   background-image: radial-gradient(
       2px 2px at 50px 200px,
-      #efffe9,
+      #eee,
       rgba(0, 0, 0, 0)
     ),
     radial-gradient(2px 2px at 40px 70px, #fff, rgba(0, 0, 0, 0)),
@@ -74,7 +74,7 @@
 .stars:nth-child(5) {
   background-image: radial-gradient(
       2px 2px at 10px 100px,
-      #efffe9,
+      #eee,
       rgba(0, 0, 0, 0)
     ),
     radial-gradient(2px 2px at 20px 10px, #fff, rgba(0, 0, 0, 0)),
@@ -89,8 +89,8 @@
 }
 
 .glow {
-  overflow: hidden !important;
-  position: absolute !important;
+  overflow: hidden;
+  position: absolute;
   width: 200%;
   top: 50%;
   left: 50%;
