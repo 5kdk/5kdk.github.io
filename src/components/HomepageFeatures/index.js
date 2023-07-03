@@ -87,21 +87,19 @@ const FeatureList = [
 const Feature = ({ svg, title, description }) => {
   return (
     <div className="col col--4">
-      <div className="">
-        <div className="text--center">
-          <ThemedImage
-            className={styles.featureSvg}
-            alt={`${title} 설명 이미지`}
-            sources={{
-              light: useBaseUrl(svg.light),
-              dark: useBaseUrl(svg.dark),
-            }}
-          />
-        </div>
-        <div className="text--center">
-          <h3>{title}</h3>
-          <p>{description}</p>
-        </div>
+      <div className="text--center">
+        <ThemedImage
+          className={styles.featureSvg}
+          alt={`${title} 설명 이미지`}
+          sources={{
+            light: useBaseUrl(svg.light),
+            dark: useBaseUrl(svg.dark),
+          }}
+        />
+      </div>
+      <div className="text--center">
+        <h3>{title}</h3>
+        <p>{description}</p>
       </div>
     </div>
   );
