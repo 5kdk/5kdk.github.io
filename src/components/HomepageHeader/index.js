@@ -7,7 +7,7 @@ const HomepageHeader = () => {
       <div className="container">
         <p className="text--left">Greeting</p>
         <h1 className={styles.heroTitle}>
-          안녕하세요, <code>&nbsp;" ______ "&nbsp;</code>
+          안녕하세요, <code>&nbsp;" ____ "&nbsp;</code>
           <br />
           프론트엔드 개발자&nbsp;
           <strong>김동규</strong>입니다.
