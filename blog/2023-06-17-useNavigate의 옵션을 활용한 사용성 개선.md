@@ -2,6 +2,7 @@
 title: useNavigate의 옵션을 활용한 뒤로가기 사용성 개선
 authors: 5kdk
 tags: [React, React-router]
+enableComments: true
 ---
 
 [원티드 프리온보딩 사전과제](https://github.com/5kdk/wanted-pre-onboarding-frontend/tree/main)를 진행하며 여러 리다이렉트 작업이 필요했습니다.

@@ -2,6 +2,7 @@
 title: useCallback으로 useEffect 심화 활용 해보기
 authors: 5kdk
 tags: [React]
+enableComments: true
 ---
 
 [`useCallback`](https://react.dev/reference/react/useCallback)은 함수를 메모이제이션(memoization)하기 위해서 사용되는 Hook들 입니다. React의 `useCallback`을 [`useEffect`](https://react.dev/reference/react/useEffect)와 함께 사용하여 여러방면으로 효율적인 코드를 구성할 수 있는 방법이 있습니다. `useCallback`은 `useEffect`와 생긴 것은 똑같지만, 역할은 조금 다릅니다.
