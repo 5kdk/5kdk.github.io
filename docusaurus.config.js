@@ -156,6 +156,10 @@ const config = {
           name: 'google-site-verification',
           content: 'YuTDNs5sShtABibry84DadMRPWqRvlwdaEs4VEJNhi4',
         },
+        {
+          name: 'naver-site-verification',
+          content: '3855a4bfab2899d89b15098aceedacef12fa1fa8',
+        },
       ],
     }),
 };
