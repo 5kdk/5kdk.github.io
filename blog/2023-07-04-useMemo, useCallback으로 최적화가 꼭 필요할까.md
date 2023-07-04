@@ -27,11 +27,11 @@ enableComments: true
 
 ## useCallback과 useMemo를 사용하기 좋은 상황
 
-### 예시 1: `useCallback`을 활용한 의존성 배열의 함수 참조
-
 :::caution
 아래 이어지는 코드는 단순 예시에 대한 이해를 돕기위해 작성된 💩 코드입니다. 이점 참고바랍니다.
 :::
+
+### 예시 1: `useCallback`을 활용한 의존성 배열의 함수 참조
 
 ```jsx
 import { useState, useCallback } from 'react';
