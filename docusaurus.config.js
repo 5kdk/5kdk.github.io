@@ -154,7 +154,7 @@ const config = {
       metadata: [
         {
           name: 'google-site-verification',
-          content: '2EAfDvqo0sorTgUngxAgcfoO8BPsFrUbjjJexsnFn-Y',
+          content: 'YuTDNs5sShtABibry84DadMRPWqRvlwdaEs4VEJNhi4',
         },
       ],
     }),
