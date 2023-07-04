@@ -151,6 +151,12 @@ const config = {
 
         //... other Algolia params
       },
+      metadata: [
+        {
+          name: 'google-site-verification',
+          content: '2EAfDvqo0sorTgUngxAgcfoO8BPsFrUbjjJexsnFn-Y',
+        },
+      ],
     }),
 };
 
