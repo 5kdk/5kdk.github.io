@@ -29,6 +29,10 @@ enableComments: true
 
 ### 예시 1: `useCallback`을 활용한 의존성 배열의 함수 참조
 
+:::warn
+아래 이어지는 코드는 예시에 대한 이해를 돕기위해 작성된 💩 코드입니다. 이점 참고바랍니다.
+:::
+
 ```jsx
 import { useState, useCallback } from 'react';
 
@@ -47,7 +51,7 @@ const ExpensiveCalculationButton = ({ onClick }) => {
   );
 };
 
-export default function App() {
+const App = () => {
   const [result, setResult] = useState(0);
   const onClick = useCallback(
     () => setResult(prevResult => prevResult + 1),
@@ -60,7 +64,9 @@ export default function App() {
       결과값: {result}
     </div>
   );
-}
+};
+
+export default App;
 ```
 
 `useCallback`을 사용해 `handleClick`의 `onClick` 속성과 관련된 동일한 참조값을 사용할 수 있습니다. 이를 통해 불필요한 렌더링을 방지합니다.
@@ -98,7 +104,7 @@ const Calculator = ({ a, b }) => {
   return <div>결과값: {result}</div>;
 };
 
-export default function App() {
+const App = () => {
   const [a, setA] = useState(5);
   const [b, setB] = useState(10);
 
@@ -117,7 +123,9 @@ export default function App() {
       <Calculator a={a} b={b} />
     </div>
   );
-}
+};
+
+export default App;
 ```
 
 값을 입력하는 입력란의 변화에 따라 `a`와 `b` 값이 변경되고 `expensiveCalculation`이 실행됩니다.
