@@ -9,6 +9,8 @@ enableComments: true
 
 <!--truncate-->
 
+---
+
 ## 예제로 보는 useEffect 심화 활용
 
 ```jsx
@@ -44,6 +46,8 @@ useEffect(() => {
   doSomething(a, b);
 }, [a, b]);
 ```
+
+---
 
 ## 여기서 useCallback은 왜 사용할까?
 
@@ -94,6 +98,8 @@ useEffect(() => {
   getData();
 }, [getData]);
 ```
+
+---
 
 ## 결론
 

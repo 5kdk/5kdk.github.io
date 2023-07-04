@@ -13,6 +13,8 @@ enableComments: true
 
 <!--truncate-->
 
+---
+
 ## useNavigate 톺아보기
 
 :::info 정보
@@ -72,6 +74,8 @@ const MyComponent = () => {
 ```
 
 위의 예제에서는 `navigate` 함수의 두 번째 인수로 객체를 전달하여 옵션을 설정할 수 있는데, `state` 프로퍼티를 사용하여 상태를 전달하고, `replace` 프로퍼티를 `true`로 설정하여 이동한 후에 브라우저의 기록에 남지 않도록 할 수 있습니다.
+
+---
 
 ## state와 replace 프로퍼티를 활용하기
 
@@ -155,6 +159,8 @@ const LoginPage = () => {
 `Navigate` 컴포넌트를 사용할때는 props에 `replace`만 적어주면 됩니다.
 
 :::
+
+---
 
 ## 결론
 
