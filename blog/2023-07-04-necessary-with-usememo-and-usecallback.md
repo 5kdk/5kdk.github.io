@@ -33,52 +33,60 @@ enableComments: true
 
 ## useCallback과 useMemo를 사용하기 좋은 상황
 
-:::caution
-아래 이어지는 코드는 단순 예시에 대한 이해를 돕기위해 작성된 💩 코드입니다. 이점 참고바랍니다.
+:::note
+
+아래 이어지는 코드는 단순 이해를 돕기위해 작성된 💩코드들 입니다. 개념만 참고해주시길 바랍니다.
+
 :::
 
 ### 예시 1: `useCallback`을 활용한 의존성 배열의 함수 참조
 
+큰 목록을 렌더링하는 구성 요소가 있다고 가정합니다.
+
 ```jsx
-import { useState, useCallback } from 'react';
+import React from 'react';
+import useSearch from './fetch-items';
 
-const ExpensiveCalculationButton = ({ onClick }) => {
-  const [count, setCount] = useState(0);
-
-  const handleClick = useCallback(() => {
-    onClick();
-    setCount(prevCount => prevCount + 1);
-  }, [onClick]);
-
-  return (
-    <button type="button" onClick={handleClick}>
-      클릭횟수: {count}
-    </button>
-  );
-};
-
-const App = () => {
-  const [result, setResult] = useState(0);
-  const onClick = useCallback(
-    () => setResult(prevResult => prevResult + 1),
-    []
-  );
+const MyBigList = React.memo(({ term, onItemClick }) => {
+  const items = useSearch(term);
 
   return (
     <div>
-      <ExpensiveCalculationButton onClick={onClick} />
-      결과값: {result}
+      {items.map(item => (
+        <div key={item.id} onClick={onItemClick}>
+          {item.contents}
+        </div>
+      ))}
     </div>
   );
-};
+});
 
-export default App;
+const MyParent = ({ term }) => {
+  const onItemClick = useCallback(
+    event => {
+      console.log('You clicked ', event.currentTarget);
+    },
+    //highlight-next-line
+    [term]
+  );
+
+  return <MyBigList term={term} onItemClick={onItemClick} />;
+};
 ```
 
-`useCallback`을 사용해 `handleClick`의 `onClick` 속성과 관련된 동일한 참조값을 사용할 수 있습니다. 이를 통해 불필요한 렌더링을 방지합니다.
+목록은 수백 수천 개의 항목일 수 있습니다. `<MyBigList>`가 다시 렌더링되는 것을 방지하려면 목록을 `React.memo()`로 감싸 메모이제이션 해야합니다.
+
 :::info
 
-함수는 객체 입니다!
+`React.memo()`는 props가 동일하다면 리렌더링 되지 않습니다.
+
+:::
+
+memo가 제대로 작동하기 위해서 props를 동일하게 유지하여야 합니다. 하지만 React 컴포넌트의 내부 함수들은 렌더링 될 때 마다 새로운 함수를 생성하기 때문에 모두 다른 참조값을 가집니다.
+
+:::tip
+
+함수는 객체 입니다.
 
 ```js
 const a = 'a';
@@ -86,21 +94,31 @@ const a2 = 'a';
 
 a === a2; // true
 
-const f = () => console.log(f);
-const f2 = () => console.log(f);
+const f = () => console.log('f');
+const f2 = () => console.log('f');
 
 f === f2; // false
+
+(() => console.log('f')) === (() => console.log('f')); // false
 ```
 
 :::
 
+`useCallback`으로 `onItemClick`을 감싸면 `term`이 바뀌지 않는 이상 새로 함수를 만들지 않아 동일한 참조를 가지게 됩니다. 이를 통해 `props`로 전달한 `onItemClick` 함수의 동일성을 보장하고 하위 컴포넌트 `MyBigList`의 불필요한 렌더링을 방지할 수 있습니다.
+
+이와 같이 의존성 배열에 함수를 사용하려면 참조를 동일하게 유지하여야 하기 때문에 `useCallback`을 사용하여야 합니다.
+
+---
+
 ### 예시 2: 복잡한 계산에서의 `useMemo`
+
+복잡한 계산을 하는 작업이 있다고 가정합시다. 예제애서는 곱하기 연산으로 대체합니다.
 
 ```jsx
 import { useState, useMemo } from 'react';
 
 const expensiveCalculation = (a, b) => {
-  // 길고 복잡한 코드…
+  // 복잡하고 길고 비용이 많이 드는 코드…
   return a * b;
 };
 
@@ -136,7 +154,7 @@ export default App;
 
 값을 입력하는 입력란의 변화에 따라 `a`와 `b` 값이 변경되고 `expensiveCalculation`이 실행됩니다.
 
-`useMemo`를 사용하여 `a`와 `b`가 실제로 변경될 때만 계산을 실행하고, 이전 결과를 캐시하여 불필요한 연산을 방지합니다.(`a`와 `b`를 의존성 배열에 포함하여 변경되는 경우에만 `expensiveCalculation`을 호출)
+`useMemo`를 사용하여 `a`와 `b`가 실제로 변경될 때만 계산을 실행하고, 이전 결과값을 캐싱하여 불필요한 연산을 방지합니다.(`a`와 `b`를 의존성 배열에 포함하여 변경되는 경우에만 `expensiveCalculation`을 호출)
 
 React 공식문서에 따르면 `useMemo`는 비용이 많이드는 계산을 캐싱하기 위해 사용되는 훅이며, **"비용이 많이 드는 계산"**의 예로 수천 개의 객체를 만들거나 반복해야 일을 **"비용이 많이드는 계산"**이라 하고 있습니다.
 
