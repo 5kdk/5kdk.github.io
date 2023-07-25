@@ -59,7 +59,7 @@ SWR, React-query 같은 data fetching 라이브러리들은 기본적으로 fetc
 - cache time 이내의 서버 요청 호출 방지 처리 (캐시 타임 비교 로직)
 - 서버 데이터 요청에 대한 status를 가지고 있는 custom hook (의존성 주입을 통한 비동기 로직 캡슐화)
 
-간단히 말하면 서버에서 받아온 캐시에 저장하고, 캐시 데이터가 있고 유효하면 캐시를 사용, 캐시 데이터가 없거나 유효하지 않으면 서버에 다시 요청을 보내는 과정을 구현하면 될 것 같다.
+간단히 말하면 서버에서 받아온 데이터를 변수(특정 자료구조)에 저장하고, 로컬에 유효한 데이터가 있으면 이를 사용, 데이터가 없거나 유효하지 않으면 서버에 다시 요청을 보내는 과정을 구현하면 될 것 같다.
 
 ---
 
@@ -67,7 +67,7 @@ SWR, React-query 같은 data fetching 라이브러리들은 기본적으로 fetc
 
 ### 캐시를 저장할 객체 생성
 
-제일 먼저 로컬에서 캐시를 관리할 객체를 생성해보자. 캐시를 객체로 관리하는 이유는?
+제일 먼저 로컬에서 '캐시'를 관리할 객체를 생성해보자. 캐시를 객체로 관리하는 이유는?
 
 - key-value 구조로 일관적이다.
 - 데이터를 확장하는 데 유용하다.
@@ -90,12 +90,8 @@ const cacheStore = new Map();
 
 ### 캐싱 커스텀 훅 구현
 
-React-Query의 `useQuery`의 이름을 본따 `useCacheQuery`라는 커스텀 훅을 만들어 보자. 관심사 분리를 고려하여 서버데이터를 받아오고 캐시를 확인하는 로직들만을 정리한 훅이 될 것이다.
-
-`cacheStore` 객체를 `useCacheQuery.js`의 모듈스코프에 선언함으로서 `cacheStore`를 공유할 수 있도록 했다.
-
-즉, `useCacheQuery`를 어디서 호출하든 `cacheStore`에 접근할 수 있다.
-(파일로 분리해도 된다. ex: `cacheStore.js`)
+관심사를 분리하여 캐시를 확인해서 데이터를 받아오는 로직들만을 가진 훅을 만들어보자.
+React-Query의 `useQuery`의 이름을 본따 `useCacheQuery`라는 커스텀 훅을 만들었다.
 
 ```js title="useCacheQuery.js"
 // highlight-next-line
@@ -103,6 +99,10 @@ const cacheStore = new Map();
 
 const useCacheQuery = () => {};
 ```
+
+- `cacheStore` 객체를 `useCacheQuery.js`의 모듈스코프에 선언함으로서 `cacheStore`를 공유할 수 있도록 했다.
+- 즉, `useCacheQuery`를 어디서 호출하든 `cacheStore`에 접근할 수 있다.
+  (파일로 분리해도 된다. ex: `cacheStore.js`)
 
 데이터 요청의 상태를 컴포넌트에서 사용할 수 있도록 `isLoading`과 `error`에 대한 상태도 함께 캡슐화한다.
 
@@ -283,6 +283,10 @@ const {
 ### 어떻게 하면 캐시 정책을 구현할 수 있을까?
 
 필자는 최대 캐시의 개수를 설정하고 이를 넘을시 오래된 캐시부터 지우는 방법을 선택했다.
+
+- 최대 캐시 개수 선언
+- 데이터 요청 과정중 캐시 확인 작업(개수, 최신화)
+- 오래된 캐시 삭제 작업
 
 ### 커스텀 훅에 적용하기
 
