@@ -6,7 +6,7 @@
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://5kdk.github.io/blog"/>
     <subtitle>5kdk's devlog Blog</subtitle>
-    <icon>https://5kdk.github.io/img/favicon.ico</icon>
+    <icon>https://5kdk.github.io/img/snoopy-spoon.ico</icon>
     <entry>
         <title type="html"><![CDATA[라이브러리 없이 로컬 캐싱 구현하기]]></title>
         <id>https://5kdk.github.io/blog/2023/07/23/caching-technique-without-libraries</id>
