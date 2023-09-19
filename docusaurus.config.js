@@ -7,8 +7,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "5kdk's devlog",
-  tagline: '성장하는 하루가 되기 위해 기록하는 블로그',
-  favicon: 'img/favicon.ico',
+  tagline: '프론트엔드 개발자의 성장 블로그',
+  favicon: 'img/snoopy-spoon.ico',
 
   // Set the production url of your site here
   url: 'https://5kdk.github.io/',
@@ -48,7 +48,8 @@ const config = {
         docs: false,
         blog: {
           showReadingTime: true,
-          blogSidebarTitle: '최근 포스트',
+          blogSidebarTitle: '모든 포스트',
+          blogSidebarCount: 'ALL',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl: 'https://github.com/5kdk/5kdk.github.io/tree/main',
@@ -67,7 +68,7 @@ const config = {
       announcementBar: {
         id: 'support_us',
         content:
-          '👷 Blog under maintenance. Please bear with me!  <a target="_blank" rel="noopener noreferrer" href="https://github.com/5kdk/5kdk.github.io">GitHub repo</a>',
+          '👋 안녕하세요! 블로그 방문을 환영합니다. 도움이 되셨다면 레포지토리에 🌟를 남겨주세요. &nbsp;&nbsp; <a target="_blank" rel="noopener noreferrer" href="https://github.com/5kdk/5kdk.github.io">GitHub repo</a>',
         backgroundColor: 'tomato',
         textColor: '#000',
         isCloseable: true,
@@ -77,7 +78,7 @@ const config = {
         title: '5kdk',
         logo: {
           alt: '5kdk Logo',
-          src: 'img/logo.svg',
+          src: 'img/snoopy-spoon.png',
         },
         items: [
           // {
