@@ -15,6 +15,8 @@ Warning: Each child in a list should have a unique "key" prop
 
 <!--truncate-->
 
+<br />
+
 ---
 
 ## 자식에 대한 재귀적 처리
@@ -41,6 +43,8 @@ DOM 노드의 자식들을 재귀적으로 처리할 때, React는 기본적으�
 React가 `setState`를 할 때를 떠올리면, 비동기로 동작하고 연속적으로 호출했을 때 batch 처리를 했는데, 그 이유는 React는 DOM을 효율적으로 업데이트하기 위함이다.
 
 React 입장에서 컴포넌트를 반복해서 렌더링하는 일은 매우 비효율적이기 때문이다.
+
+<br />
 
 ---
 
@@ -94,6 +98,8 @@ export default function ListItem({ onClickTitle, badges }) {
 2. `key`는 요소의 '고유한 값'이어야 한다, 배열 요소의 고유한 값을 사용하거나 `index`로 사용할 수 있다.
 3. 단, 항목의 순서가 바뀔 수 있는 경우 순서가 바뀌면 `index`도 바뀌기 때문에 권장하지 않는다. 성능이 저하되거나 `state`관련 문제가 발생하기 때문에, 최후의 수단이라 할 수 있다.
 
+<br />
+
 ---
 
 ## key 사용 시 주의할 점
@@ -107,6 +113,8 @@ export default function ListItem({ onClickTitle, badges }) {
 컴포넌트 인스턴스는 `key`를 기반으로 갱신되고 재사용되는데 인덱스를 `key`로 사용하면, 항목의 순서가 바뀌었을 때 `key` 또한 바뀌기 때문이다. 그 결과로, 컴포넌트의 `state`가 엉망이 되거나 의도하지 않은 방식으로 바뀔 수도 있다.
 
 변하는 key(`Math.random()`으로 생성된 값 등)를 사용하면 많은 컴포넌트 인스턴스와 DOM 노드를 불필요하게 재생성하여 성능이 나빠지거나 자식 컴포넌트의 `state`가 유실될 수 있다.
+
+<br />
 
 > 참고자료  
 > [React 공식문서 - 리스트와 Key](https://ko.reactjs.org/docs/lists-and-keys)  

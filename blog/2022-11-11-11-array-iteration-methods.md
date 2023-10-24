@@ -68,6 +68,8 @@ map(function (element, index, array) {/* … */}, thisArg);
 
 :::
 
+<br />
+
 ### 2. Array.filter()
 
 `Array.filter()` : 이름에서 알 수 있듯이 일부 **조건을 기반으로 필터링하여 새 배열을 반환**한다.
@@ -111,6 +113,8 @@ filter(function (element, index, array) {/* … */}, thisArg);
 ```
 
 :::
+
+<br />
 
 ### 3. Array.forEach()
 
@@ -160,6 +164,8 @@ forEach(function (element, index, array) {/* … */}, thisArg);
 ```
 
 :::
+
+<br />
 
 ### 4. Array.reduce()
 
@@ -212,6 +218,8 @@ reduce(function (accumulator, currentValue, currentIndex, array) {/* … */}, in
 
 :::
 
+<br />
+
 ### 5. Array.reduceRight()
 
 `Array.reduceRight()` : 끝 인덱스 부터 시작한다는 점을 제외하고는 `reduce()`와 같다.
@@ -231,6 +239,8 @@ const sum = nums.reduce((total, value) => total + value);
 ```
 150
 ```
+
+<br />
 
 ### 6. Array.some()
 
@@ -274,6 +284,8 @@ some(function (element, index, array) {/* … */}, thisArg);
 
 :::
 
+<br />
+
 ### 7. Array.every()
 
 `Array.every()` : **배열 요소 모두 조건을 통과**하는지 여부를 확인하는 데 사용 할 수 있다.
@@ -315,6 +327,8 @@ every(function (element, index, array) { /* … */ }, thisArg)
 ```
 
 :::
+
+<br />
 
 ### 8. Array.find()
 
@@ -358,6 +372,8 @@ find(function (element, index, array) { /* … */ }, thisArg)
 
 :::
 
+<br />
+
 ### 9. Array.findIndex()
 
 `Array.findIndex()` : 주어진 **조건을 만족하는 첫 번째 배열 요소의 인덱스**을 반환한다.
@@ -400,6 +416,8 @@ findIndex(function (element, index, array) { /* … */ }, thisArg)
 
 :::
 
+<br />
+
 ### 10. Array.indexOf()
 
 `Array.indexOf()` : 배열 내에서 요소를 검색하고 해당 위치를 반환한다. 배열 요소의 위치를 ​​반환하며 발견된 요소의 첫 번째 항목을 반환하고, 만약 요소를 찾지 못하면 `-1`을 반환한다.
@@ -428,6 +446,8 @@ indexOf(searchElement, fromIndex);
 ```
 
 :::
+
+<br />
 
 ### 11. Array.lastIndexOf()
 
@@ -458,6 +478,8 @@ lastIndexOf(searchElement, fromIndex)
 ```
 
 :::
+
+<br />
 
 ---
 

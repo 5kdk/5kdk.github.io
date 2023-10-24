@@ -11,6 +11,8 @@ enableComments: true
 
 <!--truncate-->
 
+<br />
+
 ---
 
 ## 예제로 보는 useEffect 심화 활용
@@ -48,6 +50,8 @@ useEffect(() => {
   doSomething(a, b);
 }, [a, b]);
 ```
+
+<br />
 
 ---
 
@@ -99,6 +103,8 @@ useEffect(() => {
   getData();
 }, [getData]);
 ```
+
+<br />
 
 ---
 

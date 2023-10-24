@@ -14,7 +14,7 @@ enableComments: true
 
 <!--truncate-->
 
----
+<br />
 
 ## 전통적인 데이터 패칭 처리
 
