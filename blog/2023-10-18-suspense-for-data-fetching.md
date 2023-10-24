@@ -244,7 +244,7 @@ _No Silver Bullet, 은탄환은 없다_
 </Suspense>
 ```
 
-![example image 1](./asset-1.png)
+![example image 1](/img/2023-10-18-suspense-for-data-fetching/asset-1.png)
 
 ```jsx
 <Suspense fallback={<Loading />}>
@@ -254,7 +254,7 @@ _No Silver Bullet, 은탄환은 없다_
 </Suspense>
 ```
 
-![example image 1](./asset-2.png)
+![example image 1](/img/2023-10-18-suspense-for-data-fetching/asset-2.png)
 
 React Query v4.5 이후의 최신 버전을 사용한다면 `useQuery`대신 `useQueries`의 사용을 고려해 볼 만하다. 비동기 요청을 병렬로 처리해 주며 `Suspense`를 지원해 준다!
 
