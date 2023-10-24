@@ -2,6 +2,8 @@
 title: useCallback으로 useEffect 심화 활용 해보기
 authors: 5kdk
 tags: [React]
+description: useCallback으로 useEffect 심화 활용 해보기
+keywords: [useCallback, useEffect, useEffect 심화]
 enableComments: true
 ---
 

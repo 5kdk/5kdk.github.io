@@ -2,6 +2,8 @@
 title: key가 필요한 이유와 주의할 점
 authors: 5kdk
 tags: [React]
+description: React에서의 key는 어떤 역할을 하고 왜 필요한지 알아보자
+keywords: [React, React Key, Key]
 enableComments: true
 ---
 

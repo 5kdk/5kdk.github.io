@@ -1,7 +1,9 @@
 ---
 title: 배열 반복을 효과적으로 만드는 11가지 메서드
 authors: 5kdk
+description: 자바스크립트 for 문을 대체할 수 있는 11가지 메서드를 알아보자
 tags: [JavaScript]
+keywords: [자바스크립트, Reduce, Map, 반복 메서드]
 enableComments: true
 ---
 
