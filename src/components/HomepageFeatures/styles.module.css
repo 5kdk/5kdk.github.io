@@ -14,3 +14,8 @@
 .featureSvg:hover {
   transform: scale(1.05);
 }
+
+.textContainer {
+  max-width: 400px;
+  margin: 0 auto;
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './styles.module.css';
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import clsx from 'clsx';
 
 const FeatureList = [
   {
@@ -97,7 +98,7 @@ const Feature = ({ svg, title, description }) => {
           }}
         />
       </div>
-      <div className="text--center">
+      <div className={clsx('text--center', styles.textContainer)}>
         <h3>{title}</h3>
         <p>{description}</p>
       </div>
