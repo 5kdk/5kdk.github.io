@@ -1,4 +1,3 @@
-import React from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageHeader from '@site/src/components/HomepageHeader';

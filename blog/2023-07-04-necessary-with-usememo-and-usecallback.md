@@ -52,7 +52,6 @@ enableComments: true
 큰 목록을 렌더링하는 구성 요소가 있다고 가정한다.
 
 ```jsx
-import React from 'react';
 import useSearch from './fetch-items';
 
 const MyBigList = React.memo(({ term, onItemClick }) => {
