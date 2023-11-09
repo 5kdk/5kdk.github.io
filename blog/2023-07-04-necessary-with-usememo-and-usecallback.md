@@ -41,7 +41,7 @@ enableComments: true
 
 ## useCallback과 useMemo를 사용하기 좋은 상황
 
-:::caution
+:::warning
 
 아래 이어지는 코드는 단순 이해를 돕기 위해 작성된 💩 코드들이다. 개념만 알고 넘어가자!
 
@@ -52,7 +52,6 @@ enableComments: true
 큰 목록을 렌더링하는 구성 요소가 있다고 가정한다.
 
 ```jsx
-import React from 'react';
 import useSearch from './fetch-items';
 
 const MyBigList = React.memo(({ term, onItemClick }) => {

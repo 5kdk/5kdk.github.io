@@ -46,7 +46,7 @@ const numsMap = nums.map((value, index, array) => value * 3);
 30,60,90,120,150
 ```
 
-:::info mdn web docs
+:::info[mdn web docs]
 
 <!-- prettier-ignore -->
 ```js
@@ -92,7 +92,7 @@ const numOver30 = nums.filter((value, index, array) => value > 30);
 50, 40
 ```
 
-:::info 📃 mdn web docs
+:::info[mdn web docs]
 
 <!-- prettier-ignore -->
 ```js
@@ -143,7 +143,7 @@ Hello Robert
 Hello Bob
 ```
 
-:::info mdn web docs
+:::info[mdn web docs]
 
 <!-- prettier-ignore -->
 ```js
@@ -189,7 +189,7 @@ const sum = nums.reduce((total, value) => total + value);
 150
 ```
 
-:::info mdn web docs
+:::info[mdn web docs]
 
 <!-- prettier-ignore -->
 ```js
@@ -262,7 +262,7 @@ const over30 = nums.some(value => value > 30);
 true
 ```
 
-:::info mdn web docs
+:::info[mdn web docs]
 
 <!-- prettier-ignore -->
 ```js
@@ -306,7 +306,7 @@ const over30 = nums.some(value => value > 30);
 false
 ```
 
-:::info mdn web docs
+:::info[mdn web docs]
 
 <!-- prettier-ignore -->
 ```js
@@ -350,7 +350,7 @@ const firstNum = nums.find(value => value > 30);
 40
 ```
 
-:::info mdn web docs
+:::info[mdn web docs]
 
 <!-- prettier-ignore -->
 ```js
@@ -394,7 +394,7 @@ const firstIdx = nums.findIndex(value => value > 30);
 3
 ```
 
-:::info mdn web docs
+:::info[mdn web docs]
 
 <!-- prettier-ignore -->
 ```js
@@ -438,7 +438,7 @@ const pos = names.indexOf('Dolly');
 2
 ```
 
-:::info mdn web docs
+:::info[mdn web docs]
 
 ```js
 indexOf(searchElement);
@@ -469,7 +469,7 @@ const pos = names.indexOf('Dolly');
 2
 ```
 
-:::info mdn web docs
+:::info[mdn web docs]
 
 <!-- prettier-ignore -->
 ```js

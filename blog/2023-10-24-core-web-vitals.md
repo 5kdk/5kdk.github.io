@@ -95,7 +95,7 @@ LCP(Largest Contentful Paint, 콘텐츠가 포함된 최대 페인트) 지표은
 
 LCP는 페이지에서 가장 큰 요소를 뷰포트에 표시하는 데 걸리는 시간을 측정한다. 이 요소는 페이지의 주요 공간을 차지하는 큰 텍스트 블록, 비디오 또는 이미지일 수 있다.
 
-:::caution
+:::warning
 
 페이지 로딩이 시작될 때부터 첫 번째 요소가 화면에 렌더링될 때까지의 시간을 측정하는 [FCP](https://web.dev/articles/fcp)(First Contentful Paint, 최초 콘텐츠가 포함된 페인트)가 아님
 

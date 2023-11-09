@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './styles.module.css';
 import Space from '@site/src/components/Space';
 

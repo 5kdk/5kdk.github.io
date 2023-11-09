@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './styles.module.css';
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
