@@ -228,7 +228,7 @@ const ParentComponent = () => {
 
 선언적 데이터 패칭은 많은 장점을 가지고 있지만, 몇 가지 주의사항도 존재한다.
 
-:::caution
+:::warning
 
 _No Silver Bullet, 은탄환은 없다_
 

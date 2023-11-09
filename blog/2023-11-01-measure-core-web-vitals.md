@@ -36,7 +36,7 @@ Lighthouse는 크롬 웹 스토어에서 다운 받을 수 있는 확장 프로�
 
 **Performance**, **Accessibility**, **Best Practices**, **SEO**, **PWA** 의 다섯가지 기준에 따라 분석 점수를 확인할 수 있다.
 
-:::caution
+:::warning
 
 타사 플러그인이 보고서에 영향을 미칠 수 있으므로 시크릿 모드에서 Lighthouse 보고서를 실행하는 것이 중요하다.  
 (물론 build도 잊지 말아야 !)

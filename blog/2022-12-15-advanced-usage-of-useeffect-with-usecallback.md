@@ -59,7 +59,7 @@ useEffect(() => {
 
 사실, 위 코드는 앞서본 코드와 같은 형태를 띠게 된다. 음 훨씬 간단해 보인다. 그렇다면 왜 `useCallback`을 사용할까?
 
-:::caution 문제점
+:::warning 문제점
 
 - useEffect에서 하는 행동이 많아질수록 코드가 복잡해진다.
 - dependency array가 길어 질 수 있다.
