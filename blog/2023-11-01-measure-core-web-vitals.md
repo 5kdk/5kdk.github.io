@@ -83,7 +83,7 @@ npx unlighthouse --site <your-site>
 
 ![unlighthouse example](/img/2023-11-01-measure-core-web-vitals/unlighthouse-2.webp)
 
-> **_Read more:_**  
+> _Read more:_  
 > _[Unlighthouse 공식 사이트](https://unlighthouse.dev/)_
 
 <br />
@@ -108,7 +108,7 @@ Web Vitals 확장 프로그램은 단순히 점수를 보여주는 것 이상의
 
 ![web vital extension example 4](/img/2023-11-01-measure-core-web-vitals/web-vitals-5.webp)
 
-> **_Read more:_**  
+> _Read more:_  
 > _[Interaction to Next Paint(다음 페인트와의 상호작용)(INP)  |  Articles  |  web.dev](https://web.dev/articles/inp?hl=ko)_
 
 <br />
@@ -119,7 +119,7 @@ Web Vitals 확장 프로그램은 단순히 점수를 보여주는 것 이상의
 
 사이트를 최적화한 후에는 계속 반복할 수 있도록 운영 중에 모니터링하는 것이 중요하다. 코어 웹 바이탈을 모니터링할 때는 일회성 lab 테스트에 의존하기보다는 장기간에 걸쳐 추적하는 것이 중요하다.
 
-> **_Read more:_**  
+> _Read more:_  
 > _[실험실 및 현장 데이터가 다를 수 있는 이유와 해야 할 일  |  Articles  |  web.dev](https://web.dev/articles/lab-and-field-data-differences?hl=ko)_
 
 <br />
@@ -160,7 +160,7 @@ Chrome 사용자 경험 보고서는 실제 Chrome 사용자가 웹에서 인기
 
 ![data-studio.png](/img/2023-11-01-measure-core-web-vitals/data-studio.webp)
 
-> **_Read more:_**  
+> _Read more:_  
 > _Google: [Example Dashboard (copy for free)](https://web.dev/chrome-ux-report-data-studio-dashboard/)_
 
 :::
@@ -168,7 +168,7 @@ Chrome 사용자 경험 보고서는 실제 Chrome 사용자가 웹에서 인기
   </div>
 </details>
 
-> **_Read more:_**  
+> _Read more:_  
 > [Chrome UX 보고서를 통해 현장 성능 살펴보기](https://web.dev/articles/chrome-ux-report?hl=ko)
 
 특정 페이지의 사용자 환경 데이터를 표시하려면 CrUX 데이터 세트에 포함될 만큼 충분한 데이터가 있어야 한다. 페이지가 최근에 게시되었거나 실제 사용자의 샘플이 너무 적은 경우 데이터가 충분하지 않을 수 있다. 이 경우 PSI는 출처 수준 세부사항으로 되돌아가며, 웹사이트의 모든 페이지에 있는 모든 사용자 환경을 포함한다. 출처에 데이터가 충분하지 않을 때도 있는데, 이 경우 PSI에서 실제 사용자 환경 데이터를 표시할 수 없다.
@@ -187,7 +187,7 @@ Chrome 사용자 경험 보고서는 실제 Chrome 사용자가 웹에서 인기
 
 Vercel 배포에서 아무것도 구성하지 않은 상태에서 실제 경험 점수를 수집할 수 있다.
 
-> **_Read more:_**  
+> _Read more:_  
 > [Speed Insights Overview](https://vercel.com/docs/concepts/speed-insights?utm_campaign=no-campaign#metrics?utm_source=next-site&utm_medium=learnpages&utm_campaign=no-campaign)
 
 <br />
@@ -218,7 +218,7 @@ npm run build && npm run start
 
 Chrome을 열면 개발자 도구 콘솔에 메트릭이 표시된다. 또한 페이지와 상호 작용할 때만 **FID**가 트리거된다는 것을 알 수 있다.
 
-> **_Read more:_**  
+> _Read more:_  
 > _Next.js: [Measuring Performance](https://nextjs.org/docs/pages/building-your-application/optimizing/analytics)_
 
 ---
