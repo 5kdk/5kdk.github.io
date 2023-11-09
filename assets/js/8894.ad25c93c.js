@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_5_kdk_blog=self.webpackChunk_5_kdk_blog||[]).push([[8894],{8894:(k,_,e)=>{e.r(_)}}]);

@@ -9,8 +9,8 @@
     <icon>https://5kdk.github.io/img/snoopy-spoon.ico</icon>
     <entry>
         <title type="html"><![CDATA[웹 성능 지표, 코어 웹 바이탈(CWV)]]></title>
-        <id>https://5kdk.github.io/blog/2023/10/24/core-web-vital</id>
-        <link href="https://5kdk.github.io/blog/2023/10/24/core-web-vital"/>
+        <id>https://5kdk.github.io/blog/2023/10/24/core-web-vitals</id>
+        <link href="https://5kdk.github.io/blog/2023/10/24/core-web-vitals"/>
         <updated>2023-10-24T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[프론트엔드 개발자가 꼭 알아야할, 웹 성능의 지표 코어 웹 바이탈.]]></summary>
         <content type="html"><![CDATA[<br><blockquote><p>성능은 회사의 수익에 직접적인 영향을 미쳤습니다.<br>
@@ -22,6 +22,7 @@
             <uri>https://github.com/5kdk</uri>
         </author>
         <category label="Web" term="Web"/>
+        <category label="Core Web Vitals" term="Core Web Vitals"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Suspense, Error Boundary와 선언적 데이터 패칭]]></title>

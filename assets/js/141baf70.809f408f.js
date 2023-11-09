@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_5_kdk_blog=self.webpackChunk_5_kdk_blog||[]).push([[600],{8050:l=>{l.exports=JSON.parse('{"label":"SWR","permalink":"/blog/tags/swr","allTagsPath":"/blog/tags","count":1}')}}]);
