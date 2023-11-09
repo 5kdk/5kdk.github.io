@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_5_kdk_blog=self.webpackChunk_5_kdk_blog||[]).push([[6179],{1677:s=>{s.exports=JSON.parse('{"label":"Next.js","permalink":"/blog/tags/next-js","allTagsPath":"/blog/tags","count":1}')}}]);

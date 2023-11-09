@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_5kdk_blog=self.webpackChunk_5kdk_blog||[]).push([[9848],{7446:a=>{a.exports=JSON.parse('{"label":"React","permalink":"/blog/tags/react","allTagsPath":"/blog/tags","count":6,"unlisted":false}')}}]);
