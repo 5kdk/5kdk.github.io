@@ -23,7 +23,7 @@ enableComments: true
 
 ## useNavigate 톺아보기
 
-:::info 정보
+:::info
 
 React Router의 `useNavigate` 훅은 React 컴포넌트에서 프로그래밍 방식으로 라우팅을 제어할 수 있게 해주는 도구다.
 

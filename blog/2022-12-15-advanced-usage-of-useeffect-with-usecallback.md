@@ -59,7 +59,7 @@ useEffect(() => {
 
 사실, 위 코드는 앞서본 코드와 같은 형태를 띠게 된다. 음 훨씬 간단해 보인다. 그렇다면 왜 `useCallback`을 사용할까?
 
-:::warning 문제점
+:::warning[문제점]
 
 - useEffect에서 하는 행동이 많아질수록 코드가 복잡해진다.
 - dependency array가 길어 질 수 있다.
@@ -67,7 +67,7 @@ useEffect(() => {
 
 :::
 
-:::info 해결방안
+:::info[해결방안]
 
 - `useEffect`는 우리가 원하는 side effect를 실행만 해주고, `useCallback`에서 실제 해야 하는 것들을 선언해주면 코드의 분리가 가능하다.
 - 콜백 함수의 구체적인 역할을 이름을 통해 명시적으로 확인할 수 있다.

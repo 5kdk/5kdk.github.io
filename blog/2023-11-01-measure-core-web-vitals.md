@@ -45,7 +45,7 @@ Lighthouse는 크롬 웹 스토어에서 다운 받을 수 있는 확장 프로�
 
 이 중 Performance 점수가 현재 페이지의 성능을 측정한 점수이며, 이는 Metrics 지표의 세부 항목을 기준으로 측정된다.
 
-:::info **Lighthouse (v8) 바이탈 가중치**
+:::info[Lighthouse (v8) 바이탈 가중치]
 
 - 콘텐츠가 포함된 최대 페인트(LCP): 25%
 - 총 차단 시간\*(TBT): 30% \* (첫 입력 지연(FCP)과 유사)

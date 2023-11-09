@@ -125,7 +125,7 @@ React Query의 API `useQuery`가 반환하는 `isLoading`, `error` 와 같은 �
 
 필요에 따라 커스터마이징을 할 수 있는데, `ErrorBoundary`의 커스터마이징에 대한 내용은 또 다른 포스팅으로 진행해보겠다.
 
-:::tip 추천 라이브러리
+:::tip[추천 라이브러리]
 
 [react-error-boundary](https://www.npmjs.com/package/react-error-boundary)
 
