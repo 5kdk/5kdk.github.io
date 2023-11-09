@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_5_kdk_blog=self.webpackChunk_5_kdk_blog||[]).push([[7405],{6102:e=>{e.exports=JSON.parse('{"label":"Core Web Vitals","permalink":"/blog/tags/core-web-vitals","allTagsPath":"/blog/tags","count":2}')}}]);
