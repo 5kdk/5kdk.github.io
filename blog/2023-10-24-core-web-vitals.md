@@ -60,9 +60,8 @@ enableComments: true
 
 각 코어 웹 바이탈 지표에서 낮은 점수를 받은 웹사이트는 Google이 코어 웹 바이탈을 검색 알고리즘의 순위 요소로 사용하기 시작하면서 검색 엔진 순위에 영향을 미칠 수 있는데, 낮은 바이탈은 웹 트래픽과 비즈니스에 영향을 받는다.
 
-> 이러한 권장 사항의 배경이 된 연구 및 방법론에 대해 자세히 알아보려면,
->
-> **[“핵심 웹 바이탈 지표 임계값 정의하기”](https://web.dev/articles/defining-core-web-vitals-thresholds?hl=ko)**를 참고
+> 이러한 권장 사항의 배경이 된 연구 및 방법론에 대해 자세히 알아보려면,  
+> [**“핵심 웹 바이탈 지표 임계값 정의하기”**](https://web.dev/articles/defining-core-web-vitals-thresholds?hl=ko)를 참고
 
 <br />
 
