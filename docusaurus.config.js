@@ -9,7 +9,7 @@ const darkCodeTheme = themes.vsDark;
 const config = {
   title: '5kdk 개발 블로그',
   tagline: '프론트엔드 개발자 김동규입니다.',
-  favicon: 'img/snoopy-spoon.ico',
+  favicon: 'img/snoopy-spoon.png',
 
   // Set the production url of your site here
   url: 'https://5kdk.github.io/',
@@ -74,7 +74,7 @@ const config = {
         textColor: '#000',
         isCloseable: true,
       },
-      image: 'img/docusaurus-social-card.jpg',
+      image: 'img/snoopy-joe-cool.webp',
       navbar: {
         title: '5kdk',
         logo: {
