@@ -6,7 +6,7 @@
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://5kdk.github.io/blog"/>
     <subtitle>5kdk 개발 블로그 Blog</subtitle>
-    <icon>https://5kdk.github.io/img/snoopy-spoon.ico</icon>
+    <icon>https://5kdk.github.io/img/snoopy-spoon.png</icon>
     <entry>
         <title type="html"><![CDATA[Next.js를 중심으로 한 코어 웹 바이탈 최적화]]></title>
         <id>https://5kdk.github.io/blog/2023/11/09/improving-cwv-nextjs</id>
