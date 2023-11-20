@@ -1,5 +1,4 @@
 import styles from './styles.module.css';
-import Space from '@site/src/components/Space';
 
 const HomepageHeader = () => {
   return (
@@ -13,7 +12,6 @@ const HomepageHeader = () => {
           <strong>김동규</strong>입니다.
         </h1>
       </div>
-      <Space />
     </header>
   );
 };

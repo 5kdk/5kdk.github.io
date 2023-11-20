@@ -21,6 +21,7 @@
 
 .space {
   background-color: #01070e;
+  display: absolute;
 }
 
 [data-theme='dark'] .space,
@@ -37,12 +38,12 @@
 
 .stars {
   background-image: radial-gradient(
-      2px 2px at 50px 200px,
+      1px 1px at 50px 200px,
       #eee,
       rgba(0, 0, 0, 0)
     ),
     radial-gradient(2px 2px at 40px 70px, #fff, rgba(0, 0, 0, 0)),
-    radial-gradient(3px 4px at 120px 40px, #ddd, rgba(0, 0, 0, 0));
+    radial-gradient(2.5px 3px at 120px 40px, #ddd, rgba(0, 0, 0, 0));
   background-repeat: repeat;
   background-size: 250px 250px;
   opacity: 0;
