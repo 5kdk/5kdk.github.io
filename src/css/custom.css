@@ -27,18 +27,35 @@
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #149eca;
-  --ifm-color-primary-dark: #128eb6;
-  --ifm-color-primary-darker: #1186ac;
-  --ifm-color-primary-darkest: #0e6f8d;
-  --ifm-color-primary-light: #16aede;
-  --ifm-color-primary-lighter: #17b6e8;
-  --ifm-color-primary-lightest: #36bfeb;
-  --ifm-color-primary-lightest: #36bfeb;
+  --ifm-color-primary: #65d77c;
+  --ifm-color-primary-dark: #4cd067;
+  --ifm-color-primary-darker: #3fcd5c;
+  --ifm-color-primary-darkest: #2eb048;
+  --ifm-color-primary-light: #7ede91;
+  --ifm-color-primary-lighter: #8be19c;
+  --ifm-color-primary-lightest: #b0ebbc;
   --docusaurus-highlighted-code-line-bg: rgba(235, 235, 255, 0.1);
 }
 
-/* html[data-theme='dark'] {
-  --ifm-background-color: rgb(35, 39, 47);
-  --ifm-background-surface-color: rgb(29, 32, 39);
-} */
+div[class^='announcementBar_'] {
+  --site-announcement-bar-stripe-color1: #ebf1ff;
+  --site-announcement-bar-stripe-color2: #fefcf4;
+  background: repeating-linear-gradient(
+    35deg,
+    var(--site-announcement-bar-stripe-color1),
+    var(--site-announcement-bar-stripe-color1) 20px,
+    var(--site-announcement-bar-stripe-color2) 10px,
+    var(--site-announcement-bar-stripe-color2) 40px
+  );
+  font-weight: 700;
+}
+
+[data-theme='dark'] div[class^='announcementBar_'] {
+  --site-announcement-bar-stripe-color1: #333437;
+  --site-announcement-bar-stripe-color2: #393e3b;
+  color: #e1e1e1;
+}
+
+[data-theme='dark'] .close {
+  color: #fff;
+}
