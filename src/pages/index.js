@@ -2,7 +2,6 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageHeader from '@site/src/components/HomepageHeader';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
-import Space from '@site/src/components/Space';
 
 const Home = () => {
   const { siteConfig } = useDocusaurusContext();
@@ -11,7 +10,6 @@ const Home = () => {
       <HomepageHeader />
       <main>
         <HomepageFeatures />
-        <Space />
       </main>
     </Layout>
   );
