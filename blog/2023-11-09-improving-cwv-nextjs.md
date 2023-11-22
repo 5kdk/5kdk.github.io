@@ -13,8 +13,8 @@ enableComments: true
 현재 담당하고 있는 프로젝트의 개발 환경인 Next.js 를 기준으로 정리해 보았다.
 
 > _이전 포스팅:_  
-> _[웹 성능 지표, 코어 웹 바이탈(CWV)](./2023-10-24-core-web-vitals.md)_  
-> _[코어 웹 바이탈 측정을 위한 도구 모음](./2023-11-01-measure-core-web-vitals.md)_
+> _[웹 성능 지표, 코어 웹 바이탈(CWV)](./2023-10-24-core-web-vitals/index.md)_  
+> _[코어 웹 바이탈 측정을 위한 도구 모음](./2023-11-01-measure-core-web-vitals/index.md)_
 
 <!--truncate-->
 
