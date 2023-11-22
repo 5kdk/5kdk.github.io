@@ -2,7 +2,7 @@ import { useBlogPost } from '@docusaurus/theme-common/internal';
 import BlogPostItem from '@theme-original/BlogPostItem';
 import GiscusComponent from '@site/src/components/GiscusComponent';
 
-export default function BlogPostItemWrapper(props) {
+const BlogPostItemWrapper = props => {
   const { metadata, isBlogPostPage } = useBlogPost();
 
   const { frontMatter } = metadata;
@@ -14,4 +14,6 @@ export default function BlogPostItemWrapper(props) {
       {enableComments && isBlogPostPage && <GiscusComponent />}
     </>
   );
-}
+};
+
+export default BlogPostItemWrapper;
