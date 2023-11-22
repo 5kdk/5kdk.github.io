@@ -72,7 +72,7 @@ enableComments: true
 코어 웹 바이탈을 측정할 때는 세 가지 값이 있다: **“양호”**, **“개선 필요”**, **“미흡”**,
 이러한 값은 측정 대상 바이탈에 따라 다르다.
 
-![vitals-light.png](/img/2023-10-24-core-web-vitals/vitals-light.webp)
+![vitals-light.png](./vitals-light.webp)
 
 코어 웹 바이탈은 두 가지 방법으로 접근할 수 있다:
 
@@ -85,7 +85,7 @@ enableComments: true
 
 ## Largest Contentful Paint (LCP)
 
-![lcp.avif](/img/2023-10-24-core-web-vitals/lcp.webp)
+![lcp.avif](./lcp.webp)
 
 이전에는 웹 개발자가 웹페이지의 기본 콘텐츠가 얼마나 빨리 로드되고 사용자에게 표시되는지 측정하는 것이 어려웠다.
 [load](https://developer.mozilla.org/docs/Web/Events/load) 또는 [DOMContentLoaded](https://developer.mozilla.org/docs/Web/Events/DOMContentLoaded) 이벤트와 같은 이전 측정 항목은 사용자에게 화면에 표시되는 것과 반드시 일치하지는 않기 때문에 효과적이지 않았다.
@@ -102,7 +102,7 @@ LCP는 페이지에서 가장 큰 요소를 뷰포트에 표시하는 데 걸리
 
 DOM이 렌더링되면 페이지에서 가장 큰 요소가 변경될 수 있다. LCP는 가장 큰 이미지나 요소가 화면에 표시될 때까지 계산을 멈추지 않는다.
 
-![lcp-example.avif](/img/2023-10-24-core-web-vitals/lcp-example.webp)
+![lcp-example.avif](./lcp-example.webp)
 
 :::info
 
@@ -136,11 +136,11 @@ DOM이 렌더링되면 페이지에서 가장 큰 요소가 변경될 수 있다
 
 FID(First Input Delay, 첫 번째 입력 반응 시간) 지표는 웹 페이지와 상호 작용하는 동안 최종 사용자가 느끼는 체감 속도다. 입력 상자를 클릭해도 아무 일도 일어나지 않는다고 상상해 보자. 사이트의 상호 작용 및 응답성에 대한 이러한 불만은 입력 지연이 길기 때문에 발생한다.
 
-![fid.png](/img/2023-10-24-core-web-vitals/fid.webp)
+![fid.png](./fid.webp)
 
 FID는 실제 사용자 데이터가 필요하며 lab에서는 측정할 수 없다(예: Google Lighthouse). 그러나 총 차단 시간(TBT) 지표는 lab에서 측정할 수 있으며 상호 작용에 영향을 미치는 문제를 파악할 수 있다.
 
-![fid-example.png](/img/2023-10-24-core-web-vitals/fid-example.webp)
+![fid-example.png](./fid-example.webp)
 
 FID 는 사용자가 응답하지 않는 페이지와 상호작용하려고 할 때 느끼는 경험을 정량화하기 때문에 로드 응답성을 측정하는 안정적인 코어 웹 바이탈 측정항목이다. FID가 낮으면 페이지를 사용 가능한 상태로 유지하는 데 도움이 된다.
 
@@ -163,13 +163,13 @@ FID 는 2024년 3월에 코어 웹 바이탈로서 **_INP(Interaction to Next Pa
 
 이런 종류의 경험은 대부분 짜증 날 뿐이지만, 경우에 따라 실질적인 피해를 유발할 수 있다.
 
-![cls.png](/img/2023-10-24-core-web-vitals/cls.webp)
+![cls.png](./cls.webp)
 
 CLS(Cumulative Layout Shift, 누적 레이아웃 이동) 지표는 사이트의 전반적인 레이아웃 안정성을 측정하는 지표다. 페이지가 로드될 때 예기치 않게 레이아웃이 바뀌는 사이트는 사용자 실수나 주의 산만으로 이어질 수 있다.
 
 CLS는 처음에 DOM에 의해 렌더링된 후 요소가 이동된 경우에 발생한다. 아래 사진에서는 텍스트 블록 다음에 버튼이 화면에 렌더링되어 블록이 아래쪽으로 이동했다. CLS를 계산할 때는 이러한 영향과 거리의 조합이 고려된다.
 
-![cls-example.png](/img/2023-10-24-core-web-vitals/cls-example.webp)
+![cls-example.png](./cls-example.webp)
 
 각 요소의 개별 레이아웃 이동 점수는 예기치 않은 이동이 발생한 경우에만 CLS에 계산되는데, 새 요소가 DOM에 추가되거나 기존 요소의 크기가 변경되더라도 로드된 요소가 그 위치를 유지하면 레이아웃 이동 점수에 포함되지 않는다.
 
@@ -188,7 +188,7 @@ Google 검색 엔진의 주요 목표는 현지화 및 맞춤법 오류를 고�
 
 하지만 2021년 6월에 Google이 성능을 분석하고 최적화할 수 있는 구체적인 지표와 범위를 제공하면서 상황이 달라졌다.
 
-![page-experience.png](/img/2023-10-24-core-web-vitals/page-experience.webp)
+![page-experience.png](./page-experience.webp)
 
 <br />
 

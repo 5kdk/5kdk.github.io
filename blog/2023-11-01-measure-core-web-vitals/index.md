@@ -59,13 +59,13 @@ Lighthouse는 크롬 웹 스토어에서 다운 받을 수 있는 확장 프로�
 
 <br />
 
-![lighthouse example 1](/img/2023-11-01-measure-core-web-vitals/lighthouse-1.webp)
+![lighthouse example 1](./lighthouse-1.webp)
 
 개선이 필요한 영역이 있는 경우 보고서에서 개선 방법에 대한 인사이트도 찾아 볼 수 있다.
 
-![lighthouse example 2](/img/2023-11-01-measure-core-web-vitals/lighthouse-2.webp)
+![lighthouse example 2](./lighthouse-2.webp)
 
-![lighthouse example 3](/img/2023-11-01-measure-core-web-vitals/lighthouse-3.webp)
+![lighthouse example 3](./lighthouse-3.webp)
 
 <br />
 
@@ -73,7 +73,7 @@ Lighthouse는 크롬 웹 스토어에서 다운 받을 수 있는 확장 프로�
 
 웹 사이트의 모든 단일 페이지에 대해 Lighthouse 보고서를 실행하는 오픈소스 도구이며 모든 작업을 병렬로 수행하므로 몇 분 안에 수십, 수백 개의 페이지를 분석하여 실행하기 적합하다.
 
-![unlighthouse homepage image](/img/2023-11-01-measure-core-web-vitals/unlighthouse-1.webp)
+![unlighthouse homepage image](./unlighthouse-1.webp)
 
 새 디렉토리를 만든 다음 아래 코드로 unlighthouse를 실행하면 웹 사이트의 성능을 보여주는 UI가 나타난다.
 
@@ -82,7 +82,7 @@ npx unlighthouse --site <your-site>
 # OR pnpm dlx unlighthouse --site <your-site>
 ```
 
-![unlighthouse example](/img/2023-11-01-measure-core-web-vitals/unlighthouse-2.webp)
+![unlighthouse example](./unlighthouse-2.webp)
 
 > _Read more:_  
 > _[Unlighthouse 공식 사이트](https://unlighthouse.dev/)_
@@ -93,21 +93,21 @@ npx unlighthouse --site <your-site>
 
 Web Vitals 확장 프로그램은 크롬 웹 스토어에서 무료로 다운로드 받을 수 있으며, 확장프로그램 아이콘을 클릭하면 현재 웹페이지의 코어 웹 바이탈 점수를 확인할 수 있다.
 
-![web vital extension image](/img/2023-11-01-measure-core-web-vitals/web-vitals-1.webp)
+![web vital extension image](./web-vitals-1.webp)
 
 Web Vitals 확장 프로그램은 단순히 점수를 보여주는 것 이상의 기능을 제공하는데, 위 이미지처럼 **Console logging 옵션을 활성화**를 하면, 개발자 도구의 콘솔 창에서 실시간으로 코어 웹 바이탈 점수를 확인할 수 있다.
 
-![web vital extension example 1](/img/2023-11-01-measure-core-web-vitals/web-vitals-2.webp)
+![web vital extension example 1](./web-vitals-2.webp)
 
 페이지 로드 시간과 같은 실시간 정보뿐만 아니라, LCP(Largest Contentful Paint, 콘텐츠가 포함된 최대 페인트) 요소에 대한 정보도 함께 제공되므로, 웹사이트 성능의 병목 현상을 더욱 쉽게 찾아낼 수 있다.
 
-![web vital extension example 2](/img/2023-11-01-measure-core-web-vitals/web-vitals-3.webp)
+![web vital extension example 2](./web-vitals-3.webp)
 
-![web vital extension example 3](/img/2023-11-01-measure-core-web-vitals/web-vitals-4.webp)
+![web vital extension example 3](./web-vitals-4.webp)
 
 또한 2024년 3월부터 FID(First Input Delay, 최초 입력 반응 시간)를 대체하여 사용자 상호작용에 대한 웹 페이지의 **전반적인 응답성을 평가하는 측정 지표인 INP(Interactive Notification Performance)에 대한 정보도 실시간으로 제공**한다.
 
-![web vital extension example 4](/img/2023-11-01-measure-core-web-vitals/web-vitals-5.webp)
+![web vital extension example 4](./web-vitals-5.webp)
 
 > _Read more:_  
 > _[Interaction to Next Paint(다음 페인트와의 상호작용)(INP)  |  Articles  |  web.dev](https://web.dev/articles/inp?hl=ko)_
@@ -129,11 +129,11 @@ Web Vitals 확장 프로그램은 단순히 점수를 보여주는 것 이상의
 
 구글 서치 콘솔의 페이지 경험 보고서에서는 사이트 방문자의 사용자 환경에 관한 요약을 확인할 수 있다. 구글에서는 사이트의 개별 URL에 관한 페이지 경험 측정항목을 평가하고 이를 구글 검색결과의 URL 순위 결정 신호로 사용한다.
 
-![google search console example 1](/img/2023-11-01-measure-core-web-vitals/search-console-1.webp)
+![google search console example 1](./search-console-1.webp)
 
 구글 서치 콘솔을 통해 웹사이트의 코어 웹 바이탈를 분석하는 것도 가능하다. 크롤링된 모든 페이지를 '느림', '개선이 필요함', '좋음' 세 가지 카테고리로 분류하여 제공한다. 이를 통해 웹사이트의 각 URL이 코어 웹 바이탈 지표를 충족하는지 쉽게 확인할 수 있다.
 
-![google search console example 2](/img/2023-11-01-measure-core-web-vitals/search-console-2.webp)
+![google search console example 2](./search-console-2.webp)
 
 <br />
 
@@ -159,7 +159,7 @@ Chrome 사용자 경험 보고서는 실제 Chrome 사용자가 웹에서 인기
 
 또한 데이터는 월 단위로 업데이트되며, 보통 한 달이 끝나고 약 15일 후에 데이터를 확인할 수 있으므로 코어 웹 바이탈 점수를 개선하려는 경우 가장 실용적이지 않을 수 있다.
 
-![data-studio.png](/img/2023-11-01-measure-core-web-vitals/data-studio.webp)
+![data-studio.png](./data-studio.webp)
 
 > _Read more:_  
 > _Google: [Example Dashboard (copy for free)](https://web.dev/chrome-ux-report-data-studio-dashboard/)_
@@ -174,7 +174,7 @@ Chrome 사용자 경험 보고서는 실제 Chrome 사용자가 웹에서 인기
 
 특정 페이지의 사용자 환경 데이터를 표시하려면 CrUX 데이터 세트에 포함될 만큼 충분한 데이터가 있어야 한다. 페이지가 최근에 게시되었거나 실제 사용자의 샘플이 너무 적은 경우 데이터가 충분하지 않을 수 있다. 이 경우 PSI는 출처 수준 세부사항으로 되돌아가며, 웹사이트의 모든 페이지에 있는 모든 사용자 환경을 포함한다. 출처에 데이터가 충분하지 않을 때도 있는데, 이 경우 PSI에서 실제 사용자 환경 데이터를 표시할 수 없다.
 
-![amazon.com에 대한 보고서](/img/2023-11-01-measure-core-web-vitals/pagespeed-insights.webp)
+![amazon.com에 대한 보고서](./pagespeed-insights.webp)
 
 이하는 Lighthouse와 같다.
 
@@ -184,7 +184,7 @@ Chrome 사용자 경험 보고서는 실제 Chrome 사용자가 웹에서 인기
 
 [Next.js Speed Insights](https://nextjs.org/analytics) 를 사용하면 코어 웹 바이탈을 사용하여 페이지의 성능을 분석하고 측정할 수 있다.
 
-![vercel-analytics](/img/2023-11-01-measure-core-web-vitals/vercel-analytics.webp)
+![vercel-analytics](./vercel-analytics.webp)
 
 Vercel 배포에서 아무것도 구성하지 않은 상태에서 실제 경험 점수를 수집할 수 있다.
 

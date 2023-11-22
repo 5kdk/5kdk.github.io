@@ -269,8 +269,8 @@ const {
 
 이에 대한 결과는 다음과 같다.
 
-![example image 1](/img/2023-07-23-caching-technique-without-libraries/asset-1.png)
-![example image 2](/img/2023-07-23-caching-technique-without-libraries/asset-2.png)
+![example image 1](./asset-1.png)
+![example image 2](./asset-2.png)
 
 같은 검색어를 여러차례 검색했지만 요청은 1번만 일어났다. `cacheStore`에 제대로 들어가 있는 것을 보니 캐싱이 제대로 동작하는 것을 확인했다.
 
