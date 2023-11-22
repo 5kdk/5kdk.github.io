@@ -110,7 +110,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} 5kdk. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} 5kdk. Built with Docusaurus.🦖`,
       },
       prism: {
         theme: lightCodeTheme,
