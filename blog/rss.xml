@@ -23,7 +23,6 @@
 <br>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="eslint의-동작-방식">ESLint의 동작 방식<a href="https://5kdk.github.io/blog/2023/11/26/eslint-deep-dive#eslint%EC%9D%98-%EB%8F%99%EC%9E%91-%EB%B0%A9%EC%8B%9D" class="hash-link" aria-label="ESLint의 동작 방식에 대한 직접 링크" title="ESLint의 동작 방식에 대한 직접 링크">​</a></h2>
 <p>ESLint를 사용하는 것 이상으로 ESLint가 어떻게 동작하는지 아는 사람은 많지 않다. ESLint가 도대체어떤 방식으로 코드를 정적 분석 할 수 있을까?</p>
-<br>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="eslint는-어떻게-코드를-분석할까">ESLint는 어떻게 코드를 분석할까?<a href="https://5kdk.github.io/blog/2023/11/26/eslint-deep-dive#eslint%EB%8A%94-%EC%96%B4%EB%96%BB%EA%B2%8C-%EC%BD%94%EB%93%9C%EB%A5%BC-%EB%B6%84%EC%84%9D%ED%95%A0%EA%B9%8C" class="hash-link" aria-label="ESLint는 어떻게 코드를 분석할까?에 대한 직접 링크" title="ESLint는 어떻게 코드를 분석할까?에 대한 직접 링크">​</a></h3>
 <p>ESLint가 코드를 분석하는 과정은 간단히 요약하면 다음과 같다:</p>
 <ol>
@@ -55,7 +54,6 @@
 </ul>
 <p><code>create</code>에 있는 함수는 espree로 만들어진 AST트리를 순회해, 선언한 특정 조건을 만족하는 코드를 찾고, 이러한 작업을 코드 전체에서 반복한다. 즉, 여기서는 DebuggerStatement를 만나면 해당 노드를 리포트해 <code>debugger</code>를 사용했다는 것을 알려준다.</p>
 <div class="language-zsh codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-zsh codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">/Users/5kdk/sample/index.tsx</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    16:1    error    Unexpected 'debugger' statement    no-debugger</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="클립보드에 코드 복사" title="복사" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<br>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="eslint-plugin과-eslint-config">eslint-plugin과 eslint-config<a href="https://5kdk.github.io/blog/2023/11/26/eslint-deep-dive#eslint-plugin%EA%B3%BC-eslint-config" class="hash-link" aria-label="eslint-plugin과 eslint-config에 대한 직접 링크" title="eslint-plugin과 eslint-config에 대한 직접 링크">​</a></h3>
 <p>eslint-plugin과 eslint-config는 모두 ESLint와 관련된 패키지지만 각자의 역할이 다르다.</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="eslint-plugin">eslint-plugin<a href="https://5kdk.github.io/blog/2023/11/26/eslint-deep-dive#eslint-plugin" class="hash-link" aria-label="eslint-plugin에 대한 직접 링크" title="eslint-plugin에 대한 직접 링크">​</a></h4>
@@ -85,12 +83,13 @@
 <li>별도의 fe 규칙도 제공하고 있어 Node.js 환경 또는 리액트 환경에 맞는 규칙을 적용할 수 있는 장점</li>
 </ul>
 <p>@titicaca/triple-config-kit는 ESlint뿐만 아니라 Prettier와 StyleLint를 각각 별로의 룰인 @titicaca/prettier-config-triple, @titicaca/stylelint-config-triple로 모노레포를 만들어 관리하고 있어 필요에 따라 설치해서 사용할 수 있다.</p>
-<p>한국어권 커뮤니티에서 유지보수되고 있는 eslint config를 사용하고 싶거나 혹은 자체적인 config 구축에 관심이 있다면 도움이 될 것이다.</p>
+<p>한국어권 커뮤니티에서 유지보수되고 있는 eslint config를 사용하고 싶거나 혹은 자체적인 eslint config 구축에 관심이 있다면 도움이 될 것이다.</p>
 </li>
 <li>
-<p><strong>eslint-config-next</strong>
-Next.js를 사용하고 있는 프로젝트에서 사용할 수 있는 eslint config다. 단순히 코드를 정적으로 분석할 뿐만 아니라 페이지나 컴포넌트에서 반환하는 JSX 구문 및 _app, _document에서 작성돼 있는 HTML 코드 또한 정적 분석 대상으로 분류해 제공한다. 이는 단순히 자바스크립트 코드에 대한 향상뿐만 아니라 전체적인 Next.js 기반 웹 서비스의 성능 향상에 도움이 될 수 있다는 점에서 매우 유용하다.</p>
-<p>또, 코어 웹 바이탈을 분석해 제공하는 기능도 포하되어 있다.</p>
+<p><strong>eslint-config-next</strong></p>
+<p>Next.js를 사용하고 있는 프로젝트에서 사용할 수 있는 eslint config다. 단순히 코드를 정적으로 분석할 뿐만 아니라 페이지나 컴포넌트에서 반환하는 JSX 구문 및 _app, _document에서 작성돼 있는 HTML 코드 또한 정적 분석 대상으로 분류해 제공한다. 이는 단순히 자바스크립트 코드에 대한 향상뿐만 아니라 전체적인 Next.js 기반 웹 서비스의 성능 향상에 도움이 될 수 있다는 점에서 매우 유용하다.</p>
+<p>또, 코어 웹 바이탈을 분석해 제공하는 기능도 포함되어 있다. Next.js로 작성된 코드라면 반드시 설치하자.</p>
+<br>
 </li>
 </ul>]]></content:encoded>
             <category>ESLint</category>
@@ -136,14 +135,14 @@ Next.js를 사용하고 있는 프로젝트에서 사용할 수 있는 eslint co
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="절반정도-읽은-시점의-느낀점">절반정도 읽은 시점의 느낀점<a href="https://5kdk.github.io/blog/2023/11/24/modern-react-deep-dive-review#%EC%A0%88%EB%B0%98%EC%A0%95%EB%8F%84-%EC%9D%BD%EC%9D%80-%EC%8B%9C%EC%A0%90%EC%9D%98-%EB%8A%90%EB%82%80%EC%A0%90" class="hash-link" aria-label="절반정도 읽은 시점의 느낀점에 대한 직접 링크" title="절반정도 읽은 시점의 느낀점에 대한 직접 링크">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-명확한-용어는-명확한-소통이-된다">1. 명확한 용어는 명확한 소통이 된다<a href="https://5kdk.github.io/blog/2023/11/24/modern-react-deep-dive-review#1-%EB%AA%85%ED%99%95%ED%95%9C-%EC%9A%A9%EC%96%B4%EB%8A%94-%EB%AA%85%ED%99%95%ED%95%9C-%EC%86%8C%ED%86%B5%EC%9D%B4-%EB%90%9C%EB%8B%A4" class="hash-link" aria-label="1. 명확한 용어는 명확한 소통이 된다에 대한 직접 링크" title="1. 명확한 용어는 명확한 소통이 된다에 대한 직접 링크">​</a></h3>
 <p>전에 읽었던 <strong>'모던 자바스크립트 Deep dive'</strong> 에서는 명확한 용어는 명확한 소통이 된라는 말이 나온다.</p>
-<p>상대방 혹은 내가 모르는 지식이여도 기본기가 있다면(명확한 용어를 알고 있다면) 알려주기에도 수월하며, 이해하는데도 수월하다.</p>
 <p>이 책은 React 생태계의 용어들을 명확하게 다루고 있어 이 React에 대한 소통 능력을 쌓기 적합하다.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-동작원리를-기반으로한-이해">2. 동작원리를 기반으로한 이해<a href="https://5kdk.github.io/blog/2023/11/24/modern-react-deep-dive-review#2-%EB%8F%99%EC%9E%91%EC%9B%90%EB%A6%AC%EB%A5%BC-%EA%B8%B0%EB%B0%98%EC%9C%BC%EB%A1%9C%ED%95%9C-%EC%9D%B4%ED%95%B4" class="hash-link" aria-label="2. 동작원리를 기반으로한 이해에 대한 직접 링크" title="2. 동작원리를 기반으로한 이해에 대한 직접 링크">​</a></h3>
+<p>나는 이를 '기본기'라고 생각하는데 이 기본기들은 실제 업무를 할 때도 도움이 된다.</p>
+<p>같은 개발자여도 지식의 수준이 다를 수 있는데 가지고 있는 지식이 다르더라도 용어를 정확히 알고 있다면 그 간극을 손쉽게 좁혀나갈 수 있다.</p>
+<p>상대방 혹은 내가 모르는 지식이여도 기본기가 있다면(명확한 용어를 알고 있다면) 알려주기에도 수월하며, 이해하는데도 수월하다.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-동작원리를-기반으로한-이해">2. 동작원리를 기반으로한 이해<a href="https://5kdk.github.io/blog/2023/11/24/modern-react-deep-dive-review#2-%EB%8F%99%EC%9E%91%EF%BF%BD%EC%9B%90%EB%A6%AC%EB%A5%BC-%EA%B8%B0%EB%B0%98%EC%9C%BC%EB%A1%9C%ED%95%9C-%EC%9D%B4%ED%95%B4" class="hash-link" aria-label="2. 동작원리를 기반으로한 이해에 대한 직접 링크" title="2. 동작원리를 기반으로한 이해에 대한 직접 링크">​</a></h3>
 <p>자바스크립트의 동작 원리를 모르고 자바스크립트 코드를 짜는 것과 알고 짜는 것이 천지 차이인 듯, React도 마찬가지. 하지만 지금껏 이 책에서 다루는 근본적인 React 지식 정보들을 얻기란 쉽지 않았다.</p>
 <p>기존의 문제점을 짚어주고, 이에 대한 해결책들을 동작 원리를 기반으로 설명해주는 점들이 도움이 많이 되었다.</p>
-<p>동작 원리를 이해해야 어느 코드가 좋은 코드인지 판별할 수 있는 수단이 된다. 나는 이를 '기본기'라고 생각하는데 이 기본기들은 실제 업무를 할 때도 도움이 된다.</p>
-<p>같은 개발자여도 지식의 수준이 다를 수 있고, 실제로 다른 데... 가지고 있는 지식이 다르더라도 기본기를 갖추고 있다면 그 간극을 손쉽게 좁혀나갈 수 있다.</p>
-<p>상대방 혹은 내가 모르는 지식이어도 기본기가 있다면 알려주기에도 수월하며, 알려주는 것을 이해하는데도 수월하기 때문이다.</p>
+<p>동작 원리를 이해해야 어느 코드가 좋은 코드인지 판별할 수 있고, 본인이 작성한 코드가 어떻게 동작할 지, 즉 예측 가능한 컴포넌트, 훅을 만드는데에 큰 도움이 될 것 같다.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-리액트-구성요소의-다양한-관점을-이해">3. 리액트 구성요소의 다양한 관점을 이해<a href="https://5kdk.github.io/blog/2023/11/24/modern-react-deep-dive-review#3-%EB%A6%AC%EC%95%A1%ED%8A%B8-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C%EC%9D%98-%EB%8B%A4%EC%96%91%ED%95%9C-%EA%B4%80%EC%A0%90%EC%9D%84-%EC%9D%B4%ED%95%B4" class="hash-link" aria-label="3. 리액트 구성요소의 다양한 관점을 이해에 대한 직접 링크" title="3. 리액트 구성요소의 다양한 관점을 이해에 대한 직접 링크">​</a></h3>
 <p>리액트를 다루며 나타나는 상반되는 관점에 대해 각 진영을 대변하며 이야기를 나누는 점도 흥미롭다.</p>
 <p>이전에 블로깅 했던 주제인 메모이제이션에 나의 생각은 이 책을 보면서 좀 더 생각해봐야할 구실이 생겼고, 고차컴포넌트(HOC)에 대한 활용 고민도 좀 더 깊어 졌다.</p>
