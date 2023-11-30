@@ -6,6 +6,7 @@ const GiscusComponent = () => {
 
   return (
     <Giscus
+      id="comments"
       repo="5kdk/5kdk.github.io"
       repoId="R_kgDOJyJw5g"
       category="General"
@@ -19,8 +20,6 @@ const GiscusComponent = () => {
       theme={colorMode}
       lang="ko"
       loading="lazy"
-      crossorigin="anonymous"
-      async
     />
   );
 };
