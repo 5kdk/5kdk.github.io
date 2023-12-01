@@ -17,6 +17,7 @@
   "dependencies": {
     "@docusaurus/core": "3.0.0",
     "@docusaurus/preset-classic": "3.0.0",
+    "@docusaurus/theme-common": "^3.0.1",
     "@giscus/react": "^2.3.0",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^1.2.1",
@@ -44,5 +45,6 @@
   },
   "engines": {
     "node": ">=18.0"
-  }
+  },
+  "packageManager": "yarn@4.0.2"
 }
