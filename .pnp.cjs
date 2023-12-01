@@ -38,6 +38,7 @@ const RAW_RUNTIME_STATE =
           ["prism-react-renderer", "virtual:02e5d2d21f00c226e49e77ea26ac61b7097613fbf96463bae2fffe5d17d9cdcc285212c9d0301723875154af425a2bf6f875fe2610e8adaad0c31956d08aaa72#npm:2.3.0"],\
           ["react", "npm:18.2.0"],\
           ["react-dom", "virtual:02e5d2d21f00c226e49e77ea26ac61b7097613fbf96463bae2fffe5d17d9cdcc285212c9d0301723875154af425a2bf6f875fe2610e8adaad0c31956d08aaa72#npm:18.2.0"],\
+          ["react-lottie-player", "virtual:02e5d2d21f00c226e49e77ea26ac61b7097613fbf96463bae2fffe5d17d9cdcc285212c9d0301723875154af425a2bf6f875fe2610e8adaad0c31956d08aaa72#npm:1.5.5"],\
           ["typescript", "patch:typescript@npm%3A5.3.2#optional!builtin<compat/typescript>::version=5.3.2&hash=e012d7"]\
         ],\
         "linkType": "SOFT"\
@@ -60,6 +61,7 @@ const RAW_RUNTIME_STATE =
           ["prism-react-renderer", "virtual:02e5d2d21f00c226e49e77ea26ac61b7097613fbf96463bae2fffe5d17d9cdcc285212c9d0301723875154af425a2bf6f875fe2610e8adaad0c31956d08aaa72#npm:2.3.0"],\
           ["react", "npm:18.2.0"],\
           ["react-dom", "virtual:02e5d2d21f00c226e49e77ea26ac61b7097613fbf96463bae2fffe5d17d9cdcc285212c9d0301723875154af425a2bf6f875fe2610e8adaad0c31956d08aaa72#npm:18.2.0"],\
+          ["react-lottie-player", "virtual:02e5d2d21f00c226e49e77ea26ac61b7097613fbf96463bae2fffe5d17d9cdcc285212c9d0301723875154af425a2bf6f875fe2610e8adaad0c31956d08aaa72#npm:1.5.5"],\
           ["typescript", "patch:typescript@npm%3A5.3.2#optional!builtin<compat/typescript>::version=5.3.2&hash=e012d7"]\
         ],\
         "linkType": "SOFT"\
@@ -10861,6 +10863,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["lottie-web", [\
+      ["npm:5.12.2", {\
+        "packageLocation": "../../../.yarn/berry/cache/lottie-web-npm-5.12.2-942dc9e22a-10c0.zip/node_modules/lottie-web/",\
+        "packageDependencies": [\
+          ["lottie-web", "npm:5.12.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["lower-case", [\
       ["npm:2.0.2", {\
         "packageLocation": "../../../.yarn/berry/cache/lower-case-npm-2.0.2-151055f1c2-10c0.zip/node_modules/lower-case/",\
@@ -14182,6 +14193,31 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["react-lottie-player", [\
+      ["npm:1.5.5", {\
+        "packageLocation": "../../../.yarn/berry/cache/react-lottie-player-npm-1.5.5-bd3959cd68-10c0.zip/node_modules/react-lottie-player/",\
+        "packageDependencies": [\
+          ["react-lottie-player", "npm:1.5.5"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:02e5d2d21f00c226e49e77ea26ac61b7097613fbf96463bae2fffe5d17d9cdcc285212c9d0301723875154af425a2bf6f875fe2610e8adaad0c31956d08aaa72#npm:1.5.5", {\
+        "packageLocation": "./.yarn/__virtual__/react-lottie-player-virtual-b41def31cf/4/.yarn/berry/cache/react-lottie-player-npm-1.5.5-bd3959cd68-10c0.zip/node_modules/react-lottie-player/",\
+        "packageDependencies": [\
+          ["react-lottie-player", "virtual:02e5d2d21f00c226e49e77ea26ac61b7097613fbf96463bae2fffe5d17d9cdcc285212c9d0301723875154af425a2bf6f875fe2610e8adaad0c31956d08aaa72#npm:1.5.5"],\
+          ["@types/react", null],\
+          ["fast-deep-equal", "npm:3.1.3"],\
+          ["lottie-web", "npm:5.12.2"],\
+          ["react", "npm:18.2.0"],\
+          ["rfdc", "npm:1.3.0"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["react-router", [\
       ["npm:5.3.4", {\
         "packageLocation": "../../../.yarn/berry/cache/react-router-npm-5.3.4-cc0757f6df-10c0.zip/node_modules/react-router/",\
@@ -14739,6 +14775,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../.yarn/berry/cache/reusify-npm-1.0.4-95ac4aec11-10c0.zip/node_modules/reusify/",\
         "packageDependencies": [\
           ["reusify", "npm:1.0.4"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["rfdc", [\
+      ["npm:1.3.0", {\
+        "packageLocation": "../../../.yarn/berry/cache/rfdc-npm-1.3.0-272f288ad8-10c0.zip/node_modules/rfdc/",\
+        "packageDependencies": [\
+          ["rfdc", "npm:1.3.0"]\
         ],\
         "linkType": "HARD"\
       }]\
