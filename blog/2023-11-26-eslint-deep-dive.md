@@ -1,7 +1,7 @@
 ---
 title: 좋은 코드를 위한 ESLint 정적 분석 딥 다이브
 authors: 5kdk
-description: 좋은 리액트 코드 작성을 위한 환경 구축하기, ESLint를 활용한 정적 분석을 알아봅니다.
+description: 좋은 리액트 코드 작성을 위한 환경 구축하기, ESLint를 활용한 정적 분석을 알아보자.
 tags: [ESLint, JavaScript, TypeScript, React, Next.js]
 keywords:
   [
