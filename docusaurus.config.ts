@@ -1,4 +1,5 @@
 import { themes as prismThemes } from 'prism-react-renderer';
+import tailwindPlugin from './plugins/tailwind-config.cjs';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
@@ -150,6 +151,7 @@ const config: Config = {
       },
     ],
   } satisfies Preset.ThemeConfig,
+  plugins: [tailwindPlugin],
 };
 
 export default config;
