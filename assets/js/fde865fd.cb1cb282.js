@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_5kdk_blog=self.webpackChunk_5kdk_blog||[]).push([[2905],{3267:e=>{e.exports=JSON.parse('{"label":"TypeScript","permalink":"/blog/tags/type-script","allTagsPath":"/blog/tags","count":3,"unlisted":false}')}}]);
