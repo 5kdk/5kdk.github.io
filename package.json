@@ -17,7 +17,6 @@
   "dependencies": {
     "@docusaurus/core": "^3.2.1",
     "@docusaurus/preset-classic": "^3.2.1",
-    "@docusaurus/theme-common": "^3.2.1",
     "@giscus/react": "^2.3.0",
     "@mdx-js/react": "^3.0.0",
     "autoprefixer": "^10.4.19",
@@ -33,7 +32,7 @@
     "@docusaurus/module-type-aliases": "^3.2.1",
     "@docusaurus/tsconfig": "^3.2.1",
     "@docusaurus/types": "^3.2.1",
-    "typescript": "^5.3.2"
+    "typescript": "^5.4.5"
   },
   "browserslist": {
     "production": [
@@ -49,6 +48,5 @@
   },
   "engines": {
     "node": ">=18.0"
-  },
-  "packageManager": "yarn@4.1.1"
+  }
 }
