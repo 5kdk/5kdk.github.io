@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_5kdk_blog=self.webpackChunk_5kdk_blog||[]).push([[1775],{1247:s=>{s.exports=JSON.parse('{"label":"Next.js","permalink":"/blog/tags/next-js","allTagsPath":"/blog/tags","count":3,"unlisted":false}')}}]);
