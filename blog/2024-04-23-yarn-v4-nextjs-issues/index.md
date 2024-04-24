@@ -91,13 +91,16 @@ Error: @chromatic-com/storybook tried to access @storybook/core-events, but it i
 Required package: @storybook/core-events (via "@storybook\core-events\server-errors")
 ```
 
-호이스팅 전략을 고려하지 않는 패키지들은 종속성 문제를 일으킬 수 있는데, `@chromatic-com/storybook` 패키지가 그러하였다.
+호이스팅 전략을 고려하지 않는 패키지들은 종속성 문제를 일으킬 수 있는데, Storybook 관련 패키지들이 그러하였다.
 비단 Storybook만의 문제는 아니며, Yarn berry가 까다로운 이유 중 하나인 것 같다.
 
 필요한 패키지를 `yarn add` 해도 해결되지만, 패키지 중복을 피하고자 아래와 같이 확장구문을 작성해주면 된다.
 
 ```yml title=".yarnrc.yml"
 packageExtensions:
+  '@storybook/nextjs@*':
+    dependencies:
+      'webpack': '*'
   '@chromatic-com/storybook@*':
     dependencies:
       '@storybook/client-logger': '*'
