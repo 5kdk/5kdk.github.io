@@ -4,7 +4,7 @@ authors: 5kdk
 description: 스타일도 레거시가 있다. 이제 12가지 최신 CSS 기술들을 살펴보자.
 tags: [css, style]
 keywords: [최신 css, 최신 css 기술, one line css, 한줄 css]
-enableComments: true
+comments: true
 ---
 
 프로젝트 대부분을 sass를 사용하면서, 프로젝트 멤버가 바뀌거나 다른 개발자의 스타일을 수정하며 사뭇 두려워질 때면 style도 js,ts 코드와 마찬가지로 개선해 나가는 게 중요하다고 느끼게 된다.

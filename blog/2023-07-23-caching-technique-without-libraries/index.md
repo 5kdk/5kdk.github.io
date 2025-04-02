@@ -4,7 +4,7 @@ authors: 5kdk
 description: 라이브러리 없이 데이터 캐싱 라이브러리들을 구현해보자.
 tags: [React, SWR, React-Query]
 keywords: [React-Query, 로컬 캐싱, 캐시 구현, 라이브러리 없이 캐싱 구현]
-enableComments: true
+comments: true
 ---
 
 SWR, React-query 같은 data fetching 라이브러리들은 기본적으로 fetch한 데이터에 대한 캐싱 기능을 제공한다.

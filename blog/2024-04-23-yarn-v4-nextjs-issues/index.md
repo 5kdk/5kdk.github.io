@@ -13,7 +13,7 @@ keywords:
     Next.js 14 and yarn berry,
     yarn 스토리북,
   ]
-enableComments: true
+comments: true
 ---
 
 개인 Next.js 보일러 플레이트를 세팅하면서 Yarn 4 의 PnP(Plug And Play)와 Zero-install로 환경을 구성을 시도해보았다. 이번에 환경을 세팅하며 마주했던 상황들과 이슈들을 정리해본다. 편의상 Yarn PnP를 Yarn berry라 부르겠다.

@@ -5,7 +5,7 @@ description: 비동기처리에서의 Suspense와 ErrorBoundary 활용법.
 tags: [React]
 keywords:
   [Suspense, Error Boundary, 선언적 데이터 패칭, 선언형 컴포넌트, 관심사 분리]
-enableComments: true
+comments: true
 ---
 
 데이터 요청 상태에 따라 다르게 노출되는 UX/UI 설계는 많은 고민을 필요로 한다. 이러한 문제를 해결하기 위해 React는 다양한 방법을 제공하는데, 그 중 `Suspense`와 `ErrorBoundary`를 활용한 선언적 데이터 패칭이 있다.

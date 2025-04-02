@@ -1,6 +1,5 @@
-import { themes as prismThemes } from 'prism-react-renderer';
-import tailwindPlugin from './plugins/tailwind-config.cjs';
-import type { Config } from '@docusaurus/types';
+import {themes as prismThemes} from 'prism-react-renderer';
+import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
@@ -50,9 +49,13 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl: 'https://github.com/5kdk/5kdk.github.io/tree/main',
+          feedOptions: {
+            type: ['rss', 'atom'],
+            xslt: true,
+          },
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: './src/css/custom.css',
         },
       } satisfies Preset.Options,
     ],
@@ -151,7 +154,6 @@ const config: Config = {
       },
     ],
   } satisfies Preset.ThemeConfig,
-  plugins: [tailwindPlugin],
 };
 
 export default config;

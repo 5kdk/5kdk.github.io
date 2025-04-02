@@ -4,7 +4,7 @@ authors: 5kdk
 description: 라우팅시 뒤로가기 오류를 고쳤던 경험
 keywords: [useNavigate, Navigate, React router dom, 뒤로가기]
 tags: [React, React-router]
-enableComments: true
+comments: true
 ---
 
 [원티드 프리온보딩 사전과제](https://github.com/5kdk/wanted-pre-onboarding-frontend/tree/main)를 진행하며 여러 리다이렉트 작업이 필요했다.

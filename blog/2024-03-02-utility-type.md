@@ -4,7 +4,7 @@ authors: 5kdk
 description: 알아두면 유용한 11가지 유틸리티 타입을 이해하고 활용해보자.
 tags: [TypeScript]
 keywords: [유틸리티 타입, 타입스크립트 유틸리티, 타입스크립트 유틸리티 타입]
-enableComments: true
+comments: true
 ---
 
 프론트엔드라면 주로 사용하는 프로그래밍 언어 중 하나인 타입스크립트의 특히 '유틸리티 타입'이라는 매우 유용한 기능을 알아보려고 한다.

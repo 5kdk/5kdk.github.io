@@ -14,7 +14,7 @@ keywords:
     Web vitals extension,
     Speed Insights,
   ]
-enableComments: true
+comments: true
 ---
 
 이전 포스팅에서 살펴본 **"Core Web Vitals"**, 각자의 프로젝트에서 코어 웹 바이탈을 개선하기 위한 첫 단계로 어떻게 코어 웹 바이탈을 측정할 수 있는 지에 대해 알아보자.

@@ -4,7 +4,7 @@ description: React의 메모제이션과 최적화에 대한 고찰.
 authors: 5kdk
 keywords: [useMemo, useCallback, 리액트 최적화, 프론트엔드 최적화, 웹 최적화]
 tags: [React]
-enableComments: true
+comments: true
 ---
 
 `useCallback`과 `useMemo`는 리액트의 최적화를 지원하는 Hook들이다. 두 Hook 모두 '최적화'라는 키워드가 있어 사용하지 않으면 손해라고 생각할 수 있다. ~~(필자 역시 처음엔 그렇게 생각했었다...)~~

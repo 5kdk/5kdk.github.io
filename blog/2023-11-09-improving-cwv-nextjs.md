@@ -5,7 +5,7 @@ description: 웹 성능 개선을 위해 코어 웹 바이탈 측정해보자.
 tags: [Web, Core Web Vitals, Next.js]
 keywords:
   [코어 웹 바이탈, Core Web Vitals, 웹 최적화, SEO, Lighthouse, next.js 최적화]
-enableComments: true
+comments: true
 ---
 
 이전 포스팅에서 코어 웹 바이탈에 대해 살펴보고, 웹을 개선하기 위해 어떻게 코어 웹 바이탈을 측정할 수 있는지에 대해 알아보았다. 두 번째 단계로, 측정한 코어 웹 바이탈을 어떻게 개선할지 알아보자.

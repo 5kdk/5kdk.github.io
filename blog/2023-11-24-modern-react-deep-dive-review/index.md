@@ -12,7 +12,7 @@ keywords:
     Modern React Deep Dive,
     React 책 추천,
   ]
-enableComments: true
+comments: true
 ---
 
 지인에게 **'모던 리액트 Deep dive'** 발간 소식을 듣고, 책 정보를 찾아 보다가 이 책의 저자님이 제가 평소에 감명깊게 보던 블로그의 주인분이라는 것을 알게 되어, 고민 없이 해당 도서의 서포터즈 활동까지 지원하고 책을 구매하였다.

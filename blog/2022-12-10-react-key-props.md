@@ -4,7 +4,7 @@ authors: 5kdk
 tags: [React]
 description: React에서의 key는 어떤 역할을 하고 왜 필요한지 알아보자
 keywords: [React, React Key, Key]
-enableComments: true
+comments: true
 ---
 
 React에서 map으로 컴포넌트를 반복 렌더 할 경우 콘솔에서 'Warning: Each child in a list should have a unique "key" prop'이라는 주의 문구를 확인할 수 있는데, 여기서 `key`는 무엇이며 왜 필요한지에 대해 알아본다.

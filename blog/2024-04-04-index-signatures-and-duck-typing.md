@@ -5,7 +5,7 @@ description: 타입스크립트 인덱스 시그니처와 Object.keys의 반환 
 tags: [TypeScript]
 keywords:
   [구조적 서브타이핑, 덕 타이핑, 인덱스 시그니처, 타입스크립트 객체 타입 추론]
-enableComments: true
+comments: true
 ---
 
 _Element implicitly has an 'any' type because expression of type 'string'_  

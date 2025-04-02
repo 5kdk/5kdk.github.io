@@ -4,7 +4,7 @@ authors: 5kdk
 description: 자바스크립트 for 문을 대체할 수 있는 11가지 메서드를 알아보자
 tags: [JavaScript]
 keywords: [자바스크립트, Reduce, Map, 반복 메서드]
-enableComments: true
+comments: true
 ---
 
 이 포스팅은 해외 저자의 글을 요약 및 번역하고 살을 붙여 옮긴다. 필자가 자바스크립트를 처음 접하고 배열을 막 다루기 시작할 때에 큰 도움이 되었다. 원문은 하단 링크로 남긴다.
