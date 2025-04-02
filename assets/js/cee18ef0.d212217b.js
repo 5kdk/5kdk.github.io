@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_5kdk_blog=self.webpackChunk_5kdk_blog||[]).push([[3230],{7639:e=>{e.exports=JSON.parse('{"label":"React-router","permalink":"/blog/tags/react-router","allTagsPath":"/blog/tags","count":1,"unlisted":false}')}}]);

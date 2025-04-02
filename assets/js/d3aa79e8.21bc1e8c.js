@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_5kdk_blog=self.webpackChunk_5kdk_blog||[]).push([[6961],{6490:e=>{e.exports=JSON.parse('{"permalink":"/blog/tags/react-query","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
