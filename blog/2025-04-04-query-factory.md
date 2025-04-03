@@ -222,7 +222,7 @@ function TodoDetailPage({ id }: { id: number }) {
 
 ## 5. 결론
 
-`queryOptions`의 등장으로 React Query의 쿼리 관리 방식이 크게 발전했습니다. 이제 **QueryKey factory에서 Query factory로의 전환**을 고려해 볼 시점입니다. 이 패턴을 적용하면 타입 안전성, 코드 가독성, 유지보수성이 모두 향상되므로, 현재 React Query를 사용하고 있다면 Query factory 패턴으로의 전환을 검토해 보시기 바랍니다.
+`queryOptions`의 등장으로 React Query의 쿼리 관리 방식이 크게 발전했습니다. 이제 **QueryKey factory에서 Query factory로의 전환**을 시도해 볼 참입니다. 이 패턴을 적용하면 타입 안전성, 응집도, 유지보수성이 모두 향상되므로, 현재 React Query를 사용하고 있다면 Query factory 패턴으로의 전환을 검토해 보시기 바랍니다.
 
 <br />
 
