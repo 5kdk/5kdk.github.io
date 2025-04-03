@@ -10,6 +10,8 @@ comments: true
 
 이 글에서는 쿼리 키(queryKey)를 효율적이고 안전하게 관리하기 위한 패턴인 쿼리 키 팩토리(QueryKey factories) 패턴에 대해 설명하고, TanStack React Query v5에서 새롭게 등장한 `queryOptions` 를 결합하여 더욱 타입 안전하고 관리하기 쉬운 쿼리 키 관리법을 다뤄봅니다.
 
+<!--truncate-->
+
 ## 1. QueryKey factories 사용하기
 
 React Query를 사용할 때 여러 쿼리를 관리하다 보면, 키 관리가 어려워 한참 코드베이스를 들여다보거나 *(cursor를 괴롭히거나..)* 중복 코드가 발생할 수 있습니다.
