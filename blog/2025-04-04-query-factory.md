@@ -1,35 +1,33 @@
 ---
 title: Querykey factory에서 Query factory로
 authors: 5kdk
-description: TanStack React Query의 쿼리들을 보다 안전하게 사용하는 방법.
+description: TanStack React Query의 쿼리들을 보다 안전하게 사용하는 방법
 tags: [TanStack React Query]
 keywords:
   [queryKey, QueryKey factory, 쿼리키 관리, 쿼리키 팩토리, 쿼리 팩토리, Query factory]
 comments: true
 ---
 
-이 글에서는 기존 쿼리 키(queryKey)를 효율적이고 안전하게 관리하기 위해 사용하는 **쿼리 키 팩토리**(QueryKey factory) 패턴을 간략히 살펴보고, TanStack React Query v5에서 도입된 `queryOptions`를 활용한 **쿼리 팩토리**(Query factory)로 발전시키는 방법을 다룹니다.
+이 글에서는 TanStack React Query에서 쿼리 키(queryKey)를 효율적이고 안전하게 관리하기 위해 사용하는 **쿼리 키 팩토리(QueryKey factory)** 패턴에 대해 살펴보고, TanStack React Query v5에서 도입된 `queryOptions`를 활용하여 쿼리키와 쿼리를 통합하여 관리하는 **쿼리 팩토리(Query factory)** 에 대해 알아봅니다.
 
 <!--truncate-->
 
 :::caution
 
-***Query'Key' factory*** 와 ***Query factory*** 를 혼동하지 마세요!
+글에 들어가기 앞서 **QueryKey factory** 와 **Query factory** 를 구분하세요.
 
 :::
 
 ## 1. QueryKey factory
 
-React Query를 사용하면서 여러 쿼리를 관리하다 보면, 키 관리가 어려워 코드베이스를 한참 들여다보거나 중복 코드가 발생하는 경우가 있습니다. _(cursor를 괴롭히기 시작)_
+React Query를 사용하면서 여러 쿼리들을 사용하다 보면, 키 관리가 어려워 코드베이스를 한참 찾아보거나 중복 쿼리키가 발생하는 경우가 있습니다.
 
-이런 문제를 예방하기 위해 추천되던 방법이 바로 **쿼리 키 팩토리** 패턴입니다. 이 패턴은 하나의 기능(feature)에서 사용하는 쿼리 키를 상수로 관리하여 일관성과 유지보수성을 향상시킵니다.
+이런 문제를 예방하기 위해 추천되는 방법이 바로 **쿼리 키 팩토리** 패턴입니다. 이 패턴은 하나의 기능(feature)에서 사용하는 쿼리 키를 상수로 관리하여 일관성과 유지보수성을 향상시킵니다.
 
 > _쿼리 키를 수동으로 많이 선언하면 오류가 발생하기 쉬울 뿐만 아니라, 추후에 키에 더 세분화된 수준(granularity)을 추가하고 싶어질 경우 변경도 더 어렵게 만듭니다._  
 > _그래서 저는 기능(feature) 단위로 하나의 쿼리 키 팩토리(Query Key factory)를 만드는 것을 권장합니다. 이는 단순히 쿼리 키를 생성하는 항목과 함수들로 이루어진 객체일 뿐이며, 이를 커스텀 훅에서 사용할 수 있습니다._
 >
 > *Dominik D*
-
-### 예시 코드
 
 ```ts title="typescript"
 const todoKeys = {
@@ -59,6 +57,8 @@ queryClient.prefetchQueries({
 });
 ```
 
+<br />
+
 ## 2. React Query의 옵션 객체 추상화 시 한계점
 
 쿼리 키를 상수로 관리했듯이 옵션 객체를 상수로 관리하는 방법도 가능합니다. 자바스크립트에서는 아래와 같은 코드가 깔끔하게 동작합니다.
@@ -87,7 +87,6 @@ useQueries([
 
 [타입스크립트의 구조적 타입 시스템](https://5kdk.github.io/blog/2024/04/04/index-signatures-and-duck-typing#%EB%8D%95-%ED%83%80%EC%9D%B4%ED%95%91%EA%B3%BC-objectkeys%EC%9D%98-%EC%83%81%EA%B4%80%EA%B4%80%EA%B3%84)
 
-### 예시 코드
 
 ```ts title="typescript"
 useQuery({
@@ -105,9 +104,11 @@ const todosQuery = {
 useQuery(todosQuery); // type error가 발생하지 않음
 ```
 
+또한 `queryClient.getQueryData`와 유사한 함수들의 타입 수준에서 `unknown`을 반환하기도 합니다. 따라서 제네릭을 사용함으로써 이 문제를 해결해야합니다.
+
 ```ts
 const todoDetailQuery = (id: number) => ({
-  queryKey: ["todos", "detail", id],
+  queryKey: ["todos"],
   queryFn: () => fetchTodo(id),
   fooTime: 5000, // 오타여도 인라인이 아니면 타입 체크에서 무시됨
 });
@@ -117,44 +118,45 @@ const App = ({ param }: { param: number }) => {
 
   const query = useQuery(todoDetailQuery(param));
 
-  const data = queryClient.getQueryData(["contacts", "detail"]);
+  const data = queryClient.getQueryData(todoDetailQuery(params));
   // data의 추론이 제대로 안 되고 unknown -> 제네릭 매개변수 필요
+
+  const todos = queryClient.getQueryData<Todo>(todoDetailQuery(params))
+  // Todo | undefined
 }
 ```
 
+<br />
+
 ## 3. queryOptions의 등장
 
-TanStack React Query v5에서는 위 문제를 해결하기 위한 `queryOptions`가 새롭게 도입되었습니다. 런타임에서는 사실상 단순 identity 함수 역할만 하지만, 타입스크립트 레벨에서는 `queryClient`의 여러 부분들을 타입 안전하게 만들 수 있도록 도와주며, `queryKey`와 `queryFn` 등을 밀접하게 태깅해 정확한 타입 추론을 지원해 줄 수도 있습니다.
+TanStack React Query v5에서는 위 문제를 해결하기 위한 `queryOptions`가 새롭게 도입되었습니다. 런타임에서는 사실상 단순 identity 함수 역할을 하지만, 타입 레벨에서는 `queryClient`의 여러 부분들을 타입 안전하게 만들 수 있도록 도와주며, `queryKey`와 `queryFn` 등을 밀접하게 태깅해 정확한 타입 추론을 지원해 줍니다.
 
-### 주요 장점
 
-- **타입 오류의 즉각적인 감지**: `queryOptions`로 감싸면, `staleTime`이나 `select` 같은 옵션에 오타가 있을 때 즉시 타입 에러가 표시됩니다.
+- **타입 오류의 즉각적인 감지**: `queryOptions`로 감싸면, `staleTime`이나 `gcTime`, `select` 같은 옵션에 오타가 있을 때 즉시 타입 에러가 표시됩니다.
 - **자동 타입 추론**: `getQueryData`, `setQueryData`를 사용할 때도 쿼리 함수의 반환 타입에 맞춰 자동으로 정확한 타입 추론이 이뤄집니다.
 - **일관된 재사용**: 하나의 객체로 쿼리 키, 함수, 옵션을 묶어 React Query의 API 전반에서 일관되게 사용할 수 있습니다.
 
-### 예시 코드
 
 ```ts
-const todoDetailQuery = (id: number) =>
-  queryOptions({
-    queryKey: ['todos', 'detail', id],
-    queryFn: () => fetchTodo(id),
+const todosQuery = queryOptions({
+    queryKey: ['todos'],
+    queryFn: fetchTodos,
     staleTime: 30000,
   });
 
-useQuery(todoDetailQuery(todoId));
-
-const data = queryClient.getQueryData(todoDetailQuery(todoId).queryKey);
+const data = queryClient.getQueryData(todosQuery.queryKey);
 // data가 fetchTodo(id)의 반환 타입 또는 undefined로 정확하게 추론됨
 ```
 
 `queryOptions`를 사용하면 오탈자 방지는 물론, **쿼리 키가 해당 쿼리 함수와 "동일 객체"** 임을 타입스크립트가 인식합니다. 이는 React Query를 사용할 때 겪는 많은 타입 관련 문제를 해결해 줍니다.
 
+<br />
+
 ## 4. QueryKey factory에서 Query factory로의 전환
 
 기존의 쿼리 키만 관리하는 팩토리에서 한 단계 더 발전하여, 키와 관련된 쿼리 함수, 추가 옵션을 모두 결합하여 관리하는 **쿼리 팩토리(Query factory)** 로 전환할 수 있습니다. 이를 통해 모든 옵션을 한곳에서 관리하며 타입 안전성과 코드의 명확성을 높일 수 있습니다.
 
-### Query factory 전환의 이점
 
 1. **키와 함수의 자연스러운 결합**: 쿼리 키와 쿼리 함수는 본질적으로 밀접하게 연결되어 있으므로, 함께 관리하는 것이 논리적입니다.
 2. **코드의 응집성 향상**: 관련된 쿼리 로직이 한 곳에 모여 있어 코드의 가독성과 유지보수성이 향상됩니다.
@@ -162,7 +164,6 @@ const data = queryClient.getQueryData(todoDetailQuery(todoId).queryKey);
 4. **쿼리 로직의 재사용**: 쿼리 로직을 팩토리로 캡슐화하여 애플리케이션 전체에서 일관되게 사용할 수 있습니다.
 5. **패칭과 프리패칭 간 옵션 공유**: 동일한 쿼리에 대한 일반 패칭과 프리패칭 사이에 모든 옵션을 일관되게 유지할 수 있어 코드 중복과 불일치를 방지합니다.
 
-### 예시 코드
 
 ```ts
 const todoQueries = {
@@ -220,9 +221,15 @@ function TodoDetailPage({ id }: { id: number }) {
 > 
 > *Dominik D*
 
+<br />
+
 ## 5. 결론
 
-`queryOptions`의 등장으로 React Query의 쿼리 관리 방식이 크게 발전했습니다. 이제 **QueryKey factory에서 Query factory로의 전환**을 시도해 볼 참입니다. 이 패턴을 적용하면 타입 안전성, 응집도, 유지보수성이 모두 향상되므로, 현재 React Query를 사용하고 있다면 Query factory 패턴으로의 전환을 검토해 보시기 바랍니다.
+`queryOptions`를 알게된 뒤로 React Query의 쿼리 관리 방식의 선택지가 늘어났습니다. 저도 **QueryKey factory에서 Query factory로의 전환**을 시도해 볼 참입니다.
+
+쿼리 팩토리 패턴을 적용하면 타입 안전성, 응집도, 유지보수성이 모두 향상되므로 이점이있지만, 복잡한 쿼리 핸들링이 필요할 경우에는 어떤 불편한 DX와 성능상의 이슈가 기다리고 있을지도 궁금합니다.
+
+현재 React Query를 사용하고 있다면, Query factory 패턴으로의 전환을 검토해 보시기 바랍니다.
 
 <br />
 
