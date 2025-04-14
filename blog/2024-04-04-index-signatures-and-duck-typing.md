@@ -64,7 +64,7 @@ hello['bye']; // undefined
 ## 인덱스 시그니처를 사용할 때 마주하는 이슈
 
 ```ts
-Object.keys(hello).map(key => {
+Object.keys(hello).map((key) => {
   // Element implicitly has an 'any' type because expression of type 'string'
   // can't be used to index type 'hello'
   // No index signature with a parameter of type 'string' was found on type 'Hello'
@@ -90,7 +90,7 @@ const temp = Object.keys(hello);
 1. `Obejct.keys(hello)`를 `as`로 타입 단언
 
    ```ts
-   (Object.keys(hello) as Array<keyof Hello>).map(key => {
+   (Object.keys(hello) as Array<keyof Hello>).map((key) => {
      const value = hello[key];
      return value;
    });
@@ -104,7 +104,7 @@ const temp = Object.keys(hello);
      return Array.from(Object.keys(obj)) as Array<keyof T>;
    }
 
-   keyOf(hello).map(key => {
+   keyOf(hello).map((key) => {
      const value = hello[key];
      return value;
    });
@@ -115,7 +115,7 @@ const temp = Object.keys(hello);
 3. 가져온 key를 단언 하는 방법
 
    ```ts
-   Object.keys(hello).map(key => {
+   Object.keys(hello).map((key) => {
      const value = hello[key as keyof Hello];
 
      return value;

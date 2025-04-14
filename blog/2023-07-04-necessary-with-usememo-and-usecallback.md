@@ -59,7 +59,7 @@ const MyBigList = React.memo(({ term, onItemClick }) => {
 
   return (
     <div>
-      {items.map(item => (
+      {items.map((item) => (
         <div key={item.id} onClick={onItemClick}>
           {item.contents}
         </div>
@@ -70,7 +70,7 @@ const MyBigList = React.memo(({ term, onItemClick }) => {
 
 const MyParent = ({ term }) => {
   const onItemClick = useCallback(
-    event => {
+    (event) => {
       console.log('You clicked ', event.currentTarget);
     },
     //highlight-next-line
@@ -144,12 +144,12 @@ const App = () => {
       <input
         type="number"
         value={a}
-        onChange={e => setA(parseInt(e.target.value))}
+        onChange={(e) => setA(parseInt(e.target.value))}
       />
       <input
         type="number"
         value={b}
-        onChange={e => setB(parseInt(e.target.value))}
+        onChange={(e) => setB(parseInt(e.target.value))}
       />
       <Calculator a={a} b={b} />
     </div>

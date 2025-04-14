@@ -2,6 +2,7 @@ import styles from './styles.module.css';
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import clsx from 'clsx';
+import Heading from '@theme/Heading';
 
 const FeatureList = [
   {
@@ -89,7 +90,12 @@ const FeatureList = [
   },
 ];
 
-const Feature = ({ svg, title, description }) => {
+const Feature = (props: {
+  svg: { light: string; dark: string };
+  title: string;
+  description: React.ReactNode;
+}) => {
+  const { svg, title, description } = props;
   return (
     <div className="col col--4">
       <div className="text--center">
@@ -103,7 +109,7 @@ const Feature = ({ svg, title, description }) => {
         />
       </div>
       <div className={clsx('text--center', styles.textContainer)}>
-        <h3>{title}</h3>
+        <Heading as="h3">{title}</Heading>
         <p>{description}</p>
       </div>
     </div>

@@ -270,7 +270,7 @@ const fuse = new Fuse(countries, {
   type="text"
   placeholder="Country search..."
   className={styles.input}
-  onChange={async e => {
+  onChange={async (e) => {
     const { value } = e.currentTarget;
     // Dynamically load libraries
     const Fuse = (await import('fuse.js')).default;
@@ -281,7 +281,7 @@ const fuse = new Fuse(countries, {
       threshold: 0.3,
     });
 
-    const searchResult = fuse.search(value).map(result => result.item);
+    const searchResult = fuse.search(value).map((result) => result.item);
 
     const updatedResults = searchResult.length ? searchResult : countries;
     setResults(updatedResults);

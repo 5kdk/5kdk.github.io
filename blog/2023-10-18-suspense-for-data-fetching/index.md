@@ -50,7 +50,7 @@ const SampleContents = () => {
 
   return (
     <div>
-      {sampleDatas.map(data => (
+      {sampleDatas.map((data) => (
         <Content data={data} />
       ))}
     </div>
@@ -86,7 +86,7 @@ const SampleContents = () => {
 
   return (
     <div>
-      {sampleDatas.map(data => (
+      {sampleDatas.map((data) => (
         <Content data={data} />
       ))}
     </div>
@@ -159,7 +159,7 @@ const SampleContents = () => {
 
   return (
     <div>
-      {sampleDatas.map(data => (
+      {sampleDatas.map((data) => (
         <Content data={data} />
       ))}
     </div>

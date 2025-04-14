@@ -97,7 +97,7 @@ import { useNavigate } from 'react-router-dom';
 const PostList = () => {
   const navigate = useNavigate();
 
-  const handlePostClick = postId => {
+  const handlePostClick = (postId) => {
     //highlight-start
     // 게시글 ID와 추가 데이터를 함께 전달하여 상세 페이지로 이동
     navigate(`/post/${postId}`, {

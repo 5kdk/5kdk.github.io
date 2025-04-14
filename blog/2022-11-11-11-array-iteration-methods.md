@@ -128,7 +128,7 @@ filter(function (element, index, array) {/* … */}, thisArg);
 let prntVal = '';
 const names = ['Frank', 'Charles', 'Dolly', 'Robert', 'Bob'];
 
-names.forEach(value => {
+names.forEach((value) => {
   prntVal = prntVal + 'Hello ' + value + '<br/>';
 });
 ```
@@ -253,7 +253,7 @@ const sum = nums.reduce((total, value) => total + value);
 ```js
 const nums = [10, 20, 30, 40, 50];
 
-const over30 = nums.some(value => value > 30);
+const over30 = nums.some((value) => value > 30);
 ```
 
 **출력**
@@ -297,7 +297,7 @@ some(function (element, index, array) {/* … */}, thisArg);
 ```js
 const nums = [10, 20, 30, 40, 50];
 
-const over30 = nums.some(value => value > 30);
+const over30 = nums.some((value) => value > 30);
 ```
 
 **출력**
@@ -341,7 +341,7 @@ every(function (element, index, array) { /* … */ }, thisArg)
 ```js
 const nums = [10, 20, 30, 40, 50];
 
-const firstNum = nums.find(value => value > 30);
+const firstNum = nums.find((value) => value > 30);
 ```
 
 **출력**
@@ -385,7 +385,7 @@ find(function (element, index, array) { /* … */ }, thisArg)
 ```js
 const nums = [10, 20, 30, 40, 50];
 
-const firstIdx = nums.findIndex(value => value > 30);
+const firstIdx = nums.findIndex((value) => value > 30);
 ```
 
 **출력**

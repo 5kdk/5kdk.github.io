@@ -400,7 +400,7 @@ const {
   queryFn: useCallback(() => getSearchTerms(input), []),
   initialData: [],
   cacheTime: 2 * 60 * 1000,
-  select: data => data.slice(0, 7),
+  select: (data) => data.slice(0, 7),
 });
 ```
 
