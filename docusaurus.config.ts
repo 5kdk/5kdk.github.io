@@ -63,8 +63,8 @@ const config: Config = {
           priority: 0.5,
           ignorePatterns: [
             '/tags/**',
+            '/search/**',
             '/blog/tags/**',
-            '/blog/search/**',
             '/blog/archive/**',
           ],
           filename: 'sitemap.xml',
