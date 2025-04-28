@@ -2,7 +2,7 @@
 title: 웹 성능 지표, 코어 웹 바이탈(CWV)
 authors: 5kdk
 description: 프론트엔드 개발자가 꼭 알아야할, 웹 성능의 지표 코어 웹 바이탈.
-tags: [Web, Core Web Vitals]
+tags: [Core Web Vitals]
 keywords: [코어 웹 바이탈, Core Web Vitals, 웹 최적화, SEO, Lighthouse]
 comments: true
 ---
