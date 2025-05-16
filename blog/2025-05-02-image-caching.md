@@ -1,5 +1,5 @@
 ---
-title: Next.js <Image> 컴포넌트에서 이미지 파일 교체 후 캐싱 문제 해결하기
+title: CDN 이미지 파일 교체 후 Next.js <Image> 컴포넌트 캐싱 문제 해결하기
 authors: 5kdk
 description: Next.js에서 <Image> 컴포넌트를 사용할 때 이미지 교체 후에도 변경 사항이 반영되지 않는 문제의 원인과, CloudFront Invalidation과 URL 버전 쿼리로 해결하는 방법을 설명합니다.
 tags: [Next.js, AWS]
@@ -48,7 +48,6 @@ Next.js의 `<Image>` 컴포넌트를 사용해 외부 이미지를 불러오는 
 
 - `Cache-Control`, `ETag` 등의 헤더에 따라 로컬에 저장됩니다.
 - 강제 새로고침 전까지 이전 이미지가 유지될 수 있습니다.
-- 사용자가 페이지 새로고침시 해결되기 때문에 이 글에서는 사실상 논외입니다.
 
 <br />
 
@@ -113,7 +112,7 @@ aws cloudfront create-invalidation \
 <img src="https://cdn.example.com/images/banner.jpg?v=20240501" alt="Banner" />
 ```
 
-:::tip CDN 최적화 유지하기
+:::tip CDN으로 최적화 유지하기
 
 `<img>`를 사용할 경우 Next.js의 최적화 기능은 작동하지 않습니다.  
 CDN 수준에서 다음을 고려하세요:
@@ -154,5 +153,9 @@ Vercel은 `_next/image` 경로의 캐시를 수동으로 삭제할 수 없습니
 TTL이 만료될 때까지 기다리거나, 원본 이미지 URL을 변경(버전 쿼리 추가) 해야 새 이미지로 인식됩니다.
 
 :::
+
+> 좀 더 살펴보기 :  
+> [Vercel을 활용한 이미지 최적화](https://vercel.com/docs/image-optimization)  
+> [AWS, 파일을 무효화하여 콘텐츠 제거 ](https://docs.aws.amazon.com/ko_kr/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html)
 
 <br />
