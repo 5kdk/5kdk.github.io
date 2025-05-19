@@ -16,7 +16,6 @@ keywords:
     서버리스 비용 절감,
   ]
 comments: true
-draft: true
 ---
 
 25년 3월, 팀에 합류한 저는 주로 매칭 서비스의 프론트엔드 개발을 담당하고 있습니다.  
@@ -24,16 +23,13 @@ draft: true
 
 이번주 유저 CS를 처리하던 중 Firebase 콘솔에서 **예상치 못한 요금 폭탄**을 발견했습니다.
 
-봄이 성수기라 트래픽이 증가하긴 했지만, 특히 **주요 페이지 개편 이후 요금이 비정상적으로 치솟았다**는 사실을 알게 됐습니다.
+매칭 서비스 특성상 봄이 성수기라 유저 및 트래픽이 증가하긴 했지만, 특히 **주요 페이지 개편 이후 요금이 비정상적으로 치솟았다**는 사실을 알게 됐습니다.
 
-이 문제를 계기로 **새로 작성한 코드부터 레거시 코드까지 전수 점검**했고, 결과적으로 현재까지 Firebase 비용을 **90% 가까이 절감**할 수 있었습니다.
+이 문제를 계기로 **새로 작성한 코드부터 레거시 코드까지 전수 점검**했고, 결과적으로 현재까지 Firebase 비용을 기존 대비 **90% 가까이 절감**할 수 있었습니다.
 
 이 글에서는 그 과정을 공유합니다.
 
 <!-- truncate -->
-
-> Firebase App Engine 비용  
-> ￦75,000 => ￦110,000 => ￦14,000
 
 <br />
 
@@ -64,6 +60,13 @@ return querySnapshot.docs.map((doc) => ({
 사실 이 방식의 **비용 리스크**를 인지하고 팀원과 논의했지만, 빠른 출시를 위해 일단 적용하고 나중에 개선하자는 결정이 있었습니다.
 
 **하지만 이것이 요금 폭탄의 시작이었습니다.**
+
+:::note App engine 비용
+
+개편 전 평균 비용 : ￦ 70,000  
+개편 후 평균 비용 : ￦110,000
+
+:::
 
 매칭 서비스 특성상 매일 수천 건의 매칭 데이터가 생성되었고, 유저가 접속할 때마다 해당 데이터를 모두 읽는 구조였기 때문입니다.
 
@@ -107,11 +110,11 @@ Firebase 콘솔에서는 대략적인 사용량만 제공해 쿼리별 비용 �
 NoSQL DB는 SQL처럼 `COUNT`, `SUM`, `AVG` 같은 집계 기능을 기본 제공하지 않습니다.  
 보통 별도 집계 필드를 두거나 서버 API를 만들어 대응하는데요.
 
-문제는 저희가 사용하는 **`firestore/lite SDK`** 는 서버 함수를 제공하지 않는 **경량화 버전**이었습니다.
+문제는 저희가 사용하는 `firestore/lite SDK` 는 서버 함수를 제공하지 않는 **경량화 버전**이었습니다.
 
 :::info `firestore/lite SDK`
 
-- REST API 기반 경량 SDK로 기본 CRUD만 제공해 번들 크기를 **80% 이상 줄인 패키지**
+- REST API 기반 경량 SDK로 기본 CRUD만 제공해 **번들 크기를 80% 이상 줄인 패키지**
 
 :::
 
@@ -224,10 +227,12 @@ export async function getStaticProps() {
 ![GoogleCloud 비용 그래프 이미지](./2.webp)
 ![GoogleCloud 읽기 그래프 이미지](./3.webp)
 
-| 항목                 | 최적화 전        | 최적화 후    |
-| -------------------- | ---------------- | ------------ |
-| 일일 읽기 호출 수    | 약 1억 3000만 회 | 약 750만 회  |
-| 일일 app engine 요금 | 약 ￦ 115,000    | 약 ￦ 14,000 |
+| 항목                 | 최적화 전 ( 실제 / 개편전 예상 ) | 최적화 후    | 절감률 (실제 / 개편전 대비) |
+| -------------------- | -------------------------------- | ------------ | --------------------------- |
+| 일일 읽기 수         | 약 1억 4000만 회 / 9000만회      | 약 750만 회  | 95% / 92%                   |
+| 일일 App engine 요금 | 약 ￦ 120,000 / ￦80,000         | 약 ￦ 14,000 | 89% / 83%                   |
+
+> \* 개편전은 치솟은 비용을 제외한 예상 읽기 수, 비용입니다.
 
 **읽기 호출 수가 약 17분의 1 수준으로 줄면서, 비용도 자연스럽게 크게 절감**된 것을 확인할 수 있었습니다.
 
@@ -243,7 +248,7 @@ export async function getStaticProps() {
 다행히 문제를 인지하고 짧은 **3일간의 집중 작업**으로
 가장 큰 비용을 차지하던 주요 원인을 찾아 **일일 비용을 80% 이상 줄이는 성과**를 얻을 수 있었습니다.
 
-하지만 이번에 개선한 건 어디까지나 가장 시급했던 비용 문제만 해결한 1차 작업일 뿐,
+하지만 이번에 개선한 건 어디까지나 가장 시급했던 읽기 문제만 해결한 1차 작업일 뿐,
 아직도 클라우드 알고리즘 호출, 레거시 쿼리 최적화, 비효율적인 데이터 구조 개선처럼
 **남은 개선 과제가 많이 남아 있습니다**.
 
@@ -253,10 +258,10 @@ export async function getStaticProps() {
 
 비슷한 고민을 하고 계시다면 아래 문서들도 함께 참고해 보시길 추천드립니다.
 
+- [Firestore/lite 공식 문서 - API 레퍼런스](https://firebase.google.com/docs/reference/js/firestore_lite)
 - [Firebase 공식 문서 - 집계 쿼리](https://firebase.google.com/docs/firestore/query-data/aggregation-queries)
-- [Firestore/lite 공식 문서 - api 레퍼런스](https://firebase.google.com/docs/reference/js/firestore_lite)
-- [Next.js 공식 문서 - ISR](https://nextjs.org/docs/pages/building-your-application/data-fetching/incremental-static-regeneration)
 - [Firebase 공식 문서 - Firestore 인덱스 최적화](https://firebase.google.com/docs/firestore/query-data/indexing)
+- [Next.js 공식 문서 - ISR](https://nextjs.org/docs/pages/building-your-application/data-fetching/incremental-static-regeneration)
 - [Google Cloud Monitoring 시작하기](https://cloud.google.com/monitoring/docs)
 - [TanStack Query 공식 문서](https://tanstack.com/query/latest)
 
