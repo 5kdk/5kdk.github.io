@@ -9,8 +9,17 @@ keywords:
     CloudFront,
     이미지 최적화,
     image 캐싱,
-    next.js 이미지 최적화,
+    Next.js 이미지 최적화,
     Image 컴포넌트,
+    Next.js Image,
+    이미지 캐싱 문제,
+    CloudFront Invalidation,
+    CDN 캐싱,
+    웹 성능 최적화,
+    캐시 무효화,
+    Vercel 이미지 최적화,
+    _next/image,
+    브라우저 캐시,
   ]
 comments: true
 ---

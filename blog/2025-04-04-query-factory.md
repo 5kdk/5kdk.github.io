@@ -11,6 +11,15 @@ keywords:
     쿼리키 팩토리,
     쿼리 팩토리,
     Query factory,
+    TanStack,
+    React Query v5,
+    queryOptions,
+    타입스크립트 타입 안전성,
+    React Query 최적화,
+    쿼리 최적화,
+    React Query 패턴,
+    타입스크립트 추론,
+    React 개발 패턴,
   ]
 comments: true
 ---
