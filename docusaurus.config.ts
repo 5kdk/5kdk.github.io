@@ -4,7 +4,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: '5kdk 개발 블로그',
-  tagline: '프론트엔드 개발자 김동규입니다.',
+  tagline:
+    '프론트엔드 개발자 김동규의 포트폴리오 겸 블로그입니다. 누구나 이해할 수 있는 코드, 모두가 편하게 사용하는 UX를 고민하며 성장 중입니다.',
   favicon: 'img/snoopy-spoon.png',
 
   // Set the production url of your site here
@@ -43,7 +44,7 @@ const config: Config = {
         name: '5kdk',
         url: 'https://5kdk.github.io/',
         image: 'https://5kdk.github.io/img/snoopy-joe-cool.webp',
-        jobTitle: '프론트엔드 개발자',
+        jobTitle: 'front-end developer',
         sameAs: ['https://github.com/5kdk'],
       }),
     },
@@ -58,7 +59,8 @@ const config: Config = {
         '@type': 'Blog',
         name: '5kdk 개발 블로그',
         url: 'https://5kdk.github.io/blog',
-        description: '프론트엔드 개발과 관련된 정보와 경험을 공유합니다.',
+        description:
+          'React, Next.js, TypeScript 기반의 실무 중심의 인사이트를 공유합니다. 직관적인 UX와 DX에 집중합니다.',
       }),
     },
     {
@@ -93,7 +95,8 @@ const config: Config = {
         '@type': 'WebSite',
         name: '5kdk 개발 블로그',
         url: 'https://5kdk.github.io/',
-        description: '프론트엔드 개발자 김동규입니다.',
+        description:
+          '프론트엔드 개발자 김동규의 포트폴리오 겸 블로그입니다. 누구나 이해할 수 있는 코드, 모두가 편하게 사용하는 UX를 고민하며 성장 중입니다.',
         potentialAction: {
           '@type': 'SearchAction',
           target: 'https://5kdk.github.io/search?q={search_term_string}',
@@ -126,6 +129,9 @@ const config: Config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
+          blogTitle: '5kdk 개발 블로그',
+          blogDescription:
+            'React, Next.js, TypeScript 기반의 실무 중심의 인사이트를 공유합니다. 직관적인 UX와 DX에 집중합니다.',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -247,6 +253,11 @@ const config: Config = {
       {
         name: 'naver-site-verification',
         content: '3855a4bfab2899d89b15098aceedacef12fa1fa8',
+      },
+      {
+        name: 'description',
+        content:
+          '프론트엔드 개발자 김동규의 기술 블로그입니다. React, JavaScript, TypeScript 등 웹 개발 관련 지식과 경험을 공유합니다.',
       },
     ],
   } satisfies Preset.ThemeConfig,
