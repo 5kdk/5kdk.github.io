@@ -27,9 +27,82 @@ const config: Config = {
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'ko-kr',
-    locales: ['ko-kr'],
+    defaultLocale: 'ko-KR',
+    locales: ['ko-KR'],
   },
+
+  headTags: [
+    {
+      tagName: 'script',
+      attributes: {
+        type: 'application/ld+json',
+      },
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org/',
+        '@type': 'Person',
+        name: '5kdk',
+        url: 'https://5kdk.github.io/',
+        image: 'https://5kdk.github.io/img/snoopy-joe-cool.webp',
+        jobTitle: '프론트엔드 개발자',
+        sameAs: ['https://github.com/5kdk'],
+      }),
+    },
+
+    {
+      tagName: 'script',
+      attributes: {
+        type: 'application/ld+json',
+      },
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org/',
+        '@type': 'Blog',
+        name: '5kdk 개발 블로그',
+        url: 'https://5kdk.github.io/blog',
+        description: '프론트엔드 개발과 관련된 정보와 경험을 공유합니다.',
+      }),
+    },
+    {
+      tagName: 'script',
+      attributes: { type: 'application/ld+json' },
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org/',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://5kdk.github.io/',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Blog',
+            item: 'https://5kdk.github.io/blog',
+          },
+        ],
+      }),
+    },
+    {
+      tagName: 'script',
+      attributes: {
+        type: 'application/ld+json',
+      },
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org/',
+        '@type': 'WebSite',
+        name: '5kdk 개발 블로그',
+        url: 'https://5kdk.github.io/',
+        description: '프론트엔드 개발자 김동규입니다.',
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: 'https://5kdk.github.io/search?q={search_term_string}',
+          'query-input': 'required name=search_term_string',
+        },
+      }),
+    },
+  ],
+
   presets: [
     [
       '@docusaurus/preset-classic',
