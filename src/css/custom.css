@@ -3,8 +3,8 @@
  * bundles Infima by default. Infima is a CSS framework designed to
  * work well for content-centric websites.
  */
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+@import url('https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css');
 
 @tailwind base;
 @tailwind components;
@@ -44,7 +44,7 @@ div[class^='announcementBar_'] {
   --site-announcement-bar-stripe-color1: #ebf1ff;
   --site-announcement-bar-stripe-color2: #fefcf4;
   background: repeating-linear-gradient(
-    35deg,
+    125deg,
     var(--site-announcement-bar-stripe-color1),
     var(--site-announcement-bar-stripe-color1) 20px,
     var(--site-announcement-bar-stripe-color2) 10px,
