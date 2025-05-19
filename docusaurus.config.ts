@@ -161,6 +161,7 @@ const config: Config = {
       id: 'support_us',
       content:
         '👋 안녕하세요! 블로그 방문을 환영합니다. 도움이 되셨다면 <a target="_blank" rel="noopener noreferrer" href="https://github.com/5kdk/5kdk.github.io">GitHub repo</a>에 🌟를 남겨주세요.',
+      isCloseable: false,
     },
     // Replace with your project's social card
     image: 'img/snoopy-joe-cool.webp',
