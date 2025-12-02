@@ -2,7 +2,7 @@
 title: 12가지 최신 CSS 한 줄 업그레이드
 authors: 5kdk
 description: 스타일도 레거시가 있다. 이제 12가지 최신 CSS 기술들을 살펴보자.
-tags: [css, style]
+tags: [Dev Environment]
 keywords: [최신 css, 최신 css 기술, one line css, 한줄 css]
 comments: true
 ---

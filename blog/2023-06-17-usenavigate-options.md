@@ -3,7 +3,7 @@ title: useNavigate의 옵션을 활용한 뒤로가기 사용성 개선
 authors: 5kdk
 description: 라우팅시 뒤로가기 오류를 고쳤던 경험
 keywords: [useNavigate, Navigate, React router dom, 뒤로가기]
-tags: [React, React-router]
+tags: [UX Strategy, React Core]
 comments: true
 ---
 

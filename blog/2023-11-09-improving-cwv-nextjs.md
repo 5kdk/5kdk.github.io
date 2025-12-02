@@ -2,7 +2,7 @@
 title: Next.js를 중심으로 한 코어 웹 바이탈 최적화
 authors: 5kdk
 description: 웹 성능 개선을 위해 코어 웹 바이탈 측정해보자.
-tags: [Core Web Vitals, Next.js]
+tags: [Web Performance, Next.js]
 keywords:
   [코어 웹 바이탈, Core Web Vitals, 웹 최적화, SEO, Lighthouse, next.js 최적화]
 comments: true

@@ -2,7 +2,7 @@
 title: Yarn v4, Next.js 환경 세팅과 마주했던 이슈들
 authors: 5kdk
 description: yarn berry에 입문하며 마주한 이슈들과 배운점을 정리한다.
-tags: [Yarn, Next.js, Storybook, Github]
+tags: [Dev Environment, Troubleshooting]
 keywords:
   [
     yarn 4.0,

@@ -3,7 +3,7 @@ title: useMemo, useCallback으로 최적화가 꼭 필요할까?
 description: React의 메모제이션과 최적화에 대한 고찰.
 authors: 5kdk
 keywords: [useMemo, useCallback, 리액트 최적화, 프론트엔드 최적화, 웹 최적화]
-tags: [React]
+tags: [React Core]
 comments: true
 ---
 

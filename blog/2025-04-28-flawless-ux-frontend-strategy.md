@@ -2,7 +2,7 @@
 title: 허점 없는 UX를 만드는 프론트엔드 전략
 authors: 5kdk
 description: 왜 허점 없는 UX가 중요한지, 구체적으로 어떤 상황을 대비해야 하는지, 그리고 실제 적용할 수 있는 전략과 코드 예시를 함께 알아봅시다.
-tags: [UX]
+tags: [UX Strategy]
 keywords:
   [
     UX,

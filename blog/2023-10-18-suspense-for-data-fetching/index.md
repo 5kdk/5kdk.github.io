@@ -2,7 +2,7 @@
 title: Suspense, Error Boundary와 선언적 데이터 패칭
 authors: 5kdk
 description: 비동기처리에서의 Suspense와 ErrorBoundary 활용법.
-tags: [React]
+tags: [React Core, UX Strategy]
 keywords:
   [Suspense, Error Boundary, 선언적 데이터 패칭, 선언형 컴포넌트, 관심사 분리]
 comments: true

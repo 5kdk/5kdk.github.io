@@ -2,7 +2,7 @@
 title: 모던 리액트 Deep dive 솔직 후기
 authors: 5kdk
 description: 모던 리액트 딥다이브를 읽고 남기는 서평입니다.
-tags: [Review]
+tags: [React Core, Essay]
 keywords:
   [
     모던 리액트 Deep Dive,

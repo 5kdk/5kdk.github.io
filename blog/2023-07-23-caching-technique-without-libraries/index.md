@@ -2,7 +2,7 @@
 title: 라이브러리 없이 로컬 캐싱 구현하기
 authors: 5kdk
 description: 라이브러리 없이 데이터 캐싱 라이브러리들을 구현해보자.
-tags: [React, SWR, React-Query]
+tags: [Architecture, React Core]
 keywords: [React-Query, 로컬 캐싱, 캐시 구현, 라이브러리 없이 캐싱 구현]
 comments: true
 ---

@@ -2,7 +2,7 @@
 title: Firebase 사용료 폭탄, 80% 이상 비용 절감한 경험기
 authors: 5kdk
 description: 예상치 못한 Firebase 요금 폭탄을 계기로, 숨은 비용 원인을 찾아내고 90% 가까이 절감한 실제 개선 과정을 공유합니다.
-tags: [Firebase, Next.js]
+tags: [Architecture, Troubleshooting]
 keywords:
   [
     파이어베이스,
@@ -27,10 +27,9 @@ keywords:
 comments: true
 ---
 
-25년 3월, 팀에 합류한 저는 주로 매칭 서비스의 프론트엔드 개발을 담당하고 있습니다.  
-이 서비스는 별도 백엔드 없이 Firebase를 사용 중인데요.
-
 지난주 유저 CS를 처리하던 중 Firebase 콘솔에서 **예상치 못한 요금 폭탄**을 발견했습니다.
+
+이 서비스는 별도 백엔드 없이 Firebase를 사용 중인데요.
 
 매칭 서비스 특성상 봄이 성수기이기에 유저 및 트래픽이 증가하긴 했지만, 특히 **주요 페이지 개편 이후 요금이 비정상적으로 치솟았다**는 사실을 알게 됐습니다.
 

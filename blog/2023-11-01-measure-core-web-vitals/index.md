@@ -2,7 +2,7 @@
 title: 코어 웹 바이탈 측정을 위한 도구 모음
 authors: 5kdk
 description: 웹 성능 개선을 위해 코어 웹 바이탈 측정해보자.
-tags: [Web, Core Web Vitals]
+tags: [Web Performance]
 keywords:
   [
     코어 웹 바이탈,

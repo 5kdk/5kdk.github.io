@@ -2,7 +2,7 @@
 title: Querykey factory에서 Query factory로
 authors: 5kdk
 description: TanStack React Query의 쿼리들을 보다 안전하게 사용하는 방법
-tags: [TanStack React Query]
+tags: [Architecture, React Core]
 keywords:
   [
     queryKey,
