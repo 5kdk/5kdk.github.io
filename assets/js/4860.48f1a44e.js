@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_5kdk_blog=self.webpackChunk_5kdk_blog||[]).push([[4860],{64860:(e,k,s)=>{s.d(k,{createInfoServices:()=>c.v});var c=s(42179);s(89932)}}]);
