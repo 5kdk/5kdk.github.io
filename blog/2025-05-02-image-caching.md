@@ -27,7 +27,7 @@ comments: true
 
 Vercel에 배포된 Next.js 프로젝트에서 `<Image>` 컴포넌트를 사용해 외부 이미지를 불러오는 경우, 원본 이미지를 교체해도 변경 내용이 반영되지 않는 문제가 발생할 수 있습니다.
 
-이 문서에서는 **Vercel 배포 환경**을 기준으로 여러 계층의 캐시로 인해 발생하는 이 문제의 원인을 살펴보고, **Vercel Cache Purge**와 **CloudFront Invalidation**을 통해 해결하는 방법을 소개합니다.
+**Vercel 배포 환경**을 기준으로 여러 계층의 캐시로 인해 발생하는 이 문제의 원인을 살펴보고, **Vercel Cache Purge**와 **CloudFront Invalidation**을 통해 해결하는 방법을 알아봅니다.
 
 <!--truncate-->
 
