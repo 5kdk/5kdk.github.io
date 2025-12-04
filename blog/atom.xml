@@ -128,7 +128,7 @@
         <updated>2025-05-02T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Vercel에 배포된 Next.js에서 <Image> 컴포넌트 사용 시 발생하는 이미지 캐싱 문제의 원인과, Vercel Cache Purge 및 URL 버전 쿼리를 통한 해결 방법을 설명합니다.]]></summary>
         <content type="html"><![CDATA[<p>Vercel에 배포된 Next.js 프로젝트에서 <code>&lt;Image&gt;</code> 컴포넌트를 사용해 외부 이미지를 불러오는 경우, 원본 이미지를 교체해도 변경 내용이 반영되지 않는 문제가 발생할 수 있습니다.</p>
-<p>이 문서에서는 <strong>Vercel 배포 환경</strong>을 기준으로 여러 계층의 캐시로 인해 발생하는 이 문제의 원인을 살펴보고, <strong>Vercel Cache Purge</strong>와 <strong>CloudFront Invalidation</strong>을 통해 해결하는 방법을 소개합니다.</p>
+<p><strong>Vercel 배포 환경</strong>을 기준으로 여러 계층의 캐시로 인해 발생하는 이 문제의 원인을 살펴보고, <strong>Vercel Cache Purge</strong>와 <strong>CloudFront Invalidation</strong>을 통해 해결하는 방법을 알아봅니다.</p>
 <h2 class="anchor anchorTargetStickyNavbar_fS_0" id="문제-상황">문제 상황<a href="https://5kdk.github.io/blog/2025/05/02/image-caching#%EB%AC%B8%EC%A0%9C-%EC%83%81%ED%99%A9" class="hash-link" aria-label="문제 상황에 대한 직접 링크" title="문제 상황에 대한 직접 링크" translate="no">​</a></h2>
 <ul>
 <li class=""><code>&lt;Image&gt;</code>를 사용해 S3의 이미지를 불러오는 Next.js 프로젝트</li>
@@ -221,9 +221,7 @@ Vercel Image Optimization은 원본(CloudFront) 리소스의 <code>Cache-Control
         <link href="https://5kdk.github.io/blog/2025/04/28/flawless-ux-frontend-strategy"/>
         <updated>2025-04-28T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[기능 구현을 넘어, 사용자가 안심하고 사용할 수 있는 서비스를 만들기 위해 프론트엔드 개발자가 챙겨야 할 디테일한 UX와 코드 예시를 소개합니다.]]></summary>
-        <content type="html"><![CDATA[<p>버튼을 눌렀는데 아무 반응이 없어서 당황한 적 있으신가요?<br>
-<!-- -->혹은 결제가 진행 중인데 화면이 멈춰서 새로고침을 해야 할지 고민해본 적은요?</p>
-<p>사용자는 내부 시스템을 알지 못하기 때문에, 사소한 멈칫거림이나 불친절한 에러 메시지 하나에도 쉽게 불안함을 느낍니다.<br>
+        <content type="html"><![CDATA[<p>사용자는 내부 시스템을 알지 못하기 때문에, 사소한 멈칫거림이나 불친절한 에러 메시지 하나에도 쉽게 불안함을 느낍니다.<br>
 <!-- -->그리고 이 불안은 곧 <strong>"이 서비스는 믿을 수 없다"</strong> 는 인상으로 이어지곤 합니다.</p>
 <p>프론트엔드 개발자는 단순히 API를 연결하고 화면을 그리는 것을 넘어, <strong>사용자가 서비스를 안심하고 사용할 수 있도록 돕는 역할</strong>도 해야 한다고 생각합니다.</p>
 <p>이 글에서는 우리가 무심코 놓치기 쉬운, 하지만 사용자의 불안을 덜어줄 수 있는 몇 가지 디테일을 살펴보려고 합니다.</p>
