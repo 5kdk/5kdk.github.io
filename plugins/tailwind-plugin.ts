@@ -1,18 +1,14 @@
 import type { LoadContext, Plugin } from '@docusaurus/types';
 
-function tailwindPlugin(context: LoadContext, options?: unknown): Plugin {
+export default function tailwindPlugin(
+  context: LoadContext,
+  options?: unknown
+): Plugin {
   return {
     name: 'tailwind-plugin',
     configurePostCss(postcssOptions) {
-      postcssOptions.plugins = [
-        require('postcss-import'),
-        require('tailwindcss/nesting'),
-        require('tailwindcss'),
-        require('autoprefixer'),
-      ];
+      postcssOptions.plugins.push(require('@tailwindcss/postcss'));
       return postcssOptions;
     },
   };
 }
-
-export default tailwindPlugin;
