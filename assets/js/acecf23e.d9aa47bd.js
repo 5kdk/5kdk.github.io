@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunk_5kdk_blog=globalThis.webpackChunk_5kdk_blog||[]).push([[1903],{1912:l=>{l.exports=JSON.parse('{"blogBasePath":"/blog","blogTitle":"5kdk \uac1c\ubc1c \ube14\ub85c\uadf8","authorsListPath":"/blog/authors"}')}}]);

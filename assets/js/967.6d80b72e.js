@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunk_5kdk_blog=globalThis.webpackChunk_5kdk_blog||[]).push([[967],{10967:(k,e,a)=>{a.d(e,{createPacketServices:()=>b.$});var b=a(82012);a(89932)}}]);
