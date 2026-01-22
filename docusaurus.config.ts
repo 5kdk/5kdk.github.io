@@ -147,7 +147,7 @@ const config: Config = {
             'React, Next.js, TypeScript 기반의 실무 중심의 인사이트를 공유합니다. 직관적인 UX와 DX에 집중합니다.',
         },
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: './src/app/css/custom.css',
         },
         sitemap: {
           lastmod: 'date',

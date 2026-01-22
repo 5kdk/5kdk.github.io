@@ -1,7 +1,7 @@
 import Giscus from '@giscus/react';
 import { useColorMode } from '@docusaurus/theme-common';
 
-const Comments = () => {
+export const Comments = () => {
   const { colorMode } = useColorMode();
 
   return (
@@ -18,13 +18,10 @@ const Comments = () => {
         reactionsEnabled="1"
         emitMetadata="1"
         inputPosition="top"
-        theme={colorMode === "dark" ? "dark_tritanopia" : "light_tritanopia"}
+        theme={colorMode === 'dark' ? 'dark_tritanopia' : 'light_tritanopia'}
         lang="ko"
         loading="lazy"
       />
     </div>
-
-
   );
 };
-export default Comments;

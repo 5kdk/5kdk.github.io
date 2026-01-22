@@ -26,21 +26,27 @@
     Noto Sans, sans-serif, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   --ifm-font-family-monospace: 'Fira Code', monospace;
+
+  --color-1: 0 100% 63%;
+  --color-2: 270 100% 63%;
+  --color-3: 210 100% 63%;
+  --color-4: 195 100% 63%;
+  --color-5: 90 100% 63%;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #65d77c;
-  --ifm-color-primary-dark: #4cd067;
-  --ifm-color-primary-darker: #3fcd5c;
-  --ifm-color-primary-darkest: #2eb048;
-  --ifm-color-primary-light: #7ede91;
-  --ifm-color-primary-lighter: #8be19c;
-  --ifm-color-primary-lightest: #b0ebbc;
+  --ifm-color-primary: #5586e8;
+  --ifm-color-primary-dark: #3972e4;
+  --ifm-color-primary-darker: #2b68e2;
+  --ifm-color-primary-darkest: #1a53c3;
+  --ifm-color-primary-light: #719aec;
+  --ifm-color-primary-lighter: #7fa4ee;
+  --ifm-color-primary-lightest: #a9c2f3;
   --docusaurus-highlighted-code-line-bg: rgba(235, 235, 255, 0.1);
 }
 
-div[class^='announcementBar_'] {
+.theme-announcement-bar {
   --site-announcement-bar-stripe-color1: #ebf1ff;
   --site-announcement-bar-stripe-color2: #fefcf4;
   background: repeating-linear-gradient(
@@ -53,7 +59,7 @@ div[class^='announcementBar_'] {
   font-weight: 700;
 }
 
-[data-theme='dark'] div[class^='announcementBar_'] {
+[data-theme='dark'] .theme-announcement-bar {
   --site-announcement-bar-stripe-color1: #333437;
   --site-announcement-bar-stripe-color2: #393e3b;
   color: #e1e1e1;
@@ -61,4 +67,24 @@ div[class^='announcementBar_'] {
 
 [data-theme='dark'] .close {
   color: #fff;
+}
+
+.theme {
+  --animate-rainbow: rainbow var(--speed, 2s) infinite linear;
+}
+
+/* Rainbow button animation */
+@keyframes rainbow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-rainbow {
+  animation: rainbow 6s ease-in-out infinite;
+  background-size: 200% 200% !important;
 }

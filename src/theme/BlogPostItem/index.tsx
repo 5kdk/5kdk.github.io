@@ -2,7 +2,7 @@ import BlogPostItem from '@theme-original/BlogPostItem';
 import { useBlogPost } from '@docusaurus/plugin-content-blog/client';
 import type BlogPostItemType from '@theme/BlogPostItem';
 import type { WrapperProps } from '@docusaurus/types';
-import Comments from '@site/src/components/Comments';
+import { Comments } from '@site/src/features/comment/ui/comments';
 
 type Props = WrapperProps<typeof BlogPostItemType>;
 
