@@ -68,7 +68,7 @@ Vscode의 Yarn berry 환경에서는 `ts`, `tsx`에 빨간줄이 난무하게 �
 - Yarn 팀에서 유지 관리하는 [ZipFS](https://marketplace.visualstudio.com/items?itemName=arcanis.vscode-zipfs) 확장을 설치
 - `yarn dlx @yarnpkg/sdks`
 
-:::info Yarn PnP에 SDK가 필요한 이유는?
+:::info[Yarn PnP에 SDK가 필요한 이유는?]
 
 Yarn PnP는 Node.js 런타임 내에 삽입해야 하는 Node.js 로더를 생성하는 방식으로 작동합니다. 많은 IDE 확장 프로그램은 로더를 고려하지 않고 래핑하는 패키지(Prettier, TypeScript, ...)를 실행합니다.
 

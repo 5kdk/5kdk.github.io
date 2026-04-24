@@ -69,7 +69,7 @@ return querySnapshot.docs.map((doc) => ({
 
 **하지만 이것이 요금 폭탄의 시작이었습니다.**
 
-:::note App engine 일일 비용
+:::note[App engine 일일 비용]
 
 개편 전날 비용 : ￦70,000  
 개편 후 비용 : ￦110,000
@@ -84,7 +84,7 @@ Firebase는 소규모 프로젝트에서 가볍게 써본 적은 있었지만, �
 
 **기존 코드베이스를 그대로 확장했지만, 그게 잘못된 선택이었다는 걸 뒤늦게 깨달았습니다.**
 
-:::info Firebase 과금 체계
+:::info[Firebase 과금 체계]
 
 - Firestore는 반환하는 **문서 수**에 따라 과금됩니다.
 - `getDocs` 호출 시 문서 개수를 세기 위해 전체 문서를 읽으면 **문서 수만큼 읽기 비용**이 발생합니다.
@@ -120,7 +120,7 @@ NoSQL DB는 SQL처럼 `COUNT`, `SUM`, `AVG` 같은 집계 기능을 기본 제�
 
 문제는 저희가 사용하는 `firestore/lite SDK` 는 서버 함수를 제공하지 않는 **경량화 버전**이었습니다.
 
-:::info `firestore/lite SDK`
+:::info[`firestore/lite SDK`]
 
 - REST API 기반 경량 SDK로 기본 CRUD만 제공해 **번들 크기를 80% 이상 줄인 패키지**
 

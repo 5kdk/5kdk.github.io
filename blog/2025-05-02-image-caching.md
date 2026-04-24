@@ -104,7 +104,7 @@ Vercel Cache Purge 기능은 Project Owner 또는 Member 권한이 필요합니�
 <Image src="https://cdn.example.com/images/banner.jpg?v=2" ... />
 ```
 
-:::caution CloudFront 설정 확인
+:::caution[CloudFront 설정 확인]
 CloudFront의 캐시 정책(Cache Policy)이 **쿼리 스트링을 무시(Exclude)** 하도록 설정되어 있다면, 이 방법은 CloudFront 레벨에서 막힐 수 있습니다.
 `Managed-CachingOptimized` 정책은 기본적으로 쿼리 스트링을 무시하므로, 필요시 커스텀 정책을 사용해야 합니다.
 :::
@@ -128,7 +128,7 @@ CloudFront의 캐시 정책(Cache Policy)이 **쿼리 스트링을 무시(Exclud
 | **캐싱 주체**   | Vercel Edge + CloudFront   | CloudFront + 브라우저             |
 | **제어 용이성** | 복잡함 (Vercel Purge 필요) | 쉬움 (CF Invalidation만으로 충분) |
 
-:::tip CDN으로 최적화 위임하기
+:::tip[CDN으로 최적화 위임하기]
 `unoptimized`를 사용할 때는 CloudFront(또는 Lambda@Edge) 레벨에서 이미지 리사이징/포맷 변환을 처리하도록 구성하면 성능 저하를 막을 수 있습니다.
 :::
 
@@ -142,7 +142,7 @@ CloudFront의 캐시 정책(Cache Policy)이 **쿼리 스트링을 무시(Exclud
 2. **빠른 해결**: 이미지 URL에 쿼리 스트링 추가 (`?v=2`)
 3. **구조적 해결**: 빈번한 변경이 필요한 이미지는 `unoptimized` 사용 고려
 
-:::tip Vercel 캐시 퍼지 가이드
+:::tip[Vercel 캐시 퍼지 가이드]
 
 이제 Vercel에서도 `_next/image`에 대한 캐시를 수동으로 무효화할 수 있습니다.  
 자세한 내용은 공식 문서를 참고하세요.
