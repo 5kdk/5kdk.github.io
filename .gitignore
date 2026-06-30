@@ -18,6 +18,11 @@ package-lock.json
 .env.test.local
 .env.production.local
 
+# Local agent instructions and skills
+AGENTS.md
+AGENTS.ko.md
+skills/
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

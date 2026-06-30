@@ -1,0 +1,6 @@
+{
+  "packageManager": "pnpm",
+  "target": "minor",
+  "reject": ["pnpm"],
+  "upgrade": true
+}
