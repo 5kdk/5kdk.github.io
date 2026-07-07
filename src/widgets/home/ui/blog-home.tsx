@@ -19,7 +19,7 @@ const BlogHome = () => {
   return (
     <main
       id="tw-scope"
-      className="flex min-h-[calc(100vh-var(--ifm-navbar-height,60px))] items-center justify-center overflow-hidden bg-[#fafafa] px-5 text-[#111111] dark:bg-[#050505] dark:text-[#f2efe7]"
+      className="flex min-h-[calc(100dvh-var(--site-home-header-offset))] items-center justify-center overflow-hidden bg-[#fafafa] px-5 pb-(--site-home-header-offset) text-[#111111] dark:bg-[#050505] dark:text-[#f2efe7]"
     >
       <Heading as="h1" className="sr-only">
         {homeHeading}

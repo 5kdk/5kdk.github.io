@@ -6,7 +6,7 @@ import BlogHome from '@site/src/widgets/home/ui/blog-home';
 const Home = () => {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <Layout description={siteConfig.tagline} noFooter>
+    <Layout description={siteConfig.tagline}>
       <BlogHome />
     </Layout>
   );

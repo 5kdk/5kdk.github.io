@@ -3,7 +3,6 @@ import { cn } from '@site/src/shared/utils/cn';
 
 const MORPH_TIME = 1.5;
 const COOLDOWN_TIME = 0.5;
-const FILTER_ID = 'home-morphing-text-threshold';
 
 type MorphingTextProps = {
   className?: string;
@@ -148,7 +147,7 @@ const SvgFilters = () => (
     preserveAspectRatio="xMidYMid slice"
   >
     <defs>
-      <filter id={FILTER_ID}>
+      <filter id="threshold">
         <feColorMatrix
           in="SourceGraphic"
           type="matrix"
@@ -173,10 +172,9 @@ export const MorphingText = ({ texts, className }: MorphingTextProps) => {
     <div
       aria-hidden="true"
       className={cn(
-        'relative mx-auto h-16 w-full max-w-5xl text-center font-sans text-[2.75rem] leading-none font-black tracking-normal whitespace-nowrap text-[#111111] sm:h-24 sm:text-[5.5rem] md:h-32 md:text-[7rem] lg:h-40 lg:text-[8.5rem] xl:h-48 xl:text-[10rem] dark:text-[#f2efe7]',
+        "relative mx-auto h-14 w-full max-w-5xl text-center font-['Unbounded',sans-serif] text-[2.5rem] leading-none font-normal tracking-normal whitespace-nowrap text-[#111111] filter-[url(#threshold)_blur(0.6px)] sm:h-20 sm:text-[4.75rem] md:h-28 md:text-[6rem] lg:h-32 lg:text-[7.25rem] xl:h-40 xl:text-[8.25rem] dark:text-[#f2efe7]",
         className
       )}
-      style={{ filter: `url(#${FILTER_ID}) blur(0.6px)` }}
     >
       <span
         className="absolute inset-x-0 top-0 m-auto inline-block w-full"
