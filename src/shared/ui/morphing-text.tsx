@@ -172,7 +172,7 @@ export const MorphingText = ({ texts, className }: MorphingTextProps) => {
     <div
       aria-hidden="true"
       className={cn(
-        "relative mx-auto h-14 w-full max-w-5xl text-center font-['Unbounded',sans-serif] text-[2.5rem] leading-none font-normal tracking-normal whitespace-nowrap text-[#111111] filter-[url(#threshold)_blur(0.6px)] sm:h-20 sm:text-[4.75rem] md:h-28 md:text-[6rem] lg:h-32 lg:text-[7.25rem] xl:h-40 xl:text-[8.25rem] dark:text-[#f2efe7]",
+        "relative mx-auto h-14 w-full max-w-5xl text-center font-[family-name:'Kabal',sans-serif] text-[2.5rem] leading-none font-normal tracking-normal whitespace-nowrap text-[#111111] filter-[url(#threshold)_blur(0.6px)] sm:h-20 sm:text-[4.75rem] md:h-28 md:text-[6rem] lg:h-32 lg:text-[7.25rem] xl:h-40 xl:text-[8.25rem] dark:text-[#f2efe7]",
         className
       )}
     >

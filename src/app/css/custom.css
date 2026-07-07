@@ -3,18 +3,40 @@
  * bundles Infima by default. Infima is a CSS framework designed to
  * work well for content-centric websites.
  */
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
-@import url('https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css');
-
-@import "tailwindcss/theme.css" layer(theme);
+@import 'tailwindcss/theme.css' layer(theme);
 
 @layer base {
   #tw-scope {
-    @import "tailwindcss/preflight.css" layer(base);
+    @import 'tailwindcss/preflight.css' layer(base);
+    font-family: var(--ifm-font-family-base);
   }
 }
 
-@import "tailwindcss/utilities.css" layer(utilities);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+@font-face {
+  font-family: 'Pretendard Variable';
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/PretendardVariable.woff2') format('woff2-variations');
+}
+
+@font-face {
+  font-family: 'Kabal';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/Kabal-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Fira Code';
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/FiraCode-VF.woff2') format('woff2-variations');
+}
 
 @custom-variant dark (&:is([data-theme="dark"] *));
 
@@ -30,10 +52,17 @@
   --ifm-code-font-size: 90%;
   --docusaurus-highlighted-code-line-bg: rgba(255, 200, 0, 0.15);
   --ifm-font-family-base:
-    'Pretendard', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
-    Noto Sans, sans-serif, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    'Pretendard Variable', Pretendard, system-ui, -apple-system, Segoe UI,
+    Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont,
+    'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
   --ifm-font-family-monospace: 'Fira Code', monospace;
+  --site-announcement-bar-height: 2.5rem;
+  --site-home-header-offset: calc(
+    var(--ifm-navbar-height, 60px) + var(--site-announcement-bar-height)
+  );
+  --site-scrollbar-thumb: rgba(17, 17, 17, 0.16);
+  --site-scrollbar-thumb-hover: rgba(17, 17, 17, 0.28);
 
   --color-1: 0 100% 63%;
   --color-2: 270 100% 63%;
@@ -44,37 +73,114 @@
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #5586e8;
-  --ifm-color-primary-dark: #3972e4;
-  --ifm-color-primary-darker: #2b68e2;
-  --ifm-color-primary-darkest: #1a53c3;
-  --ifm-color-primary-light: #719aec;
-  --ifm-color-primary-lighter: #7fa4ee;
-  --ifm-color-primary-lightest: #a9c2f3;
+  --ifm-color-primary: #5fd4e3;
+  --ifm-color-primary-dark: #44cdde;
+  --ifm-color-primary-darker: #36c9dc;
+  --ifm-color-primary-darkest: #22aec0;
+  --ifm-color-primary-light: #7adbe8;
+  --ifm-color-primary-lighter: #88dfea;
+  --ifm-color-primary-lightest: #b1eaf1;
   --docusaurus-highlighted-code-line-bg: rgba(235, 235, 255, 0.1);
+  --site-scrollbar-thumb: rgba(242, 239, 231, 0.18);
+  --site-scrollbar-thumb-hover: rgba(242, 239, 231, 0.32);
+}
+
+@media (min-width: 997px) {
+  :root {
+    --site-announcement-bar-height: 30px;
+  }
 }
 
 .theme-announcement-bar {
-  --site-announcement-bar-stripe-color1: #ebf1ff;
-  --site-announcement-bar-stripe-color2: #fefcf4;
-  background: repeating-linear-gradient(
-    125deg,
-    var(--site-announcement-bar-stripe-color1),
-    var(--site-announcement-bar-stripe-color1) 20px,
-    var(--site-announcement-bar-stripe-color2) 10px,
-    var(--site-announcement-bar-stripe-color2) 40px
+  background: color-mix(
+    in srgb,
+    var(--ifm-color-primary) 8%,
+    var(--ifm-background-color)
   );
-  font-weight: 700;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--ifm-color-primary) 22%, transparent);
+  color: var(--ifm-font-color-base);
+  font-weight: 500;
 }
 
-[data-theme='dark'] .theme-announcement-bar {
-  --site-announcement-bar-stripe-color1: #333437;
-  --site-announcement-bar-stripe-color2: #393e3b;
-  color: #e1e1e1;
+.theme-announcement-bar a {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
-[data-theme='dark'] .close {
-  color: #fff;
+.thin-scrollbar {
+  scrollbar-color: var(--site-scrollbar-thumb) transparent;
+  scrollbar-width: thin;
+}
+
+.thin-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background-clip: content-box;
+  background-color: var(--site-scrollbar-thumb);
+  border: 0 solid transparent;
+  border-inline-width: 2px;
+  border-radius: 999px;
+}
+
+.thin-scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: var(--site-scrollbar-thumb-hover);
+}
+
+/* Home poster backdrop: retro teal/orange washes + film grain */
+.home-poster-backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      110% 85% at 26% 32%,
+      rgba(29, 91, 215, 0.22) 0%,
+      rgba(29, 91, 215, 0.08) 45%,
+      transparent 68%
+    ),
+    radial-gradient(
+      60% 50% at 90% 92%,
+      rgba(224, 122, 46, 0.22) 0%,
+      transparent 70%
+    ),
+    #f2efe7;
+}
+
+[data-theme='dark'] .home-poster-backdrop {
+  background:
+    radial-gradient(
+      110% 85% at 26% 32%,
+      rgba(52, 168, 181, 0.4) 0%,
+      rgba(52, 168, 181, 0.16) 42%,
+      transparent 70%
+    ),
+    radial-gradient(
+      60% 50% at 90% 92%,
+      rgba(224, 122, 46, 0.24) 0%,
+      transparent 70%
+    ),
+    #17130f;
+}
+
+.home-poster-grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+  mix-blend-mode: overlay;
+  opacity: 0.1;
+}
+
+[data-theme='dark'] .home-poster-grain {
+  opacity: 0.16;
 }
 
 .theme {

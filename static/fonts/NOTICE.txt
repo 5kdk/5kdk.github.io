@@ -1,0 +1,28 @@
+Font Assets Notice
+==================
+
+This directory contains font software distributed with this site.
+
+Pretendard Variable
+-------------------
+
+Copyright (c) 2021, Kil Hyung-jin
+(https://github.com/orioncactus/pretendard),
+with Reserved Font Name Pretendard.
+
+Fira Code Variable
+------------------
+
+Copyright (c) 2014, The Fira Code Project Authors
+(https://github.com/tonsky/FiraCode).
+
+Kabal Regular
+-------------
+
+Kabal Regular is used under the JustFontYou Webfont License/EULA.
+
+OFL License
+-----------
+
+Pretendard Variable and Fira Code Variable are licensed under the SIL
+Open Font License, Version 1.1. See OFL.txt in this directory.
