@@ -2,6 +2,8 @@ import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import tailwindPlugin from './plugins/tailwind-plugin';
+import blulocoDark from './src/shared/prism/bluloco-dark';
+import blulocoLight from './src/shared/prism/bluloco-light';
 
 const config: Config = {
   title: '5kdk 개발 블로그',
@@ -233,8 +235,8 @@ const config: Config = {
     },
 
     prism: {
-      theme: prismThemes.oneLight,
-      darkTheme: prismThemes.oneDark,
+      theme: blulocoLight,
+      darkTheme: blulocoDark,
       additionalLanguages: ['bash', 'diff', 'json'],
     },
     algolia: {
