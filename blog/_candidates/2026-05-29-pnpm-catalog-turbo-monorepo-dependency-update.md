@@ -1,111 +1,40 @@
 ---
-title: pnpm catalog와 Turbo 모노레포에서 의존성 업데이트가 애매해지는 이유
+title: "pnpm catalog 모노레포의 의존성 업데이트 전략: pnpm update, Syncpack, Dependabot의 역할 나누기"
 authors: 5kdk
-description: npm-check-updates, pnpm update, taze, syncpack, Renovate의 역할을 나눠 pnpm catalog 기반 Turbo 모노레포의 의존성 업데이트 전략을 정리합니다.
+description: pnpm catalog를 사용하는 모노레포에서 pnpm update, Syncpack update, Dependabot이 각각 어떤 파일과 정책을 맡아야 하는지 현재 지원 상태를 기준으로 비교하고 업데이트 흐름을 정리합니다.
 tags: [pnpm, Turborepo, Monorepo, Dependencies]
 keywords:
   [
     pnpm catalog,
     pnpm update,
     pnpm workspace,
-    Turborepo,
-    Turbo monorepo,
+    Syncpack update,
+    pnpmCatalog,
+    Dependabot pnpm catalog,
     monorepo dependency update,
-    npm-check-updates,
-    taze,
-    syncpack,
-    Renovate,
-    Dependabot,
-    의존성 업데이트,
-    모노레포 의존성 관리,
+    pnpm-workspace.yaml,
+    모노레포 의존성 업데이트,
+    의존성 자동화,
   ]
 comments: true
 draft: true
 ---
 
-pnpm workspace와 Turbo를 쓰는 모노레포에서 의존성 업데이트를 정리하다가, 기존 `bump-deps` 스크립트를 `pnpm update`로 바꿀 수 있을지 검토한 적이 있습니다.
+pnpm catalog를 도입한 모노레포에서 `bump-deps` 명령을 다시 정리하면서 한 가지 질문이 생겼습니다.
 
-처음에는 단순한 치환 문제처럼 보였습니다. 하지만 repo가 pnpm catalog를 쓰고 있고, 일부 패키지는 업데이트 대상에서 제외해야 하며, major 업데이트는 별도 PR로 분리해야 한다면 이야기가 달라집니다.
+> catalog 업데이트는 이제 어떤 도구가 맡아야 할까?
 
-결론부터 말하면 `pnpm update`는 `npm-check-updates`의 완전한 대체가 아닙니다. 특히 pnpm catalog를 쓰는 순간 업데이트의 중심은 개별 `package.json`이 아니라 `pnpm-workspace.yaml`로 이동합니다.
+처음에는 `pnpm update`가 catalog를 건드리지 못한다고 생각해 별도 updater를 찾았습니다. 하지만 현재는 전제가 달라졌습니다. pnpm 자체가 `catalog:` protocol 업데이트를 지원하고, Syncpack은 `pnpmCatalog`만 골라 registry의 새 버전으로 올릴 수 있으며, Dependabot도 pnpm workspace catalogs를 공식 지원합니다.
+
+따라서 결론은 하나의 updater를 고르는 것이 아니었습니다. **로컬에서 직접 올리는 명령, 버전 정책을 적용하는 도구, 반복 업데이트 PR을 만드는 자동화의 역할을 나누는 것**이 더 중요했습니다.
 
 <!--truncate-->
 
-이 글은 특정 모노레포에서 의존성 업데이트 스크립트를 점검하다가 생긴 질문을 공개 가능한 형태로 일반화한 기록입니다. 프로젝트명, 내부 CI 설정, 세부 의존성 목록은 제외했습니다.
+<!-- REVIEW: 발행 직전 실제 저장소가 사용하는 pnpm 버전에 PR #9517과 #11711의 변경이 포함됐는지 release note와 작은 재현 repo로 확인할 것. Syncpack은 설치된 major 버전의 current docs 기준으로 명령 옵션을 다시 대조할 것. -->
 
-<br />
+## 비교 기준은 “최신 버전을 찾는가”가 아니었다
 
-## 의존성 업데이트의 목표부터 다시 잡기
-
-모노레포에서 의존성 업데이트의 목표는 단순히 "최신 버전으로 올리기"가 아닙니다. 실무에서는 오히려 다음 조건을 유지하는 쪽이 더 중요합니다.
-
-- workspace 전체에서 핵심 의존성 버전을 일관되게 유지한다.
-- 변경 범위를 작게 나눠 CI로 검증한다.
-- `package.json`, `pnpm-workspace.yaml`, `pnpm-lock.yaml`이 서로 어긋나지 않게 관리한다.
-- major 업데이트는 patch/minor 업데이트와 분리한다.
-- 자동화 bot이 만든 PR도 catalog와 lockfile diff까지 확인한다.
-
-이 관점에서 보면 `npm-check-updates`, `pnpm update`, pnpm catalog, Turbo, Renovate, syncpack, taze는 서로 같은 문제를 해결하는 도구가 아닙니다. 각 도구가 담당하는 레이어가 다릅니다.
-
-예를 들어 기존 스크립트가 이렇게 되어 있었다고 해봅니다.
-
-```json title="package.json"
-{
-  "scripts": {
-    "bump-deps": "pnpm dlx npm-check-updates && pnpm install"
-  }
-}
-```
-
-여기서 자연스럽게 드는 질문은 이겁니다.
-
-> 이걸 `pnpm update`로 대체할 수 있지 않을까?
-
-repo가 단일 패키지라면 어느 정도 가능할 수 있습니다. 하지만 아래 조건이 붙으면 답이 복잡해집니다.
-
-- pnpm workspace를 쓴다.
-- `pnpm-workspace.yaml`의 `catalog` 또는 `catalogs`로 핵심 의존성 버전을 관리한다.
-- Turbo로 lint, test, build를 실행한다.
-- 일부 패키지는 업데이트에서 제외해야 한다.
-- major 업데이트는 별도 PR로 분리하고 싶다.
-
-이때 필요한 것은 "명령 하나를 무엇으로 바꿀까"가 아니라 "어떤 파일을 누가 수정하고, 무엇으로 검증할까"에 대한 구분입니다.
-
-<br />
-
-## ncu와 pnpm update는 같은 도구가 아니다
-
-`npm-check-updates`, 줄여서 `ncu`는 `package.json`의 dependency spec을 최신 버전으로 올리는 도구입니다. README에서도 기본 동작을 `package.json` dependency를 최신 버전으로 갱신하고, 실제 설치와 lockfile 갱신은 별도 install 명령으로 처리하는 방식으로 설명합니다.
-
-반면 `pnpm update`는 지정된 range를 기준으로 패키지를 업데이트하는 pnpm CLI 명령입니다. 인자 없이 실행하면 `package.json`에 적힌 기존 range 안에서 업데이트하고, `--latest`를 붙이면 latest tag 기준의 최신 stable로 올립니다. 이 경우 major 버전이 섞일 수 있습니다.
-
-두 도구는 기본 철학이 다릅니다.
-
-| 목적                                   | `npm-check-updates`               | `pnpm update`                     |
-| -------------------------------------- | --------------------------------- | --------------------------------- |
-| `package.json` range 자체를 올리기     | 기본 역할                         | `--latest` 또는 명시 버전 필요    |
-| 기존 semver range 안에서 lockfile 갱신 | 주 역할 아님                      | 기본 역할                         |
-| minor까지만 올리기                     | `--target minor` 가능             | 직접 같은 의미의 전역 옵션은 아님 |
-| 특정 패키지 제외                       | `--reject` 또는 `.ncurc`          | `updateConfig.ignoreDependencies` |
-| workspace 전체 탐색                    | `--deep` 등으로 package file 탐색 | `-r`, `--recursive`               |
-
-업데이트 후보를 확인만 하고 싶다면 `pnpm outdated -r`가 더 잘 맞습니다. 실제 spec 변경까지 할지, 기존 range 안에서만 lockfile을 갱신할지, major까지 올릴지는 그 다음 결정입니다.
-
-```bash
-pnpm outdated -r
-pnpm update -r
-pnpm update -r --latest --interactive
-```
-
-이 세 명령은 비슷해 보여도 의도가 다릅니다. 첫 번째는 확인, 두 번째는 기존 range 안의 갱신, 세 번째는 range 바깥까지 포함한 선택적 업데이트에 가깝습니다.
-
-<br />
-
-## catalog가 들어오면 업데이트 지점이 바뀐다
-
-pnpm catalog는 workspace 안에서 dependency version range를 재사용 가능한 상수처럼 정의하는 기능입니다. `pnpm-workspace.yaml`에 catalog를 정의하고, 각 `package.json`에서는 `catalog:` 또는 `catalog:name`으로 참조할 수 있습니다.
-
-예를 들어 여러 앱과 패키지가 같은 React 버전을 써야 한다면 각 `package.json`에 직접 `^19.x`를 쓰는 대신 이렇게 둘 수 있습니다.
+pnpm catalog에서는 버전 문자열과 참조가 서로 다른 파일에 있습니다.
 
 ```yaml title="pnpm-workspace.yaml"
 packages:
@@ -127,230 +56,218 @@ catalogs:
 }
 ```
 
-이 구조의 장점은 분명합니다. 중복된 version range를 줄이고, workspace 안에서 같은 버전을 유지하기 쉬워집니다. 업그레이드할 때도 여러 `package.json`을 고치는 대신 `pnpm-workspace.yaml`의 catalog entry를 바꾸면 됩니다.
+실제 설치 결과는 `pnpm-lock.yaml`에 남습니다. 따라서 catalog 기반 업데이트는 세 가지 관계를 보존해야 합니다.
 
-하지만 바로 이 지점 때문에 업데이트 워크플로가 애매해집니다.
+- `package.json`은 계속 `catalog:` 또는 `catalog:<name>`을 참조한다.
+- `pnpm-workspace.yaml`의 catalog entry가 의도한 version range를 가진다.
+- `pnpm-lock.yaml`의 resolution이 변경된 catalog와 일치한다.
 
-`npm-check-updates`는 기본적으로 `package.json` 중심 도구입니다. pnpm catalog를 쓰면 실제 버전 정책은 `pnpm-workspace.yaml`에 있는데, updater는 여전히 package manifest를 중심으로 사고할 수 있습니다.
+도구를 비교할 때도 단순히 “최신 버전을 찾는가”만 보지 않았습니다.
 
-pnpm 쪽도 이 영역은 계속 개선 중입니다. `pnpm update`가 catalog를 업데이트해야 한다는 이슈는 닫혔지만, 2026년 5월 29일 기준으로 `pnpm up`이 하위 패키지의 `catalog:` 참조를 실제 version string으로 바꾼다는 버그 리포트가 열려 있습니다.
+| 기준          | 확인할 질문                                               |
+| ------------- | --------------------------------------------------------- |
+| 수정 대상     | catalog entry, package spec, lockfile 중 무엇을 바꾸는가? |
+| 업데이트 범위 | range 안, patch, minor, latest를 어떻게 구분하는가?       |
+| 선택 방식     | package와 named catalog를 좁혀서 실행할 수 있는가?        |
+| 자동화        | 사람이 실행하는가, 반복 PR을 만드는가?                    |
+| 검증          | 변경 후 workspace 전체를 어떻게 확인하는가?               |
 
-그래서 catalog 기반 repo에서는 업데이트 뒤에 항상 세 파일을 같이 봐야 합니다.
-
-- `package.json`: dependency가 계속 `catalog:`를 참조하는가?
-- `pnpm-workspace.yaml`: catalog entry가 의도한 버전을 가리키는가?
-- `pnpm-lock.yaml`: 실제 resolved dependency가 catalog와 일치하는가?
-
-catalog를 쓰는 순간 "의존성 업데이트"는 한 파일의 range를 고치는 일이 아니라, 이 세 파일의 관계를 맞추는 일이 됩니다.
+이 기준으로 보면 `pnpm update`, Syncpack, Dependabot은 같은 도구의 대체재가 아닙니다.
 
 <br />
 
-## Turbo는 의존성 업데이트 도구가 아니다
+## pnpm update는 이제 catalog를 직접 업데이트한다
 
-Turbo는 의존성 관리를 직접 담당하지 않습니다. Turborepo 문서도 의존성 다운로드, symlink, module resolution 같은 작업은 package manager의 책임이라고 설명합니다.
+과거에는 `pnpm update`가 catalog dependency를 의도적으로 건너뛰었습니다. 이 제한을 추적하던 pnpm issue #8641은 현재 닫혀 있습니다.
 
-Turbo가 권하는 방향은 대략 이렇습니다.
+2025년 6월 8일 merge된 pnpm PR #9517은 `pnpm update`가 `catalog:` protocol dependency를 지원하도록 변경했습니다. 기존의 의도적인 skip 로직을 제거하고, default catalog와 named catalog 업데이트 및 lockfile snapshot 변경을 검증하는 test를 추가했습니다.
 
-- dependency는 사용하는 package의 `package.json`에 둔다.
-- root에는 repo 운영 도구 중심으로 둔다.
-- workspace 전체에서 같은 버전을 강제하고 싶다면 전용 도구, package manager 명령, pnpm catalog를 사용한다.
+따라서 현재 전략에서 `pnpm update`를 “catalog를 업데이트하지 못하는 명령”으로 분류하면 안 됩니다. pnpm native 명령으로 catalog dependency를 올리는 경로가 있습니다.
 
-문서에서 같은 버전을 유지하는 방법으로 `syncpack`, `manypkg`, `sherif` 같은 전용 도구, `pnpm up --recursive typescript@latest` 같은 package manager 명령, pnpm catalog를 예로 드는 것도 이 맥락입니다.
-
-Turbo는 여기서 업데이트 도구가 아니라 실행기와 캐시 레이어에 가깝습니다. 의존성 업데이트를 해주는 것이 아니라, 업데이트 이후 workspace 전체가 여전히 동작하는지 검증하는 쪽입니다.
+기본 동작의 구분은 여전히 중요합니다.
 
 ```bash
-pnpm install
-turbo run lint test build
-```
-
-따라서 Turbo 모노레포에서 의존성 업데이트를 한다는 말은 package manager로 spec과 lockfile을 갱신한 뒤, Turbo로 영향 범위를 검증하는 흐름까지 포함해야 합니다.
-
-<br />
-
-## 업데이트 제외 정책은 별도로 관리한다
-
-`npm-check-updates`를 쓸 때는 `.ncurc`의 `reject`로 특정 package를 업데이트 대상에서 제외할 수 있습니다.
-
-```json title=".ncurc.json"
-{
-  "reject": ["react", "react-dom", "@biomejs/biome"]
-}
-```
-
-pnpm 네이티브 흐름으로 옮긴다면 `pnpm-workspace.yaml`의 `updateConfig.ignoreDependencies`를 검토할 수 있습니다. pnpm 문서는 `pnpm outdated`에 계속 표시되거나 `pnpm update --latest`로 올라가면 안 되는 dependency를 여기에 둘 수 있다고 설명합니다. scope pattern도 지원합니다.
-
-```yaml title="pnpm-workspace.yaml"
-updateConfig:
-  ignoreDependencies:
-    - react
-    - react-dom
-    - '@biomejs/biome'
-    - '@storybook/*'
-```
-
-다만 이것도 `ncu --target minor`의 완전한 대체는 아닙니다. "minor까지만 올린다"는 정책과 "`latest`까지 올리되 특정 패키지는 제외한다"는 정책은 다릅니다.
-
-pnpm 네이티브만 쓸 경우에는 다음 장치를 같이 두는 편이 낫습니다.
-
-- `pnpm outdated -r`로 후보를 먼저 확인한다.
-- `pnpm update -r --latest --interactive`로 선택권을 둔다.
-- core dependency, build tool, app-specific dependency를 PR 단위로 분리한다.
-- major 업데이트는 changelog를 읽고 별도 PR로 올린다.
-
-<br />
-
-## 자동화 bot도 catalog에서는 diff를 믿고 확인해야 한다
-
-Dependabot이나 Renovate는 patch/minor 업데이트 PR을 자동으로 만드는 데 유용합니다. 하지만 catalog 기반 workspace에서는 bot이 `package.json`, `pnpm-workspace.yaml`, `pnpm-lock.yaml`을 모두 의도대로 갱신하는지 별도 확인이 필요합니다.
-
-Dependabot 쪽에는 pnpm catalog를 기대대로 업데이트하지 못했다는 이슈가 있었습니다. 리포트에서는 Dependabot이 `pnpm-workspace.yaml`의 catalog는 갱신하지 않고 lockfile만 갱신한 사례가 설명됩니다.
-
-Renovate discussion에도 pnpm monorepo와 catalog version을 함께 쓸 때 lockfile의 catalog 정보가 사라지는 문제를 겪었다는 보고가 있습니다.
-
-이 사례들이 모든 환경에서 지금도 재현된다는 뜻은 아닙니다. 다만 "bot이 열어준 PR이니까 안전하다"고 가정하기보다는, catalog와 lockfile diff를 같이 보는 습관이 필요하다는 신호로 보는 편이 낫습니다.
-
-특히 다음 diff는 PR에서 직접 확인합니다.
-
-- catalog entry가 바뀌어야 하는데 lockfile만 바뀌지 않았는가?
-- `catalog:` 참조가 실제 version string으로 풀리지 않았는가?
-- catalog와 무관한 package의 lockfile resolution이 대량으로 흔들리지 않았는가?
-- peer dependency warning이 새로 생기지 않았는가?
-
-<br />
-
-## 역할을 나누면 판단이 쉬워진다
-
-의존성 업데이트 도구를 하나로 고르려고 하면 계속 헷갈립니다. 대신 역할을 나누면 선택지가 단순해집니다.
-
-| 역할                        | 후보                                                   |
-| --------------------------- | ------------------------------------------------------ |
-| 현재 outdated 확인          | `pnpm outdated -r`                                     |
-| 기존 range 안 lockfile 갱신 | `pnpm update -r`                                       |
-| package spec 적극 업데이트  | `pnpm update -r --latest -i`, `ncu`, `taze`            |
-| catalog 중심 버전 정책 검사 | `syncpack`                                             |
-| catalog entry 업데이트      | `syncpack update`, `pnpm update`, 전용 catalog updater |
-| 자동 PR                     | Renovate, Dependabot                                   |
-| 전체 검증                   | `pnpm install`, `turbo run lint test build`            |
-
-`taze`는 monorepo recursive mode를 지원하고, 기본적으로 허용된 version range 안에서 업데이트하는 보수적인 동작을 기본값으로 둡니다. `taze minor`, `taze major`처럼 업데이트 범위를 명시할 수도 있습니다.
-
-`syncpack`은 pnpm catalog를 dependency type으로 인식합니다. `pnpmCatalog`, `pnpmCatalog:<name>` 같은 dependency type을 대상으로 lint/list를 실행할 수 있고, version group을 통해 catalog 사용 강제 같은 정책을 둘 수도 있습니다.
-
-다만 이 도구들도 도입 자체가 목적은 아닙니다. 중요한 것은 repo의 버전 정책을 어디에 둘지 먼저 정하는 것입니다.
-
-내 기준에서 가장 현실적인 방향은 다음과 같습니다.
-
-1. catalog를 핵심 dependency version의 SSOT로 둔다.
-2. `pnpm outdated -r` 또는 updater의 dry-run으로 변경 후보를 먼저 본다.
-3. core dependency, build tool, app-specific dependency, major update를 PR 단위로 나눈다.
-4. catalog entry를 바꾼 뒤 `pnpm install`로 lockfile을 갱신한다.
-5. `turbo run lint test build`로 영향 범위를 검증한다.
-6. Renovate/Dependabot은 patch/minor 자동화에 쓰되, catalog와 lockfile diff를 반드시 확인한다.
-
-<br />
-
-## 추천 워크플로
-
-가장 보수적인 기본 흐름은 다음과 같습니다.
-
-```bash
-pnpm outdated -r
-# pnpm-workspace.yaml의 catalog entry 또는 개별 package.json을 필요한 만큼 수정
-pnpm install
-turbo run lint test build
-```
-
-기존 range 안에서만 lockfile을 갱신하고 싶다면 이렇게 시작할 수 있습니다.
-
-```bash
+# 지정된 range 안에서 업데이트
 pnpm update -r
+
+# latest tag 기준으로 range 밖까지 업데이트할 수 있음
+pnpm update -r --latest
+
+# 후보를 보며 선택
+pnpm update -r --latest --interactive
+```
+
+`--latest`는 major까지 포함할 수 있습니다. catalog 지원 여부와 “어디까지 올릴 것인가”는 별개의 판단입니다.
+
+### #11658은 현재 제한이 아니라 수정된 회귀 사례다
+
+pnpm issue #11658에는 `pnpm upgrade -r` 실행 시 하위 package의 `catalog:` 참조가 실제 version string으로 바뀌는 회귀가 보고됐습니다. `workspace:*` dependency가 함께 있을 때 dependency 배열의 index가 어긋난 것이 원인이었습니다.
+
+이 문제를 수정한 pnpm PR #11711은 2026년 5월 23일 merge됐습니다. catalog 참조를 보존하도록 alias 기반 matching으로 바꾸고 regression test를 추가했습니다.
+
+이 사례는 현재 pnpm이 catalog를 지원하지 않는다는 근거가 아닙니다. **지원 기능에 회귀가 있었고 수정된 사례**로 보는 편이 정확합니다.
+
+다만 실제 저장소가 수정이 포함된 pnpm release를 사용 중인지 확인하는 과정은 남습니다. native 명령을 선택하더라도 update PR에서 세 파일의 diff를 함께 보는 습관은 유지해야 합니다.
+
+<br />
+
+## Syncpack update는 catalog 정책을 좁혀 실행할 때 강하다
+
+Syncpack은 예전부터 workspace 안의 dependency version 일관성을 검사하는 도구로 많이 사용됐습니다. 현재 문서의 `syncpack update`는 registry에서 새 버전을 찾아 `package.json`뿐 아니라 `pnpm-workspace.yaml`의 catalog entry도 수정한다고 명시합니다.
+
+특히 pnpm catalog를 dependency type으로 자동 인식합니다.
+
+- default catalog: `pnpmCatalog`
+- named catalog: `pnpmCatalog:<name>`
+
+이 구분을 update 명령에 그대로 사용할 수 있습니다.
+
+```bash
+# default catalog entry만 업데이트
+syncpack update --dependency-types pnpmCatalog
+
+# named catalog 하나만 업데이트
+syncpack update --dependency-types 'pnpmCatalog:react19'
+
+# minor 범위의 후보를 골라 적용
+syncpack update \
+  --dependency-types pnpmCatalog \
+  --target minor \
+  --interactive
+```
+
+`--target`으로 latest, minor, patch 범위를 나누고, `--dependencies`로 특정 package family를 좁힐 수도 있습니다. update group을 사용하면 dependency별 정책도 설정할 수 있습니다.
+
+이 차이 때문에 Syncpack은 “pnpm update가 catalog를 지원하지 않아서 쓰는 우회 도구”가 아닙니다. **catalog와 dependency family별 업데이트 정책을 명시적으로 운영하고 싶을 때 선택하는 도구**에 가깝습니다.
+
+Syncpack update가 manifest와 catalog entry를 바꾼 뒤에는 pnpm으로 lockfile을 갱신합니다.
+
+```bash
+syncpack update --dependency-types pnpmCatalog --interactive
 pnpm install
+```
+
+Taze는 이번 catalog updater 비교에서 제외했습니다. monorepo dependency update 기능과 `pnpm-workspace.yaml`의 catalog entry를 직접 갱신하는 기능은 같은 의미가 아니며, 후자는 이번 검토에서 공식 문서로 확인하지 못했기 때문입니다.
+
+<!-- REVIEW: Taze는 monorepo dependency updater로 사용할 수 있지만, 이번 자료에서 current pnpm catalog entry update 동작을 공식 문서로 확인하지 못했다. 확인 전에는 catalog updater 후보나 추천 명령에 포함하지 말 것. -->
+
+<br />
+
+## Dependabot은 catalog 업데이트 PR을 반복해서 만든다
+
+GitHub는 2025년 2월 4일 Changelog에서 Dependabot의 pnpm workspace catalogs 지원이 GA됐다고 발표했습니다. GitHub 표현으로는 catalog에 대한 full support이며, workspace별 scoped update와 lockfile consistency를 지원 범위로 설명합니다.
+
+따라서 Dependabot의 역할은 “catalog를 모르는 bot의 결과를 보정하는 것”이 아닙니다. 현재는 **반복적인 dependency update를 PR로 만드는 자동화 계층**으로 둘 수 있습니다.
+
+```yaml title=".github/dependabot.yml"
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+```
+
+GA 이후 catalog entry가 갱신되지 않고 lockfile만 바뀌는 문제가 dependabot-core #11953에 보고된 적이 있습니다. 이 issue는 현재 closed이고 project status도 Done입니다.
+
+이 closed bug를 Dependabot이 지금도 catalog를 지원하지 않는다는 근거로 사용하면 안 됩니다. 현재 판단의 기준은 GA 공지와 실제 생성된 PR의 diff입니다.
+
+자동화가 지원된다고 리뷰가 필요 없어지는 것은 아닙니다. Dependabot PR에서도 다음 항목은 확인합니다.
+
+- catalog entry와 lockfile이 함께 갱신됐는가?
+- unrelated package resolution이 대량으로 바뀌지 않았는가?
+- peer dependency warning이 새로 생기지 않았는가?
+- major update가 자동 merge 범위에 섞이지 않았는가?
+
+지원 여부와 PR을 merge할 수 있는지는 다른 문제입니다.
+
+<br />
+
+## 세 도구를 같은 표에 놓으면 역할이 보인다
+
+현재 지원 상태를 기준으로 세 도구를 비교하면 다음과 같습니다.
+
+| 도구              | 주된 실행 주체    | catalog entry 업데이트 | 강점                                                | 맡길 역할                          |
+| ----------------- | ----------------- | ---------------------- | --------------------------------------------------- | ---------------------------------- |
+| `pnpm update`     | 개발자, script    | 지원                   | package manager native 흐름, lockfile 연계          | 직접·일회성 업데이트               |
+| `syncpack update` | 개발자, CI        | 지원                   | `pnpmCatalog`와 target/update group으로 정책을 좁힘 | 정책 기반 수동 업데이트            |
+| Dependabot        | GitHub automation | GA 지원                | 일정에 따라 반복 PR 생성                            | patch/minor 자동화와 보안 업데이트 |
+
+여기서 하나만 선택할 필요는 없습니다.
+
+- 별도 정책 도구를 추가하고 싶지 않다면 `pnpm update`가 가장 단순합니다.
+- catalog나 package family마다 patch/minor 정책을 나누고 싶다면 Syncpack이 더 명시적입니다.
+- 반복 확인과 PR 생성을 자동화하려면 Dependabot을 둡니다.
+
+결정 기준은 기능 유무보다 운영 방식입니다.
+
+<br />
+
+## 내가 선택한 흐름: Syncpack으로 좁히고 pnpm으로 확정한다
+
+catalog가 핵심 dependency의 단일 출처인 모노레포라면, 로컬 업데이트 흐름을 다음처럼 나눌 수 있습니다.
+
+```bash
+# 1. default catalog의 minor update 후보를 선택
+syncpack update \
+  --dependency-types pnpmCatalog \
+  --target minor \
+  --interactive
+
+# 2. lockfile 갱신
+pnpm install
+
+# 3. workspace 검증
 turbo run lint test build
 ```
 
-적극적으로 올리되 선택권을 유지하려면 interactive mode를 씁니다.
+Syncpack을 추가하지 않는 저장소라면 첫 단계를 pnpm native 명령으로 바꿀 수 있습니다.
 
 ```bash
 pnpm update -r --latest --interactive
-pnpm install
 turbo run lint test build
 ```
 
-다만 catalog를 쓰는 repo에서는 실행 후 반드시 다음을 확인합니다.
+Dependabot은 patch/minor 업데이트를 정기 PR로 만들고, core dependency의 major 업데이트는 별도 PR로 분리합니다.
 
-- `package.json`의 `catalog:` 참조가 실제 version string으로 바뀌지 않았는가?
-- `pnpm-workspace.yaml`의 catalog entry가 의도한 범위만 바뀌었는가?
-- `pnpm-lock.yaml` diff가 예상 범위를 크게 벗어나지 않았는가?
-- peer dependency warning이 새로 생기지 않았는가?
-- major changelog를 읽어야 하는 dependency가 섞이지 않았는가?
+이 흐름에서 Turbo는 updater가 아닙니다. dependency spec이나 catalog entry를 수정하지 않고, 변경 후 workspace 전체가 여전히 동작하는지 확인하는 **검증 계층**으로만 남습니다.
 
-이 과정을 스크립트로 감싸더라도, 스크립트 이름은 `bump-deps`보다 더 좁게 짓는 편이 좋습니다. 예를 들어 "range 안에서 갱신"과 "latest까지 갱신"은 같은 작업이 아닙니다.
-
-```json title="package.json"
-{
-  "scripts": {
-    "deps:outdated": "pnpm outdated -r",
-    "deps:update:range": "pnpm update -r",
-    "deps:update:latest": "pnpm update -r --latest --interactive",
-    "deps:verify": "pnpm install && turbo run lint test build"
-  }
-}
-```
-
-스크립트를 나누면 PR의 의도도 같이 작아집니다. "이번 PR은 기존 range 안에서 lockfile만 갱신한다"와 "이번 PR은 catalog의 React 버전을 올린다"는 리뷰 포인트가 다릅니다.
+| 계층           | 도구                             | 책임                                           |
+| -------------- | -------------------------------- | ---------------------------------------------- |
+| 직접 업데이트  | pnpm update 또는 Syncpack update | version candidate 선택과 manifest/catalog 수정 |
+| 설치 상태 확정 | pnpm install                     | lockfile 갱신과 dependency resolution          |
+| 반복 자동화    | Dependabot                       | 일정 기반 update PR 생성                       |
+| workspace 검증 | Turbo                            | lint, test, build 실행과 cache                 |
 
 <br />
 
-## 피하고 싶은 패턴
+## 최신 버전보다 검토 가능한 변경을 만든다
 
-내가 피하고 싶은 패턴은 다음입니다.
+pnpm catalog의 native update 지원이 생겼다고 해서 모든 dependency를 한 번에 `--latest`로 올리는 것이 좋은 전략이 되는 것은 아닙니다.
 
-- workspace 전체에 `pnpm update -r --latest`를 한 번에 실행하고 그대로 merge한다.
-- React, Next.js, TypeScript 같은 core dependency major 업데이트를 build tool patch 업데이트와 같은 PR에 넣는다.
-- catalog를 쓰면서 일부 package에는 직접 version string을 흩뿌린다.
-- lockfile diff를 보지 않고 `package.json` 또는 `pnpm-workspace.yaml` diff만 본다.
-- Turbo가 의존성 업데이트 정책까지 해결해줄 것이라고 기대한다.
-- bot PR을 검토 없이 merge한다.
+제가 유지하려는 기준은 다음과 같습니다.
 
-의존성 업데이트는 자주 해야 하지만, 한 번에 많이 할수록 원인 추적 비용이 커집니다. 특히 모노레포에서는 한 패키지의 업데이트가 다른 앱의 타입체크, 테스트, 빌드에 영향을 줄 수 있습니다.
+- React, Next.js, TypeScript 같은 core dependency의 major update는 별도 PR로 만든다.
+- catalog entry, `catalog:` 참조, lockfile diff를 함께 본다.
+- 자동화 PR도 peer dependency와 changelog를 확인한다.
+- update 명령과 workspace 검증 명령의 책임을 섞지 않는다.
 
-<br />
+원래 질문은 “`bump-deps`를 어떤 명령으로 바꿀까?”였습니다. 현재 답은 명령 하나가 아닙니다.
 
-## 정리
-
-`pnpm update`는 `npm-check-updates`의 완전한 대체가 아닙니다. 기본 동작은 package range 안에서 업데이트하는 쪽에 가깝고, `--latest`를 붙이면 major 업데이트가 섞일 수 있습니다.
-
-pnpm catalog를 쓰면 핵심 버전의 단일 출처는 `pnpm-workspace.yaml`입니다. 따라서 catalog 기반 모노레포에서는 `package.json`, `pnpm-workspace.yaml`, `pnpm-lock.yaml` diff를 함께 봐야 합니다.
-
-Turbo는 dependency manager가 아니라 검증과 실행 레이어입니다. 업데이트 정책을 대신 결정해주지는 않지만, 업데이트 결과가 workspace 전체에서 깨지지 않는지 확인하는 데 중요합니다.
-
-결국 내가 선호하는 결론은 "하나의 bump 명령으로 모든 것을 해결하자"가 아닙니다. catalog를 SSOT로 두고, 업데이트 후보 확인, version spec 변경, lockfile 갱신, Turbo 검증, 자동화 bot의 PR 검토를 각각 분리하는 것입니다.
-
-의존성 업데이트의 목표는 최신 버전이 아니라, 일관성 있고 검증 가능한 변경입니다.
-
-:::caution
-
-이 글의 도구별 평가는 2026년 5월 29일 기준 문서와 공개 이슈를 바탕으로 합니다. pnpm catalog와 update 명령의 관계는 계속 개선되고 있으므로, 실제 적용 전에는 사용하는 pnpm 버전의 release note와 작은 재현 repo로 동작을 확인하는 편이 안전합니다.
-
-:::
+`pnpm update`는 native update, Syncpack은 catalog 정책, Dependabot은 반복 PR, Turbo는 검증을 맡깁니다. 의존성 업데이트의 목표는 모든 package를 가장 빨리 최신으로 만드는 것이 아니라, **어떤 도구가 무엇을 바꿨는지 설명할 수 있는 작은 변경을 만드는 것**입니다.
 
 <br />
 
 ## 참고 링크
 
 - [pnpm update](https://pnpm.io/cli/update)
-- [pnpm outdated](https://pnpm.io/cli/outdated)
 - [pnpm catalogs](https://pnpm.io/catalogs)
-- [pnpm settings - updateConfig.ignoreDependencies](https://pnpm.io/settings#updateconfigignoredependencies)
+- [pnpm issue #8641 - pnpm update should update catalogs](https://github.com/pnpm/pnpm/issues/8641)
+- [pnpm PR #9517 - support catalog protocol on pnpm update](https://github.com/pnpm/pnpm/pull/9517)
+- [pnpm issue #11658 - catalog references regression](https://github.com/pnpm/pnpm/issues/11658)
+- [pnpm PR #11711 - preserve catalog protocol references on upgrade](https://github.com/pnpm/pnpm/pull/11711)
+- [Syncpack update](https://syncpack.dev/command/update/)
+- [Syncpack dependency types](https://syncpack.dev/dependency-types/)
+- [Dependabot pnpm workspace catalogs GA](https://github.blog/changelog/2025-02-04-dependabot-now-supports-pnpm-workspace-catalogs-ga/)
+- [dependabot-core issue #11953 - closed catalog update bug](https://github.com/dependabot/dependabot-core/issues/11953)
 - [Turborepo - Managing dependencies](https://turborepo.dev/docs/crafting-your-repository/managing-dependencies)
-- [Turborepo - Structuring a repository](https://turborepo.dev/docs/crafting-your-repository/structuring-a-repository)
-- [npm-check-updates README](https://github.com/raineorshine/npm-check-updates)
-- [npm-check-updates #1451 - pnpm catalog protocol support](https://github.com/raineorshine/npm-check-updates/issues/1451)
-- [pnpm #8641 - pnpm update should update catalogs](https://github.com/pnpm/pnpm/issues/8641)
-- [pnpm #11658 - pnpm up removes catalog references](https://github.com/pnpm/pnpm/issues/11658)
-- [dependabot-core #11953 - dependabot does not update pnpm-workspace.yaml's catalog](https://github.com/dependabot/dependabot-core/issues/11953)
-- [renovatebot/renovate discussion #34292](https://github.com/renovatebot/renovate/discussions/34292)
-- [taze README](https://github.com/antfu-collective/taze)
-- [syncpack dependency types](https://syncpack.dev/dependency-types/)
-- [syncpack version groups](https://syncpack.dev/version-groups/)
